@@ -1,0 +1,60 @@
+<?php
+
+use Illuminate\Foundation\Testing\WithoutMiddleware;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Support\Facades\App;
+
+class CategoryControllerTest extends TestCase
+{
+
+    use DatabaseTransactions;
+
+    protected $trackUploader;
+    protected $user;
+
+    public function __construct()
+    {
+        parent::setUp();
+        $this->trackUploader = App::make('\App\Src\Track\TrackUploader');
+        $user = factory('App\Src\User\User')->make();
+        $this->user = $this->be($user);
+    }
+
+    public function  testItWorks()
+    {
+        $this->visit('/');
+    }
+
+    public function testCreateCategory()
+    {
+        $catName = 'a b' . uniqid();
+
+        $this->visit('/admin/category/create')
+            ->type($catName, 'name_ar')
+            ->type('description', 'description_ar')
+            ->attach(public_path() . '/img/product_02.jpg', 'cover')
+            ->press('Save Draft');
+
+        $this->seeInDatabase('categories',
+            ['name_ar' => $catName, 'description_ar' => 'description', 'slug' => str_slug($catName)]);
+
+        $category = \App\Src\Category\Category::where('name_ar', $catName)->first();
+
+        $this->assertFileExists($this->trackUploader->getUploadPath() . '/' . $category->slug);
+
+        rmdir($this->trackUploader->getUploadPath() . '/' . $category->slug);
+
+        $this->seeInDatabase('photos', ['imageable_type' => 'Category', 'imageable_id' => $category->id]);
+
+        $photos = \App\Src\Photo\Photo::where('imageable_type', 'Category')->where('imageable_id',
+            $category->id)->first();
+
+        $this->fileExists(base_path(public_path() . '/uploads/thumbnail/' . $photos->name));
+
+        unlink(public_path() . '/uploads/thumbnail/' . $photos->name);
+
+        $this->onPage('/admin/category');
+    }
+
+}
