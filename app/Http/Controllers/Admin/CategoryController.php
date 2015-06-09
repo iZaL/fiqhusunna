@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
+
     /**
      * @var CategoryRepository
      */
