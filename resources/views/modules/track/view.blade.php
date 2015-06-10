@@ -15,11 +15,9 @@
         .jp-gui {
             position: relative;
             padding: 20px;
-            width: 628px;
         }
 
         .jp-gui.jp-no-volume {
-            width: 432px;
         }
 
         .jp-gui ul {
@@ -28,7 +26,6 @@
         }
 
         .jp-gui ul li {
-            position: relative;
             float: left;
             list-style: none;
             margin: 2px;
@@ -42,16 +39,13 @@
 
         .jp-gui li.jp-repeat,
         .jp-gui li.jp-repeat-off {
-            margin-left: 344px;
         }
 
         .jp-gui li.jp-mute,
         .jp-gui li.jp-unmute {
-            margin-left: 20px;
         }
 
         .jp-gui li.jp-volume-max {
-            margin-left: 120px;
         }
 
         li.jp-pause,
@@ -62,10 +56,7 @@
         }
 
         .jp-progress-slider {
-            position: absolute;
-            top: 28px;
-            left: 100px;
-            width: 300px;
+
         }
 
         .jp-progress-slider .ui-slider-handle {
@@ -73,10 +64,6 @@
         }
 
         .jp-volume-slider {
-            position: absolute;
-            top: 31px;
-            left: 508px;
-            width: 100px;
             height: .4em;
             background-color: antiquewhite;
         }
@@ -93,26 +80,50 @@
 
         .jp-current-time,
         .jp-duration {
-            position: absolute;
-            top: 42px;
+
             font-size: 0.8em;
             cursor: default;
         }
 
         .jp-current-time {
-            left: 100px;
         }
 
         .jp-duration {
-            right: 266px;
         }
 
         .jp-gui.jp-no-volume .jp-duration {
-            right: 70px;
         }
 
         .jp-clearboth {
             clear: both;
+        }
+
+        .jp-volume-slider {
+        }
+
+        .icon-download {
+            padding-top: 7px;
+            font-size: 20px;
+        }
+
+        .jp-gui {
+            width: 100%;
+        }
+
+        .jp-gui li.jp-repeat-off {
+        }
+
+        .jp-gui li.jp-volume-max {
+        }
+
+        .jp-progress-slider {
+
+        }
+
+        .jp-volume-slider {
+        }
+
+        .jp-gui li.jp-repeat, .jp-gui li.jp-repeat-off {
         }
 
         -->
@@ -243,50 +254,88 @@
 
         <div id="jp_container_1">
             <div class="jp-gui ui-widget ui-widget-content ui-corner-all">
-                <ul>
-                    <li class="jp-play ui-state-default ui-corner-all"><a href="javascript:;"
-                                                                          class="jp-play ui-icon ui-icon-play"
-                                                                          tabindex="1" title="play">play</a></li>
-                    <li class="jp-pause ui-state-default ui-corner-all" style="display: none;"><a href="javascript:;"
-                                                                                                  class="jp-pause ui-icon ui-icon-pause"
-                                                                                                  tabindex="1"
-                                                                                                  title="pause"
-                                                                                                  style="display: none;">pause</a>
-                    </li>
-                    <li class="jp-stop ui-state-default ui-corner-all"><a href="javascript:;"
-                                                                          class="jp-stop ui-icon ui-icon-stop"
-                                                                          tabindex="1" title="stop">stop</a></li>
-                    <li class="jp-repeat ui-state-default ui-corner-all"><a href="javascript:;"
-                                                                            class="jp-repeat ui-icon ui-icon-refresh"
-                                                                            tabindex="1" title="repeat">repeat</a></li>
-                    <li class="jp-repeat-off ui-state-default ui-state-active ui-corner-all" style="display: none;"><a
-                                href="javascript:;" class="jp-repeat-off ui-icon ui-icon-refresh" tabindex="1"
-                                title="repeat off" style="display: none;">repeat off</a></li>
-                    <li class="jp-mute ui-state-default ui-corner-all"><a href="javascript:;"
-                                                                          class="jp-mute ui-icon ui-icon-volume-off"
-                                                                          tabindex="1" title="mute">mute</a></li>
-                    <li class="jp-unmute ui-state-default ui-state-active ui-corner-all" style="display: none;"><a
-                                href="javascript:;" class="jp-unmute ui-icon ui-icon-volume-off" tabindex="1"
-                                title="unmute" style="display: none;">unmute</a></li>
-                    <li class="jp-volume-max ui-state-default ui-corner-all"><a href="javascript:;"
-                                                                                class="jp-volume-max ui-icon ui-icon-volume-on"
-                                                                                tabindex="1" title="max volume">max
-                            volume</a></li>
-                </ul>
-                <i class="fa fa-music" style="padding-left: 20px;"></i>
-                <div class="jp-progress-slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
-                     aria-disabled="false">
-                    <div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min"
-                         style="width: 0%;"></div>
-                    <a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 0%;"></a></div>
-                <div class="jp-volume-slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
-                     aria-disabled="false">
-                    <div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min"
-                         style="width: 52%;"></div>
-                    <a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 52%;"></a></div>
-                <div class="jp-current-time">00:00</div>
-                <div class="jp-duration">03:29</div>
-                <div class="jp-clearboth"></div>
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <ul>
+                            <div class="col-md-1">
+                                <li class="jp-play ui-state-default ui-corner-all"><a href="javascript:;"
+                                                                                      class="jp-play ui-icon ui-icon-play"
+                                                                                      tabindex="1" title="play">play</a>
+                                </li>
+                                <li class="jp-pause ui-state-default ui-corner-all" style="display: none;"><a
+                                            href="javascript:;"
+                                            class="jp-pause ui-icon ui-icon-pause"
+                                            tabindex="1"
+                                            title="pause"
+                                            style="display: none;">pause</a>
+                                </li>
+                            </div>
+
+                            <div class="col-md-1">
+                                <li class="jp-stop ui-state-default ui-corner-all"><a href="javascript:;"
+                                                                                      class="jp-stop ui-icon ui-icon-stop"
+                                                                                      tabindex="1" title="stop">stop</a>
+                                </li>
+                            </div>
+                            <div class="col-md-3">
+                                <li class="jp-repeat ui-state-default ui-corner-all"><a href="javascript:;"
+                                                                                        class="jp-repeat ui-icon ui-icon-refresh"
+                                                                                        tabindex="1"
+                                                                                        title="repeat">repeat</a>
+                                </li>
+                                <li class="jp-repeat-off ui-state-default ui-state-active ui-corner-all"
+                                    style="display: none;">
+                                    <a
+                                            href="javascript:;" class="jp-repeat-off ui-icon ui-icon-refresh"
+                                            tabindex="1"
+                                            title="repeat off" style="display: none;">repeat off</a></li>
+                                <li class="jp-mute ui-state-default ui-corner-all"><a href="javascript:;"
+                                                                                      class="jp-mute ui-icon ui-icon-volume-off"
+                                                                                      tabindex="1" title="mute">mute</a>
+                                </li>
+                                <li class="jp-unmute ui-state-default ui-state-active ui-corner-all"
+                                    style="display: none;">
+                                    <a
+                                            href="javascript:;" class="jp-unmute ui-icon ui-icon-volume-off"
+                                            tabindex="1"
+                                            title="unmute" style="display: none;">unmute</a></li>
+                                <li class="jp-volume-max ui-state-default ui-corner-all"><a href="javascript:;"
+                                                                                            class="jp-volume-max ui-icon ui-icon-volume-on"
+                                                                                            tabindex="1"
+                                                                                            title="max volume">max
+                                        volume</a></li>
+
+                            </div>
+
+                        </ul>
+
+                        <div class="col-md-3">
+                            <div class="jp-progress-slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
+                                 aria-disabled="false">
+                                <div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min"
+                                     style="width: 0%;"></div>
+                                <a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 0%;"></a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="jp-volume-slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
+                                 aria-disabled="false">
+                                <div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min"
+                                     style="width: 52%;"></div>
+                                <a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 52%;"></a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-1">
+                            <i class="fa fa-download icon-download"></i>
+                        </div>
+
+
+                        <div class="jp-clearboth"></div>
+                    </div>
+                </div>
             </div>
             <div class="jp-no-solution" style="display: none;">
                 <span>Update Required</span>
