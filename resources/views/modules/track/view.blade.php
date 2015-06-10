@@ -17,9 +17,6 @@
             padding: 20px;
         }
 
-        .jp-gui.jp-no-volume {
-        }
-
         .jp-gui ul {
             margin: 0;
             padding: 0;
@@ -37,17 +34,6 @@
             margin: 0 4px;
         }
 
-        .jp-gui li.jp-repeat,
-        .jp-gui li.jp-repeat-off {
-        }
-
-        .jp-gui li.jp-mute,
-        .jp-gui li.jp-unmute {
-        }
-
-        .jp-gui li.jp-volume-max {
-        }
-
         li.jp-pause,
         li.jp-repeat-off,
         li.jp-unmute,
@@ -55,9 +41,6 @@
             display: none;
         }
 
-        .jp-progress-slider {
-
-        }
 
         .jp-progress-slider .ui-slider-handle {
             cursor: pointer;
@@ -84,47 +67,17 @@
             font-size: 0.8em;
             cursor: default;
         }
-
-        .jp-current-time {
-        }
-
-        .jp-duration {
-        }
-
-        .jp-gui.jp-no-volume .jp-duration {
-        }
-
-        .jp-clearboth {
-            clear: both;
-        }
-
-        .jp-volume-slider {
-        }
-
         .icon-download {
             padding-top: 7px;
             font-size: 20px;
         }
-
-        .jp-gui {
-            width: 100%;
-        }
-
-        .jp-gui li.jp-repeat-off {
-        }
-
-        .jp-gui li.jp-volume-max {
-        }
-
+        
         .jp-progress-slider {
             margin-top:10px;
         }
 
         .jp-volume-slider {
             margin-top:15px;
-        }
-
-        .jp-gui li.jp-repeat, .jp-gui li.jp-repeat-off {
         }
 
         -->
@@ -134,7 +87,6 @@
 @section('script')
     @parent
     <script src="/bower_components/jplayer/dist/jplayer/jquery.jplayer.min.js"></script>
-    <script src="/bower_components/jplayer/dist/add-on/jquery.jplayer.inspector.min.js"></script>
     <script src="/bower_components/jquery-ui/jquery-ui.min.js"></script>
     <script src="/js/jplayer.js"></script>
     <script>
