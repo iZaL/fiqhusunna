@@ -9,6 +9,7 @@ class AlbumControllerTest extends TestCase
 {
 
     use DatabaseTransactions;
+    use WithoutMiddleware;
 
     protected $trackUploader;
     protected $user;
@@ -26,23 +27,22 @@ class AlbumControllerTest extends TestCase
 
         $this->trackUploader = App::make('\App\Src\Track\TrackUploader');
         $user = factory('App\Src\User\User')->make();
-        $this->category = factory('App\Src\Category\Category')->make()->get()->first();
-        $this->user = $this->be($user);
+        $this->user = $user;
         $this->albumName = 'a b' . uniqid();
+        $this->catName = 'a b' . uniqid();
 
-//        $this->category = \App\Src\Category\Category::create([
-//            'name_en'        => $this->catName,
-//            'name_ar'        => $this->catName,
-//            'slug'           => str_slug($this->catName),
-//            'description_ar' => 'description',
-//            'description_en' => 'description',
-//        ]);
+        $this->category = \App\Src\Category\Category::create([
+            'name_en'        => $this->catName,
+            'name_ar'        => $this->catName,
+            'slug'           => str_slug($this->catName),
+            'description_ar' => 'description',
+            'description_en' => 'description',
+        ]);
     }
 
     public function testStore()
     {
         //
-
         if (!file_exists($this->trackUploader->getUploadPath() . '/' . $this->category->slug)) {
             mkdir($this->trackUploader->getUploadPath() . '/' . $this->category->slug);
         }
@@ -51,7 +51,7 @@ class AlbumControllerTest extends TestCase
             ->type($this->albumName, 'name_ar')
             ->type('description', 'description_ar')
             ->attach(public_path() . '/img/product_02.jpg', 'cover')
-            ->press('Save Draft');
+            ->press('Save');
 
         $this->seeInDatabase('albums',
             [

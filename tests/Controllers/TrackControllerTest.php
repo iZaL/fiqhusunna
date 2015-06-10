@@ -4,11 +4,13 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\App;
+
 //
 class TrackControllerTest extends TestCase
 {
 
     use DatabaseTransactions;
+    use WithoutMiddleware;
 
     protected $trackUploader;
     protected $user;
@@ -16,13 +18,13 @@ class TrackControllerTest extends TestCase
     protected $albumName;
     protected $category;
 
-    public function __construct()
+    public function setUp()
     {
         parent::setUp();
 
         $this->trackUploader = App::make('\App\Src\Track\TrackUploader');
         $user = factory('App\Src\User\User')->make();
-        $this->catName =uniqid();
+        $this->catName = uniqid();
         $this->category = \App\Src\Category\Category::create([
             'name_en'        => $this->catName,
             'name_ar'        => $this->catName,
@@ -32,7 +34,7 @@ class TrackControllerTest extends TestCase
         ]);
         $this->user = $this->be($user);
 
-}
+    }
 
     public function testStore()
     {
@@ -43,13 +45,13 @@ class TrackControllerTest extends TestCase
         $this->visit('/admin/track/create?type=category')
             ->type('category', 'trackeable_type')
             ->type($this->category->id, 'trackeable_id')
-            ->attach($this->trackUploader->getUploadPath() . '/test.mp3', 'tracks')
-            ->press('Save Draft');
+            ->attach($this->trackUploader->getUploadPath() . '/test.mp3', 'tracks[]')
+            ->press('Save');
 
         $this->seeInDatabase('tracks',
             [
-                'trackeable_id'    => $this->category->id,
-                'trackeable_type'        => 'Category'
+                'trackeable_id'   => $this->category->id,
+                'trackeable_type' => 'Category'
             ]);
 
         $track = \App\Src\Track\Track::where('trackeable_id', $this->category->id)->where('trackeable_type',

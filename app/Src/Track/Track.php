@@ -10,8 +10,6 @@ class Track extends BaseModel
 
     protected $table = 'tracks';
 
-//    public $rules = ['title_ar' => 'unique:tracks,title_ar'];
-
     protected $localeStrings = ['title', 'description'];
 
     public $types = [

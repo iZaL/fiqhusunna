@@ -35,7 +35,6 @@ $factory->define('App\Src\Category\Category', function ($faker) {
 $factory->define('App\Src\Album\Album', function ($faker) {
     $name = $faker->word;
     return [
-        'user_id' => 1,
         'category_id' => 1,
         'name_en' => $faker->word,
         'name_ar' => $faker->word,
@@ -48,7 +47,6 @@ $factory->define('App\Src\Album\Album', function ($faker) {
 $factory->define('App\Src\Track\Track', function ($faker) {
     $name = $faker->word;
     return [
-        'user_id' => 1,
         'views'=>'',
         'trackeable_id' => 1,
         'trackeable_type' => 'Category',
@@ -57,6 +55,6 @@ $factory->define('App\Src\Track\Track', function ($faker) {
         'description_ar'  => $faker->text,
         'description_en'  => $faker->text,
         'slug' => str_slug($name),
-        'url'      => 'test.pdf',
+        'url'      => 'test.mp3',
     ];
 });

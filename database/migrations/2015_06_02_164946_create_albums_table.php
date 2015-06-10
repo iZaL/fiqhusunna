@@ -16,14 +16,13 @@ class CreateAlbumsTable extends Migration
             //
             $table->increments('id');
             $table->integer('category_id')->index()->nullable();
-            $table->integer('user_id')->index();
             $table->string('name_ar');
             $table->string('name_en')->nullable();
             $table->string('slug')->nullable();
             $table->text('description_ar');
             $table->text('description_en')->nullable();
             $table->string('cover')->nullable();
-            $table->bigInteger('views'); // url or html
+            $table->bigInteger('views')->nullable(); // url or html
             $table->timestamps();
             $table->softDeletes();
         });

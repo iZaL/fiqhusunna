@@ -16,7 +16,7 @@
             $('input.tracks').MultiFile({
                 // your options go here
                 max: 5,
-                accept: 'mp3',
+//                accept: 'mp3',
                 max_size: 10000, // 10MB
                 onFileAppend: function (element, value, master_element) {
 //                    $('#F9-Log').append('<li>onFileAppend - ' + value + '</li>')
@@ -50,7 +50,7 @@
         </div>
 
         <div class="form-group">
-            {!! Form::submit('Save Draft', ['class' => 'btn btn-primary form-control']) !!}
+            {!! Form::submit('Save', ['class' => 'btn btn-primary form-control']) !!}
         </div>
 
         {!! Form::close() !!}

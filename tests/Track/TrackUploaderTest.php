@@ -11,14 +11,12 @@ class TrackUploaderTest extends TestCase
 //    use DatabaseTransactions;
 
     protected $trackUploader;
-    protected $catName;
 
-    public function __construct()
+    public function setUp()
     {
         parent::setUp();
 
         $this->trackUploader = App::make('\App\Src\Track\TrackUploader');
-        $this->catName = uniqid();
     }
 
 //    public function testSyncTracks()
@@ -54,6 +52,8 @@ class TrackUploaderTest extends TestCase
     {
         $file = $this->trackUploader->getUploadPath() . '/test.mp3';
 
+        $catDir = uniqid();
+
         $file = new \Symfony\Component\HttpFoundation\File\UploadedFile($file, 'test.mp3');
 
         $track = \App\Src\Track\Track::create([
@@ -62,15 +62,16 @@ class TrackUploaderTest extends TestCase
             'user_id'         => 1,
             'slug'            => 'test.mp3',
             'trackeable_id'   => 1,
-            'trackeable_type' => 'Category'
+            'trackeable_type' => 'Category',
+            'size'            => '12212'
         ]);
 
-        $this->trackUploader->createCategoryDirectory($this->catName);
-        $this->trackUploader->createCategoryTrack($file, $track, $this->catName);
+        $this->trackUploader->createCategoryDirectory($catDir);
+        $this->trackUploader->createCategoryTrack($file, $track, $catDir);
 
-        $this->assertFileExists($this->trackUploader->getUploadPath() . '/' . $this->catName);
-        $this->assertFileExists($this->trackUploader->getUploadPath() . '/' . $this->catName . '/' . $track->title);
-        rmdir($this->trackUploader->getUploadPath() . '/' . $this->catName . '/' . $track->slug);
-        rmdir($this->trackUploader->getUploadPath() . '/' . $this->catName);
+        $this->assertFileExists($this->trackUploader->getUploadPath() . '/' . $catDir);
+        $this->assertFileExists($this->trackUploader->getUploadPath() . '/' . $catDir . '/' . $track->title);
+        rmdir($this->trackUploader->getUploadPath() . '/' . $catDir . '/' . $track->title);
+        rmdir($this->trackUploader->getUploadPath() . '/' . $catDir);
     }
 }

@@ -9,6 +9,7 @@ class CategoryControllerTest extends TestCase
 {
 
     use DatabaseTransactions;
+    use WithoutMiddleware;
 
     protected $trackUploader;
     protected $user;
@@ -34,7 +35,7 @@ class CategoryControllerTest extends TestCase
             ->type($catName, 'name_ar')
             ->type('description', 'description_ar')
             ->attach(public_path() . '/img/product_02.jpg', 'cover')
-            ->press('Save Draft');
+            ->press('Save');
 
         $this->seeInDatabase('categories',
             ['name_ar' => $catName, 'description_ar' => 'description', 'slug' => str_slug($catName)]);

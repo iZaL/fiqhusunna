@@ -4,6 +4,7 @@ namespace App\Src\Track;
 use App\Src\Album\AlbumRepository;
 use App\Src\Category\CategoryRepository;
 use Illuminate\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class TrackUploader
 {
@@ -64,6 +65,10 @@ class TrackUploader
         $this->uploadPath = $uploadPath;
     }
 
+    /**
+     * @param $category directory name
+     * @return $this
+     */
     public function createCategoryDirectory($category)
     {
         if ($this->filesystem->isDirectory($this->getUploadPath() . '/' . $category)) {
@@ -79,6 +84,11 @@ class TrackUploader
         return $this;
     }
 
+    /**
+     * @param $category category directory name
+     * @param $album album directory name
+     * @return $this
+     */
     public function createAlbumDirectory($category, $album)
     {
         if ($this->filesystem->isDirectory($this->getUploadPath() . '/' . $category . '/' . $album)) {
@@ -207,8 +217,13 @@ class TrackUploader
         return $this;
     }
 
-    //
-    public function createCategoryTrack($file, Track $track, $categorySlug)
+    /**
+     * @param UploadedFile $file Upload File
+     * @param Track $track
+     * @param $categorySlug
+     * @return string
+     */
+    public function createCategoryTrack(UploadedFile $file, Track $track, $categorySlug)
     {
         // move $track to category folder
         try {
@@ -218,7 +233,14 @@ class TrackUploader
         }
     }
 
-    public function createAlbumTrack($file, Track $track, $categorySlug, $albumSlug)
+    /**
+     * @param UploadedFile $file
+     * @param Track $track
+     * @param $categorySlug
+     * @param $albumSlug
+     * @return string
+     */
+    public function createAlbumTrack(UploadedFile $file, Track $track, $categorySlug, $albumSlug)
     {
         // move $track to category folder
         try {
@@ -241,5 +263,12 @@ class TrackUploader
         return $dirName;
     }
 
+    /**
+     * @return array
+     */
+    public function getAllowedExtension()
+    {
+        return $this->allowedExtension;
+    }
 
 }

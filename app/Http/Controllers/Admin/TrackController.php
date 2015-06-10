@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UploadTrackRequest;
+use App\Jobs\UploadTrack;
 use App\Src\Album\AlbumRepository;
 use App\Src\Category\CategoryRepository;
 use App\Src\Track\TrackRepository;
 use App\Src\Track\TrackUploader;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class TrackController extends Controller
 {
@@ -95,47 +95,13 @@ class TrackController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param UploadTrackRequest $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(Request $request)
+    public function store(UploadTrackRequest $request)
     {
-        // get each tracks from request params
-        // upload it
-        // and set the titles
-
-        $files = $request->file('tracks');
-//        $file = $request->file('tracks');
-
-        $this->validate($request, ['trackeable_id' => 'required|integer']);
-
-        foreach ($files as $file) {
-
-            $track = $this->trackRepository->model->create(array_merge([
-                'user_id'         => 1,
-                'trackeable_id'   => $request->trackeable_id,
-                'trackeable_type' => $request->trackeable_type,
-                'title_ar'        => $file->getClientOriginalName(),
-                'slug'            => str_slug($file->getClientOriginalName()),
-                'url'             => str_slug($file->getClientOriginalName()),
-                'extension'       => $file->getClientOriginalExtension(),
-                'size'            => $file->getClientSize(),
-            ], $request->except('tracks')));
-
-            // move uploaded file
-            switch ($request->trackeable_type) {
-                case 'category':
-                    $this->trackUploader->createCategoryTrack($file, $track, $track->trackeable->slug);
-                    break;
-                case 'album':
-                    $this->trackUploader->createAlbumTrack($file, $track, $track->trackeable->category->slug,
-                        $track->trackeable->slug);
-                    break;
-                default:
-                    break;
-            }
-
-        }
+        $job = (new UploadTrack($request));
+        $this->dispatch($job);
 
         return redirect('admin/track')->with('message', 'success');
     }
