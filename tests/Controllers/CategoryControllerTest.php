@@ -22,10 +22,7 @@ class CategoryControllerTest extends TestCase
         $this->user = $this->be($user);
     }
 
-    public function  testItWorks()
-    {
-        $this->visit('/');
-    }
+
 
     public function testCreateCategory()
     {

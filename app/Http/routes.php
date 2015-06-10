@@ -71,7 +71,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
 
 Route::get('test', function () {
 
-    $trackUploader = App::make('\App\Src\Track\TrackUploader');
+    $trackUploader = App::make('\App\Src\Track\TrackCrawler');
 
     $trackUploader->syncTracks();
 

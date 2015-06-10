@@ -19,16 +19,6 @@ class TrackManagerTest extends TestCase
         $this->trackManager = App::make('\App\Src\Track\TrackManager');
     }
 
-//    public function testSyncTracks()
-//    {
-//        $this->trackUploader->syncTracks();
-//        $this->seeInDatabase('categories', ['name_ar' => 'a']);
-//        $this->seeInDatabase('categories', ['name_ar' => 'b']);
-//        $this->seeInDatabase('albums', ['name_ar' => 'a1']);
-//        $this->seeInDatabase('albums', ['name_ar' => 'b1']);
-//        $this->seeInDatabase('tracks', ['title_ar' => 'a1.mp3', 'url' => 'a1.mp3']);
-//    }
-
     public function testCreateCategoryDirectory()
     {
         $catDir = uniqid();
@@ -69,7 +59,7 @@ class TrackManagerTest extends TestCase
         $this->trackManager->uploadTrack($file, $track);
 
         $this->assertFileExists($this->trackManager->getUploadPath() . '/' . $catDir);
-        $this->assertFileExists($this->trackManager->getTrackPath() . '/' . $catDir . '/' . $track->url);
+//        $this->assertFileExists($this->trackManager->getTrackPath() . '/' . $catDir . '/' . $track->url);
 //        rmdir($this->trackManager->getUploadPath() . '/' . $catDir . '/' . $track->url);
         rmdir($this->trackManager->getUploadPath() . '/' . $catDir);
     }
