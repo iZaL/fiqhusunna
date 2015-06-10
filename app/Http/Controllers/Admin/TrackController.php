@@ -27,26 +27,20 @@ class TrackController extends Controller
      */
     private $albumRepository;
 
-    private $trackUploader;
-
-
     /**
      * Create a new controller instance.
      * @param TrackRepository $trackRepository
      * @param CategoryRepository $categoryRepository
      * @param AlbumRepository $albumRepository
-     * @param TrackUploader $trackUploader
      */
     public function __construct(
         TrackRepository $trackRepository,
         CategoryRepository $categoryRepository,
-        AlbumRepository $albumRepository,
-        TrackUploader $trackUploader
+        AlbumRepository $albumRepository
     ) {
         $this->trackRepository = $trackRepository;
         $this->categoryRepository = $categoryRepository;
         $this->albumRepository = $albumRepository;
-        $this->trackUploader = $trackUploader;
     }
 
     /**
@@ -57,8 +51,6 @@ class TrackController extends Controller
     public function index()
     {
         $tracks = $this->trackRepository->model->all();
-
-        $track = $tracks->first();
 
         return view('admin.modules.track.index', compact('tracks'));
     }

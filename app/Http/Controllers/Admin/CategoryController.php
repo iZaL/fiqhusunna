@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Src\Category\CategoryRepository;
 use App\Src\Photo\PhotoRepository;
-use App\Src\Track\TrackUploader;
+use App\Src\Track\TrackManager;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
@@ -20,16 +20,16 @@ class CategoryController extends Controller
     /**
      * @var TrackUploader
      */
-    private $trackUploader;
+    private $trackManager;
 
     /**
      * @param CategoryRepository $categoryRepository
-     * @param TrackUploader $trackUploader
+     * @param TrackManager $trackManager
      */
-    public function __construct(CategoryRepository $categoryRepository, TrackUploader $trackUploader)
+    public function __construct(CategoryRepository $categoryRepository, TrackManager $trackManager)
     {
         $this->categoryRepository = $categoryRepository;
-        $this->trackUploader = $trackUploader;
+        $this->trackManager = $trackManager;
     }
 
     /**
@@ -68,7 +68,7 @@ class CategoryController extends Controller
             ['slug' => str_slug($request->name_ar)]));
 
         //create a folder
-        $this->trackUploader->createCategoryDirectory($category->slug);
+        $this->trackManager->createCategoryDirectory($category->slug);
 
         // upload photos
         if ($request->hasFile('cover')) {

@@ -1,12 +1,14 @@
 <?php
 namespace App\Src\Track;
 
+use App\Src\Album\Album;
 use App\Src\Album\AlbumRepository;
+use App\Src\Category\Category;
 use App\Src\Category\CategoryRepository;
 use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class TrackUploader
+class TrackManager
 {
 
     public $uploadPath;
@@ -31,6 +33,7 @@ class TrackUploader
     protected $allowedExtension = ['mp3'];
 
     public $trackPath;
+
     /**
      * @param Filesystem $filesystem
      * @param TrackRepository $trackRepository
@@ -47,7 +50,7 @@ class TrackUploader
         $this->trackRepository = $trackRepository;
         $this->categoryRepository = $categoryRepository;
         $this->albumRepository = $albumRepository;
-        $this->setUploadPath(public_path().'/tracks');
+        $this->setUploadPath(public_path() . '/tracks');
         $this->setTrackPath('/tracks');
     }
 
@@ -105,6 +108,102 @@ class TrackUploader
 
         return $this;
     }
+
+
+    /**
+     * @param UploadedFile $file Upload File
+     * @param Track $track
+     * @param $categorySlug
+     * @return string
+     */
+    public function createCategoryTrack(UploadedFile $file, Track $track, $categorySlug)
+    {
+        // move $track to category folder
+        try {
+            $file->move($this->getUploadPath() . '/' . $categorySlug, $track->url);
+        } catch (\Exception $e) {
+            return 'Error While Moving File. ' . $e->getMessage();
+        }
+    }
+
+    /**
+     * @param UploadedFile $file
+     * @param Track $track
+     * @param $categorySlug
+     * @param $albumSlug
+     * @return string
+     */
+    public function createAlbumTrack(UploadedFile $file, Track $track, $categorySlug, $albumSlug)
+    {
+        // move $track to category folder
+        try {
+            $file->move($this->getUploadPath() . '/' . $categorySlug . '/' . $albumSlug, $track->url);
+        } catch (\Exception $e) {
+            return 'Error While Moving File. ' . $e->getMessage();
+        }
+    }
+
+    /**
+     * Get the Directory Name from Full path
+     * @param $directory
+     * @return array
+     */
+    public function getDirName($directory)
+    {
+        $array = explode('/', $directory);
+        $dirName = array_pop($array);
+
+        return $dirName;
+    }
+
+    /**
+     * @return array
+     */
+    public function getAllowedExtension()
+    {
+        return $this->allowedExtension;
+    }
+
+    /**
+     * get relative track path ( For Frontend)
+     * @return mixed
+     */
+    public function getTrackPath()
+    {
+        return $this->trackPath;
+    }
+
+    /**
+     * @param mixed $trackPath
+     */
+    private function setTrackPath($trackPath)
+    {
+        $this->trackPath = $trackPath;
+    }
+
+    /**
+     * @param $track
+     * @return string
+     * @throws \Exception
+     */
+    public function getTrack($track)
+    {
+        // If the Track's Type is Category
+        // Search In Category Folder
+        if (is_a($track->trackeable, Category::class)) {
+
+            return $this->getTrackPath() . '/' . $track->trackeable->slug . '/' . $track->url;
+        } elseif (is_a($track->trackeable, Album::class)) {
+
+            // or Search In Album Folder
+            return $this->getTrackPath() . '/' . $track->trackeable->category->slug . '/' . $track->trackeable->slug . '/' . $track->url;
+        } else {
+
+            throw new \Exception('Invalid Class');
+        }
+
+    }
+
 
     /**
      * Go to all directories
@@ -188,6 +287,7 @@ class TrackUploader
 
 
     /**
+     * Auto Save Tracks
      * @param $path
      * @return $this
      */
@@ -206,7 +306,7 @@ class TrackUploader
                 // Check if the Track is not already saved in DB
                 if (!in_array($track->getRelativePathName(), $dbTracks)) {
                     $this->trackRepository->model->create([
-                        'title_ar'  => $track->getFileName(),
+                        'name_ar'  => $track->getFileName(),
                         'url'       => $track->getRelativePathName(),
                         'size'      => $track->getSize(),
                         'extension' => $track->getExtension(),
@@ -218,75 +318,4 @@ class TrackUploader
 
         return $this;
     }
-
-    /**
-     * @param UploadedFile $file Upload File
-     * @param Track $track
-     * @param $categorySlug
-     * @return string
-     */
-    public function createCategoryTrack(UploadedFile $file, Track $track, $categorySlug)
-    {
-        // move $track to category folder
-        try {
-            $file->move($this->getUploadPath() . '/' . $categorySlug, $track->title);
-        } catch (\Exception $e) {
-            return 'Error While Moving File. ' . $e->getMessage();
-        }
-    }
-
-    /**
-     * @param UploadedFile $file
-     * @param Track $track
-     * @param $categorySlug
-     * @param $albumSlug
-     * @return string
-     */
-    public function createAlbumTrack(UploadedFile $file, Track $track, $categorySlug, $albumSlug)
-    {
-        // move $track to category folder
-        try {
-            $file->move($this->getUploadPath() . '/' . $categorySlug . '/' . $albumSlug, $track->title);
-        } catch (\Exception $e) {
-            return 'Error While Moving File. ' . $e->getMessage();
-        }
-    }
-
-    /**
-     * Get the Directory Name from Full path
-     * @param $directory
-     * @return array
-     */
-    public function getDirName($directory)
-    {
-        $array = explode('/', $directory);
-        $dirName = array_pop($array);
-
-        return $dirName;
-    }
-
-    /**
-     * @return array
-     */
-    public function getAllowedExtension()
-    {
-        return $this->allowedExtension;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTrackPath()
-    {
-        return $this->trackPath;
-    }
-
-    /**
-     * @param mixed $trackPath
-     */
-    private function setTrackPath($trackPath)
-    {
-        $this->trackPath = $trackPath;
-    }
-
 }

@@ -12,7 +12,7 @@ class TrackControllerTest extends TestCase
     use DatabaseTransactions;
     use WithoutMiddleware;
 
-    protected $trackUploader;
+    protected $trackManager;
     protected $user;
     protected $catName;
     protected $albumName;
@@ -22,7 +22,7 @@ class TrackControllerTest extends TestCase
     {
         parent::setUp();
 
-        $this->trackUploader = App::make('\App\Src\Track\TrackUploader');
+        $this->trackManager = App::make('\App\Src\Track\TrackManager');
         $user = factory('App\Src\User\User')->make();
         $this->catName = uniqid();
         $this->category = \App\Src\Category\Category::create([
@@ -39,13 +39,13 @@ class TrackControllerTest extends TestCase
     public function testStore()
     {
         //
-        if (!file_exists($this->trackUploader->getUploadPath() . '/' . $this->category->slug)) {
-            mkdir($this->trackUploader->getUploadPath() . '/' . $this->category->slug);
+        if (!file_exists($this->trackManager->getUploadPath() . '/' . $this->category->slug)) {
+            mkdir($this->trackManager->getUploadPath() . '/' . $this->category->slug);
         }
         $this->visit('/admin/track/create?type=category')
             ->type('category', 'trackeable_type')
             ->type($this->category->id, 'trackeable_id')
-            ->attach($this->trackUploader->getUploadPath() . '/test.mp3', 'tracks[]')
+            ->attach($this->trackManager->getUploadPath() . '/test.mp3', 'tracks[]')
             ->press('Save');
 
         $this->seeInDatabase('tracks',
@@ -57,10 +57,10 @@ class TrackControllerTest extends TestCase
         $track = \App\Src\Track\Track::where('trackeable_id', $this->category->id)->where('trackeable_type',
             'Category')->first();
 
-//        $this->assertFileExists($this->trackUploader->getUploadPath() . '/' . $this->category->slug . '/' . $track->name);
-
-//        rmdir($this->trackUploader->getUploadPath() . '/' . $this->category->slug . '/' . $track->slug);
-        rmdir($this->trackUploader->getUploadPath() . '/' . $this->category->slug);
+//        $this->assertFileExists($this->trackManager->getUploadPath() . '/' . $this->category->slug . '/' . $track->url);
+//
+//        rmdir($this->trackManager->getUploadPath() . '/' . $this->category->slug . '/' . $track->url);
+        rmdir($this->trackManager->getUploadPath() . '/' . $this->category->slug);
 
         $this->onPage('/admin/track');
     }

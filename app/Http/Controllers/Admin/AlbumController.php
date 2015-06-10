@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Src\Album\AlbumRepository;
 use App\Src\Category\CategoryRepository;
 use App\Src\Photo\PhotoRepository;
-use App\Src\Track\TrackUploader;
+use App\Src\Track\TrackManager;
 use Illuminate\Http\Request;
 
 class AlbumController extends Controller
@@ -23,22 +23,22 @@ class AlbumController extends Controller
     /**
      * @var TrackUploader
      */
-    private $trackUploader;
+    private $trackManager;
 
     /**
      * Create a new controller instance.
      * @param AlbumRepository $albumRepository
      * @param CategoryRepository $categoryRepository
-     * @param TrackUploader $trackUploader
+     * @param TrackManager $trackUploader
      */
     public function __construct(
         AlbumRepository $albumRepository,
         CategoryRepository $categoryRepository,
-        TrackUploader $trackUploader
+        TrackManager $trackUploader
     ) {
         $this->albumRepository = $albumRepository;
         $this->categoryRepository = $categoryRepository;
-        $this->trackUploader = $trackUploader;
+        $this->trackManager = $trackUploader;
     }
 
 
@@ -82,7 +82,7 @@ class AlbumController extends Controller
         $category = $this->categoryRepository->model->find($request->get('category_id'));
 
         //create a folder
-        $this->trackUploader->createAlbumDirectory($category->slug, $album->slug);
+        $this->trackManager->createAlbumDirectory($category->slug, $album->slug);
 
         // upload photos
         if ($request->hasFile('cover')) {

@@ -35,7 +35,8 @@
                             $(this).jPlayer("setMedia", {
                                 // mp3: "http://www.jplayer.org/audio/mp3/Miaow-07-Bubble.mp3",
                                 title: '{{ $track->title }}',
-                                mp3: '{{$trackPath.'/cafe-music/'.$track->url}}',
+                                {{--mp3: '{{$trackPath.'//'.$track->url}}',--}}
+                                mp3: '{{$trackUrl }}',
                             });
                         },
                         timeupdate: function (event) {
@@ -105,7 +106,7 @@
                 }
             });
 
-        // Create the volume slider control
+            // Create the volume slider control
             myControl.volume.slider({
                 animate: "fast",
                 max: 1,

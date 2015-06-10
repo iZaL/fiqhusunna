@@ -15,10 +15,9 @@ class CreateTracksTable extends Migration
     {
         Schema::create('tracks', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->index();
             $table->morphs('trackeable');
-            $table->string('title_en')->nullable();
-            $table->string('title_ar');
+            $table->string('name_ar');
+            $table->string('name_en')->nullable();
             $table->string('slug')->nullable();
             $table->text('description_en')->nullable();
             $table->text('description_ar')->nullable();

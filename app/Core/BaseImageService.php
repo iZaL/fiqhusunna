@@ -8,8 +8,6 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 abstract class BaseImageService extends BaseRepository
 {
 
-    private $hashedName;
-
     private $uploadDir;
 
     private $thumbnailImagePath;
@@ -103,16 +101,6 @@ abstract class BaseImageService extends BaseRepository
     public function getThumbnailImagePath()
     {
         return $this->thumbnailImagePath;
-    }
-
-    private function setHashedName($image)
-    {
-        $this->hashedName = md5(uniqid(rand() * (time()))) . '.' . $image->getClientOriginalExtension();
-    }
-
-    public function getHashedName()
-    {
-        return $this->hashedName;
     }
 
     public function destroy($name)

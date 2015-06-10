@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Src\Track\TrackManager;
 use App\Src\Track\TrackRepository;
-use App\Src\Track\TrackUploader;
 
 class TrackController extends Controller
 {
@@ -14,26 +14,24 @@ class TrackController extends Controller
     /**
      * @var TrackUploader
      */
-    private $trackUploader;
+    private $trackManager;
 
     /**
      * @param TrackRepository $trackRepository
-     * @param TrackUploader $trackUploader
+     * @param TrackManager $trackManager
      */
-    public function __construct(TrackRepository $trackRepository, TrackUploader $trackUploader)
+    public function __construct(TrackRepository $trackRepository, TrackManager $trackManager)
     {
         $this->trackRepository = $trackRepository;
-        $this->trackUploader = $trackUploader;
+        $this->trackManager = $trackManager;
     }
 
     public function show($id)
     {
         $track = $this->trackRepository->model->find($id);
 
-        $trackPath = $this->trackUploader->getTrackPath();
+        $trackUrl = $this->trackManager->getTrack($track);
 
-//        dd($trackPath.'/cafe-music/'.$track->url);
-//        dd(is_file($trackPath.'/cafe-music/'.$track->url));
-        return view('modules.track.view', compact('track', 'trackPath'));
+        return view('modules.track.view', compact('track', 'trackUrl'));
     }
 }

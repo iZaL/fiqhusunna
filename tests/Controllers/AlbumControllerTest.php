@@ -11,7 +11,7 @@ class AlbumControllerTest extends TestCase
     use DatabaseTransactions;
     use WithoutMiddleware;
 
-    protected $trackUploader;
+    protected $trackManager;
     protected $user;
     protected $catName;
     protected $albumName;
@@ -25,7 +25,7 @@ class AlbumControllerTest extends TestCase
     {
         parent::setUp();
 
-        $this->trackUploader = App::make('\App\Src\Track\TrackUploader');
+        $this->trackManager = App::make('\App\Src\Track\TrackManager');
         $user = factory('App\Src\User\User')->make();
         $this->user = $user;
         $this->albumName = 'a b' . uniqid();
@@ -43,8 +43,8 @@ class AlbumControllerTest extends TestCase
     public function testStore()
     {
         //
-        if (!file_exists($this->trackUploader->getUploadPath() . '/' . $this->category->slug)) {
-            mkdir($this->trackUploader->getUploadPath() . '/' . $this->category->slug);
+        if (!file_exists($this->trackManager->getUploadPath() . '/' . $this->category->slug)) {
+            mkdir($this->trackManager->getUploadPath() . '/' . $this->category->slug);
         }
         $this->visit('/admin/album/create')
             ->select($this->category->id, 'category_id')
@@ -64,10 +64,10 @@ class AlbumControllerTest extends TestCase
         $album = \App\Src\Album\Album::where('name_ar', $this->albumName)->where('category_id',
             $this->category->id)->first();
 
-        $this->assertFileExists($this->trackUploader->getUploadPath() . '/' . $this->category->slug . '/' . $album->slug);
+        $this->assertFileExists($this->trackManager->getUploadPath() . '/' . $this->category->slug . '/' . $album->slug);
 
-        rmdir($this->trackUploader->getUploadPath() . '/' . $this->category->slug . '/' . $album->slug);
-        rmdir($this->trackUploader->getUploadPath() . '/' . $this->category->slug);
+        rmdir($this->trackManager->getUploadPath() . '/' . $this->category->slug . '/' . $album->slug);
+        rmdir($this->trackManager->getUploadPath() . '/' . $this->category->slug);
 
         $this->seeInDatabase('photos', ['imageable_type' => 'Album', 'imageable_id' => $album->id]);
 

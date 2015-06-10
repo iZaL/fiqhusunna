@@ -2,6 +2,7 @@
 
 use App\Core\BaseModel;
 use App\Core\LocaleTrait;
+use App\Src\Category\Category;
 
 class Track extends BaseModel
 {
@@ -56,4 +57,5 @@ class Track extends BaseModel
     {
         $this->attributes['trackeable_type'] = ucfirst($value);
     }
+
 }

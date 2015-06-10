@@ -4,8 +4,8 @@ namespace App\Jobs;
 
 use App\Http\Requests\Request;
 use App\Jobs\Job;
+use App\Src\Track\TrackManager;
 use App\Src\Track\TrackRepository;
-use App\Src\Track\TrackUploader;
 use Illuminate\Contracts\Bus\SelfHandling;
 
 class UploadTrack extends Job implements SelfHandling
@@ -32,25 +32,27 @@ class UploadTrack extends Job implements SelfHandling
      * Execute the job.
      *
      * @param TrackRepository $trackRepository
-     * @param TrackUploader $trackUploader
+     * @param TrackManager $trackManager
      */
-    public function handle(TrackRepository $trackRepository, TrackUploader $trackUploader)
+    public function handle(TrackRepository $trackRepository, TrackManager $trackManager)
     {
         //
         foreach ($this->request->file('tracks') as $file) {
 
             // do not upload disallowed extensions
-            if (!in_array($file->getClientOriginalExtension(), $trackUploader->getAllowedExtension())) {
+            if (!in_array($file->getClientOriginalExtension(), $trackManager->getAllowedExtension())) {
                 continue;
             }
 
+            // hash the file name
+            $trackRepository->setHashedName($file);
+
             $track = $trackRepository->model->create(array_merge([
-                'user_id'         => 1,
                 'trackeable_id'   => $this->request->trackeable_id,
                 'trackeable_type' => $this->request->trackeable_type,
-                'title_ar'        => $file->getClientOriginalName(),
+                'name_ar'        => $file->getClientOriginalName(),
                 'slug'            => str_slug($file->getClientOriginalName()),
-                'url'             => str_slug($file->getClientOriginalName()),
+                'url'             => $trackRepository->getHashedName(),
                 'extension'       => $file->getClientOriginalExtension(),
                 'size'            => $file->getClientSize(),
             ], $this->request->except('tracks')));
@@ -58,10 +60,10 @@ class UploadTrack extends Job implements SelfHandling
             // move uploaded file
             switch ($this->request->trackeable_type) {
                 case 'category':
-                    $trackUploader->createCategoryTrack($file, $track, $track->trackeable->slug);
+                    $trackManager->createCategoryTrack($file, $track, $track->trackeable->slug);
                     break;
                 case 'album':
-                    $trackUploader->createAlbumTrack($file, $track,
+                    $trackManager->createAlbumTrack($file, $track,
                         $track->trackeable->category->slug,
                         $track->trackeable->slug);
                     break;

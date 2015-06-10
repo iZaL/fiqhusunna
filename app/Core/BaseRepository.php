@@ -8,6 +8,7 @@ use Illuminate\Support\MessageBag;
 
 abstract class BaseRepository
 {
+    protected $hashedName;
 
     /**
      * @return mixed
@@ -17,6 +18,16 @@ abstract class BaseRepository
         $categoryRepository = App::make('App\Src\Category\CategoryRepository');
         $transactionModel = new \ReflectionClass($this->model);
         return $categoryRepository->model->where('name',ucfirst($transactionModel->getShortName()))->first();
+    }
+
+    public function getHashedName()
+    {
+        return $this->hashedName;
+    }
+
+    public function setHashedName($file)
+    {
+        $this->hashedName = md5(uniqid(rand() * (time()))) . '.' . $file->getClientOriginalExtension();
     }
 
 }
