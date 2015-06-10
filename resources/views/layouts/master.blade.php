@@ -13,7 +13,7 @@
 <head>
 
     <meta charset="utf-8">
-    <title>@yield(strip_tags('title'),'Sound')</title>
+    <title>@yield(e('title'),'Sound')</title>
     <meta name="description" content="Page description here">
     <meta name="author" content="BigBase - D. Tiems">
     <meta name="viewport" content="width=device-width">

@@ -30,6 +30,7 @@ class TrackUploader
 
     protected $allowedExtension = ['mp3'];
 
+    public $trackPath;
     /**
      * @param Filesystem $filesystem
      * @param TrackRepository $trackRepository
@@ -46,7 +47,8 @@ class TrackUploader
         $this->trackRepository = $trackRepository;
         $this->categoryRepository = $categoryRepository;
         $this->albumRepository = $albumRepository;
-        $this->setUploadPath(storage_path() . '/app/tracks');
+        $this->setUploadPath(public_path().'/tracks');
+        $this->setTrackPath('/tracks');
     }
 
     /**
@@ -269,6 +271,22 @@ class TrackUploader
     public function getAllowedExtension()
     {
         return $this->allowedExtension;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTrackPath()
+    {
+        return $this->trackPath;
+    }
+
+    /**
+     * @param mixed $trackPath
+     */
+    private function setTrackPath($trackPath)
+    {
+        $this->trackPath = $trackPath;
     }
 
 }

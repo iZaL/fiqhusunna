@@ -10,7 +10,8 @@ class Category extends BaseModel
 
     protected $table = 'categories';
 
-    public $rules = ['name_ar' => 'required|unique:categories,name_ar'];
+    public $rules = ['name_ar' => 'required'];
+//    public $rules = ['name_ar' => 'required|unique:categories,name_ar'];
 
     protected $morphClass = 'Category';
 
