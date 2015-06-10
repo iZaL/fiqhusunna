@@ -111,36 +111,59 @@ class TrackManager
 
 
     /**
-     * @param UploadedFile $file Upload File
-     * @param Track $track
-     * @param $categorySlug
+     * Get the Track File To Play
+     * @param $track
      * @return string
+     * @throws \Exception
      */
-    public function createCategoryTrack(UploadedFile $file, Track $track, $categorySlug)
+    public function fetchTrack($track)
     {
-        // move $track to category folder
-        try {
-            $file->move($this->getUploadPath() . '/' . $categorySlug, $track->url);
-        } catch (\Exception $e) {
-            return 'Error While Moving File. ' . $e->getMessage();
+        // If the Track's Type is Category
+        // Search In Category Folder
+        if (is_a($track->trackeable, Category::class)) {
+
+            return $this->getTrackPath() . '/' . $track->trackeable->slug . '/' . $track->url;
+        } elseif (is_a($track->trackeable, Album::class)) {
+
+            // or Search In Album Folder
+            return $this->getTrackPath() . '/' . $track->trackeable->category->slug . '/' . $track->trackeable->slug . '/' . $track->url;
+        } else {
+
+            throw new \Exception('Invalid Class');
         }
     }
 
     /**
-     * @param UploadedFile $file
+     * @param UploadedFile $file Upload File
      * @param Track $track
-     * @param $categorySlug
-     * @param $albumSlug
      * @return string
+     * @throws \Exception
      */
-    public function createAlbumTrack(UploadedFile $file, Track $track, $categorySlug, $albumSlug)
+    public function uploadTrack(UploadedFile $file, Track $track)
     {
         // move $track to category folder
+        $toDirectory = $this->getUploadPath() . '/';
+
+        if (is_a($track->trackeable, Category::class)) {
+
+            $toDirectory .= $track->trackeable->slug;
+
+        } elseif (is_a($track->trackeable, Album::class)) {
+
+            $toDirectory .= $track->trackeable->category->slug . '/' . $track->trackeable->slug;
+
+        } else {
+
+            throw new \Exception('Invalid Class');
+        }
+        $toDirectory .= $track->url;
+
         try {
-            $file->move($this->getUploadPath() . '/' . $categorySlug . '/' . $albumSlug, $track->url);
+            $file->move($toDirectory);
         } catch (\Exception $e) {
             return 'Error While Moving File. ' . $e->getMessage();
         }
+        return $this;
     }
 
     /**
@@ -179,29 +202,6 @@ class TrackManager
     private function setTrackPath($trackPath)
     {
         $this->trackPath = $trackPath;
-    }
-
-    /**
-     * @param $track
-     * @return string
-     * @throws \Exception
-     */
-    public function getTrack($track)
-    {
-        // If the Track's Type is Category
-        // Search In Category Folder
-        if (is_a($track->trackeable, Category::class)) {
-
-            return $this->getTrackPath() . '/' . $track->trackeable->slug . '/' . $track->url;
-        } elseif (is_a($track->trackeable, Album::class)) {
-
-            // or Search In Album Folder
-            return $this->getTrackPath() . '/' . $track->trackeable->category->slug . '/' . $track->trackeable->slug . '/' . $track->url;
-        } else {
-
-            throw new \Exception('Invalid Class');
-        }
-
     }
 
 
@@ -306,7 +306,7 @@ class TrackManager
                 // Check if the Track is not already saved in DB
                 if (!in_array($track->getRelativePathName(), $dbTracks)) {
                     $this->trackRepository->model->create([
-                        'name_ar'  => $track->getFileName(),
+                        'name_ar'   => $track->getFileName(),
                         'url'       => $track->getRelativePathName(),
                         'size'      => $track->getSize(),
                         'extension' => $track->getExtension(),

@@ -66,10 +66,10 @@ class TrackManagerTest extends TestCase
         ]);
 
         $this->trackManager->createCategoryDirectory($catDir);
-        $this->trackManager->createCategoryTrack($file, $track, $catDir);
+        $this->trackManager->uploadTrack($file, $track);
 
         $this->assertFileExists($this->trackManager->getUploadPath() . '/' . $catDir);
-//        $this->assertFileExists($this->trackManager->getTrackPath() . '/' . $catDir . '/' . $track->url);
+        $this->assertFileExists($this->trackManager->getTrackPath() . '/' . $catDir . '/' . $track->url);
 //        rmdir($this->trackManager->getUploadPath() . '/' . $catDir . '/' . $track->url);
         rmdir($this->trackManager->getUploadPath() . '/' . $catDir);
     }

@@ -58,18 +58,9 @@ class UploadTrack extends Job implements SelfHandling
             ], $this->request->except('tracks')));
 
             // move uploaded file
-            switch ($this->request->trackeable_type) {
-                case 'category':
-                    $trackManager->createCategoryTrack($file, $track, $track->trackeable->slug);
-                    break;
-                case 'album':
-                    $trackManager->createAlbumTrack($file, $track,
-                        $track->trackeable->category->slug,
-                        $track->trackeable->slug);
-                    break;
-                default:
-                    break;
-            }
+
+            $trackManager->uploadTrack($file, $track);
+
         }
     }
 

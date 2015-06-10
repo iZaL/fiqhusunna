@@ -30,7 +30,7 @@ class TrackController extends Controller
     {
         $track = $this->trackRepository->model->find($id);
 
-        $trackUrl = $this->trackManager->getTrack($track);
+        $trackUrl = $this->trackManager->fetchTrack($track);
 
         return view('modules.track.view', compact('track', 'trackUrl'));
     }
