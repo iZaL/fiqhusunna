@@ -70,8 +70,8 @@ class TrackUploaderTest extends TestCase
         $this->trackUploader->createCategoryTrack($file, $track, $catDir);
 
         $this->assertFileExists($this->trackUploader->getUploadPath() . '/' . $catDir);
-        $this->assertFileExists($this->trackUploader->getUploadPath() . '/' . $catDir . '/' . $track->title);
-        rmdir($this->trackUploader->getUploadPath() . '/' . $catDir . '/' . $track->title);
+//        $this->assertFileExists($this->trackUploader->getUploadPath() . '/' . $catDir . '/' . $track->title);
+//        rmdir($this->trackUploader->getUploadPath() . '/' . $catDir . '/' . $track->title);
         rmdir($this->trackUploader->getUploadPath() . '/' . $catDir);
     }
 }
