@@ -26,6 +26,7 @@ class CreateTracksTable extends Migration
             $table->text('size')->nullable();
             $table->text('extension')->nullable();
             $table->bigInteger('views')->nullable(); // url or html
+            $table->bigInteger('downloads')->nullable(); // url or html
             $table->timestamps();
             $table->softDeletes();
         });

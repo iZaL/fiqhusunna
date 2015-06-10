@@ -29,6 +29,7 @@
     "datatables-plugins": "~1.0.1",
     "datatables-responsive": "~1.0.3",
     "multifile": "~2.2.0",
-    "jplayer": "~2.9.2"
+    "jplayer": "~2.9.2",
+    "jquery-ui": "~1.11.4"
   }
 }
