@@ -3,7 +3,7 @@
     <div class="panel-body">
         <ul class="nav nav-stacked">
             @foreach($categories as $category)
-                <li><a href="{{action('CategoryController@show',str_slug($category->id))}}"><i class="fa fa-headphones"></i> {{ $category->name }}</a></li>
+                <li><a href="{{action('CategoryController@show',str_slug($category->id))}}"><i class="fa fa-folder"></i> {{ $category->name }}</a></li>
             @endforeach
         </ul>
     </div>

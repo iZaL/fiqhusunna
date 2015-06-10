@@ -6,89 +6,14 @@
 
 @section('style')
     @parent
-    {{--<link href="/bower_components/jplayer/dist/skin/pink.flag/css/jplayer.pink.flag.min.css" rel="stylesheet">--}}
-    <link href="/css/jplayer.css" rel="stylesheet">
-    <link href="/css/prettify-player.css" rel="stylesheet">
     <link href="/bower_components/jquery-ui/themes/hot-sneaks/jquery-ui.min.css" rel="stylesheet">
-    <style>
-        <!--
-        .jp-gui {
-            position: relative;
-            padding: 20px;
-        }
-
-        .jp-gui ul {
-            margin: 0;
-            padding: 0;
-        }
-
-        .jp-gui ul li {
-            float: left;
-            list-style: none;
-            margin: 2px;
-            padding: 4px 0;
-            cursor: pointer;
-        }
-
-        .jp-gui ul li a {
-            margin: 0 4px;
-        }
-
-        li.jp-pause,
-        li.jp-repeat-off,
-        li.jp-unmute,
-        .jp-no-solution {
-            display: none;
-        }
-
-
-        .jp-progress-slider .ui-slider-handle {
-            cursor: pointer;
-        }
-
-        .jp-volume-slider {
-            height: .4em;
-            background-color: antiquewhite;
-        }
-
-        .jp-volume-slider .ui-slider-handle {
-            height: .8em;
-            width: .8em;
-            cursor: pointer;
-        }
-
-        .jp-gui.jp-no-volume .jp-volume-slider {
-            display: none;
-        }
-
-        .jp-current-time,
-        .jp-duration {
-
-            font-size: 0.8em;
-            cursor: default;
-        }
-        .icon-download {
-            padding-top: 7px;
-            font-size: 20px;
-        }
-        
-        .jp-progress-slider {
-            margin-top:10px;
-        }
-
-        .jp-volume-slider {
-            margin-top:15px;
-        }
-
-        -->
-    </style>
+    <link href="/css/jplayer.css" rel="stylesheet">
 @endsection
 
 @section('script')
     @parent
     <script src="/bower_components/jplayer/dist/jplayer/jquery.jplayer.min.js"></script>
     <script src="/bower_components/jquery-ui/jquery-ui.min.js"></script>
-    <script src="/js/jplayer.js"></script>
     <script>
         $(document).ready(function () {
 
@@ -180,7 +105,7 @@
                 }
             });
 
-//        // Create the volume slider control
+        // Create the volume slider control
             myControl.volume.slider({
                 animate: "fast",
                 max: 1,
@@ -194,7 +119,6 @@
             });
 
         });
-
 
     </script>
 @endsection
@@ -211,15 +135,14 @@
                     <div class="col-md-6 col-sm-12 col-xs-12">
 
                         <ul>
-                            <div class="col-md-1 col-sm-2 col-xs-2">
-                                <i class="fa fa-download icon-download"></i>
-                            </div>
-                            <div class="col-md-2 col-sm-6 col-xs-5" >
+
+                            <div class="col-md-2 col-sm-6 col-xs-5">
                                 <div class="jp-volume-slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
                                      aria-disabled="false">
                                     <div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min"
                                          style="width: 52%;"></div>
-                                    <a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 52%;"></a>
+                                    <a class="ui-slider-handle ui-state-default ui-corner-all" href="#"
+                                       style="left: 52%;"></a>
                                 </div>
                             </div>
 
@@ -258,7 +181,8 @@
                                      aria-disabled="false">
                                     <div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min"
                                          style="width: 0%;"></div>
-                                    <a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 0%;"></a>
+                                    <a class="ui-slider-handle ui-state-default ui-corner-all" href="#"
+                                       style="left: 0%;"></a>
                                 </div>
                             </div>
 
@@ -284,6 +208,39 @@
                             </div>
 
                         </ul>
+
+                    </div>
+                    <div class="col-md-12 pTop10">
+                        <div class="col-md-2">
+                            <div class="col-md-1 col-sm-3 col-xs-3">
+                                <ul>
+                                    <li class="ui-state-default ui-corner-all ">
+                                        <a href="#">
+                                            <i class="fa fa-download icon-download"></i>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <div class="col-md-2 col-sm-3 col-xs-3">
+                                10202
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="col-md-1 col-sm-3 col-xs-3">
+                                <ul>
+                                    <li class="ui-state-default ui-corner-all ">
+                                        <a href="#">
+                                            <i class="fa fa-eye icon-download"></i>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <div class="col-md-2 col-sm-3 col-xs-3">
+                                10202
+                            </div>
+                        </div>
 
                     </div>
                 </div>

@@ -53,3 +53,68 @@ ol.linenums li{padding:0 0 0 5px}
 li.L0,li.L1,li.L2,li.L3,li.L4,li.L5,li.L6,li.L7,li.L8,li.L9{list-style-type:none}
 li.L1,li.L3,li.L5,li.L7,li.L9{background:#e8e8e8}
 
+
+<!--
+.jp-gui {
+    position: relative;
+    padding: 20px;
+}
+
+.jp-gui ul {
+    margin: 0;
+    padding: 0;
+}
+
+.jp-gui ul li {
+    float: left;
+    list-style: none;
+    margin: 2px;
+    padding: 4px 0;
+    cursor: pointer;
+}
+
+.jp-gui ul li a {
+    margin: 0 4px;
+}
+
+li.jp-pause,
+li.jp-repeat-off,
+li.jp-unmute,
+.jp-no-solution {
+    display: none;
+}
+
+.jp-progress-slider .ui-slider-handle {
+    cursor: pointer;
+}
+
+.jp-volume-slider {
+    height: .4em;
+    background-color: antiquewhite;
+}
+
+.jp-volume-slider .ui-slider-handle {
+    height: .8em;
+    width: .8em;
+    cursor: pointer;
+}
+
+.jp-gui.jp-no-volume .jp-volume-slider {
+    display: none;
+}
+
+.icon-download {
+    color: #fff;
+    padding: 0 4px;
+    font-weight: normal;
+}
+
+.jp-progress-slider {
+    margin-top: 10px;
+}
+
+.jp-volume-slider {
+    margin-top: 15px;
+}
+
+-->
