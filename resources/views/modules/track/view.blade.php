@@ -117,10 +117,11 @@
         }
 
         .jp-progress-slider {
-
+            margin-top:10px;
         }
 
         .jp-volume-slider {
+            margin-top:15px;
         }
 
         .jp-gui li.jp-repeat, .jp-gui li.jp-repeat-off {
@@ -255,30 +256,22 @@
         <div id="jp_container_1">
             <div class="jp-gui ui-widget ui-widget-content ui-corner-all">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6 col-sm-12 col-xs-12">
 
                         <ul>
-                            <div class="col-md-1">
-                                <li class="jp-play ui-state-default ui-corner-all"><a href="javascript:;"
-                                                                                      class="jp-play ui-icon ui-icon-play"
-                                                                                      tabindex="1" title="play">play</a>
-                                </li>
-                                <li class="jp-pause ui-state-default ui-corner-all" style="display: none;"><a
-                                            href="javascript:;"
-                                            class="jp-pause ui-icon ui-icon-pause"
-                                            tabindex="1"
-                                            title="pause"
-                                            style="display: none;">pause</a>
-                                </li>
+                            <div class="col-md-1 col-sm-2 col-xs-2">
+                                <i class="fa fa-download icon-download"></i>
+                            </div>
+                            <div class="col-md-2 col-sm-6 col-xs-5" >
+                                <div class="jp-volume-slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
+                                     aria-disabled="false">
+                                    <div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min"
+                                         style="width: 52%;"></div>
+                                    <a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 52%;"></a>
+                                </div>
                             </div>
 
-                            <div class="col-md-1">
-                                <li class="jp-stop ui-state-default ui-corner-all"><a href="javascript:;"
-                                                                                      class="jp-stop ui-icon ui-icon-stop"
-                                                                                      tabindex="1" title="stop">stop</a>
-                                </li>
-                            </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3 col-sm-4 col-xs-5">
                                 <li class="jp-repeat ui-state-default ui-corner-all"><a href="javascript:;"
                                                                                         class="jp-repeat ui-icon ui-icon-refresh"
                                                                                         tabindex="1"
@@ -308,32 +301,38 @@
 
                             </div>
 
+                            <div class="col-md-4 col-sm-8 col-xs-8">
+                                <div class="jp-progress-slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
+                                     aria-disabled="false">
+                                    <div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min"
+                                         style="width: 0%;"></div>
+                                    <a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 0%;"></a>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2 col-sm-4 col-xs-4">
+                                <li class="jp-play ui-state-default ui-corner-all"><a href="javascript:;"
+                                                                                      class="jp-play ui-icon ui-icon-play"
+                                                                                      tabindex="1" title="play">play</a>
+                                </li>
+                                <li class="jp-pause ui-state-default ui-corner-all" style="display: none;"><a
+                                            href="javascript:;"
+                                            class="jp-pause ui-icon ui-icon-pause"
+                                            tabindex="1"
+                                            title="pause"
+                                            style="display: none;">pause</a>
+                                </li>
+
+                                <li class="jp-stop ui-state-default ui-corner-all"><a href="javascript:;"
+                                                                                      class="jp-stop ui-icon ui-icon-stop"
+                                                                                      tabindex="1" title="stop">stop</a>
+
+                                </li>
+
+                            </div>
+
                         </ul>
 
-                        <div class="col-md-3">
-                            <div class="jp-progress-slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
-                                 aria-disabled="false">
-                                <div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min"
-                                     style="width: 0%;"></div>
-                                <a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 0%;"></a>
-                            </div>
-                        </div>
-
-                        <div class="col-md-2">
-                            <div class="jp-volume-slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
-                                 aria-disabled="false">
-                                <div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min"
-                                     style="width: 52%;"></div>
-                                <a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 52%;"></a>
-                            </div>
-                        </div>
-
-                        <div class="col-md-1">
-                            <i class="fa fa-download icon-download"></i>
-                        </div>
-
-
-                        <div class="jp-clearboth"></div>
                     </div>
                 </div>
             </div>
