@@ -1,7 +1,7 @@
 @extends('layouts.three_col')
 
 @section('title')
-    {{ $track->title }}
+    {{ $track->name }}
 @endsection
 
 @section('style')

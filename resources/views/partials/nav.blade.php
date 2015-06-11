@@ -1,7 +1,7 @@
 <nav class="navbar navbar-static">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/" target="ext"><i class="fa fa-home"></i><b> {{ trans('word.home') }}</b></a>
+            <a class="navbar-brand" href="{{ url('home') }}"><i class="fa fa-home"></i><b> {{ trans('word.home') }}</b></a>
             <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="glyphicon glyphicon-chevron-down"></span>
             </a>

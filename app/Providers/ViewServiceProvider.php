@@ -14,7 +14,7 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('partials.sidebar-right', 'App\Http\Composers\SidebarComposer');
+        view()->composer('modules.category.sidebar', 'App\Http\Composers\SidebarComposer');
     }
 
     /**

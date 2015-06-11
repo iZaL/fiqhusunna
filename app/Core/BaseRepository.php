@@ -28,6 +28,7 @@ abstract class BaseRepository
     public function setHashedName($file)
     {
         $this->hashedName = md5(uniqid(rand() * (time()))) . '.' . $file->getClientOriginalExtension();
+        return $this;
     }
 
 }

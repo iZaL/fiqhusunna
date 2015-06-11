@@ -96,7 +96,6 @@ class TrackController extends Controller
         $job = (new UploadTrack($request));
         $this->dispatch($job);
 
-//        $this->dispatchFrom(UploadTrack::class,$request);
         return redirect('admin/track')->with('message', 'success');
     }
 

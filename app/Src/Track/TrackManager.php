@@ -2,6 +2,7 @@
 namespace App\Src\Track;
 
 use App\Src\Album\Album;
+use App\Src\Track\Track;
 use App\Src\Category\Category;
 use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -34,7 +35,7 @@ class TrackManager
     }
 
     /**
-     * @param $categorySlug directory name
+     * @param string $categorySlug directory name
      * @return $this
      */
     public function createCategoryDirectory($categorySlug)
@@ -43,6 +44,7 @@ class TrackManager
             return;
         }
 
+        // Create a Directory
         try {
             $this->filesystem->makeDirectory($this->getUploadPath() . '/' . $categorySlug, '0775');
         } catch (\Exception $e) {
@@ -53,8 +55,8 @@ class TrackManager
     }
 
     /**
-     * @param $categorySlug category directory name
-     * @param $albumSlug album directory name
+     * @param string $categorySlug category directory name
+     * @param string $albumSlug album directory name
      * @return $this
      */
     public function createAlbumDirectory($categorySlug, $albumSlug)
@@ -78,7 +80,7 @@ class TrackManager
      * @return string
      * @throws \Exception
      */
-    public function fetchTrack($track)
+    public function fetchTrack(Track $track)
     {
         // If the Track's Type is Category
         // Search In Category Folder
@@ -130,6 +132,7 @@ class TrackManager
             throw new \Exception('Invalid Class');
         }
 
+        // Move Uploaded File
         try {
             $file->move($uploadDir, $track->url);
         } catch (\Exception $e) {
@@ -141,7 +144,7 @@ class TrackManager
 
     /**
      * Get the Directory Name from Full path
-     * @param $directory
+     * @param string $directory
      * @return array
      */
     public function getDirName($directory)
@@ -191,6 +194,29 @@ class TrackManager
     private function setTrackPath($trackPath)
     {
         $this->trackPath = $trackPath;
+    }
+
+    /**
+     * Get the Clean Name For Track (Strip Extensions, and Secure)
+     * @param $getClientOriginalName
+     * @return string
+     */
+    public function getTrackName($getClientOriginalName)
+    {
+        $temp = explode('.', $getClientOriginalName);
+        $ext = array_pop($temp);
+        $name = implode('.', $temp);
+
+        return strip_tags(e($name));
+    }
+
+    /**
+     * @param $getClientOriginalName
+     * @return string
+     */
+    public function getTrackSlug($getClientOriginalName)
+    {
+        return str_slug($getClientOriginalName);
     }
 
 }

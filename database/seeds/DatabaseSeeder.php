@@ -3,7 +3,8 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
-class DatabaseSeeder extends Seeder {
+class DatabaseSeeder extends Seeder
+{
 
     private $tables = [
         'users',
@@ -17,6 +18,7 @@ class DatabaseSeeder extends Seeder {
         'albums',
         'tracks',
     ];
+
     /**
      * Run the database seeds.
      *
@@ -24,27 +26,21 @@ class DatabaseSeeder extends Seeder {
      */
     public function run()
     {
-        if ( App::environment() == 'local' ) {
+        if (App::environment() == 'local') {
             Model::unguard();
             $this->cleanDatabase();
-            $this->call('UsersTableSeeder');
-            $this->call('CategoriesTableSeeder');
-            $this->call('AlbumsTableSeeder');
-//            $this->call('TracksTableSeeder');
-//            $this->call('ShopTableSeeder');
-//            $this->call('BalanceTableSeeder');
-//            $this->call('EmployeeTableSeeder');
-//            $this->call('AgentTableSeeder');
+            factory('App\Src\User\User', 1)->create();
+            factory('App\Src\Category\Category', 5)->create();
+            factory('App\Src\Album\Album', 15)->create();
+            factory('App\Src\Track\Track', 100)->create();
         }
     }
 
     private function cleanDatabase()
     {
-//        DB::statement('SET FOREIGN_KEY_CHECKS=0');
-        foreach ( $this->tables as $table ) {
+        foreach ($this->tables as $table) {
             DB::table($table)->truncate();
         }
-//        DB::statement('SET FOREIGN_KEY_CHECKS=1');
     }
 
 }

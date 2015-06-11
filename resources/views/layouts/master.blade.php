@@ -52,8 +52,6 @@
 
 <div class="container">
 
-    @yield('title')
-
     @include('partials.notifications')
 
     @section('content')

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Src\Category\CategoryRepository;
-use App\Src\Track\TrackUploader;
+use App\Src\Track\TrackManager;
 use Storage;
 
 class CategoryController extends Controller
@@ -26,17 +26,14 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('modules.book.index');
+        return view('modules.category.index');
     }
 
-    public function show($id, TrackUploader $trackUploader)
+    public function show($id, TrackManager $trackManager)
     {
-        dd($trackUploader->getUploadPath());
-        dd(Storage::directories($trackUploader->getUploadPath()));
-        $category = $this->categoryRepository->model->with('albums')->find($id);
+        $category = $this->categoryRepository->model->with('albums','tracks')->find($id);
 
-        dd(Storage::allFiles($trackUploader->getUploadPath()));
-
+        return view('modules.category.view',compact('category'));
     }
 
 }
