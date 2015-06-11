@@ -35,7 +35,7 @@
                         <tbody>
                         @foreach($tracks as $track)
                             <tr class="gradeU">
-                                <td> {{ $track->title }}</td>
+                                <td> {{ $track->name }}</td>
                                 <td> {{ $track->trackeable ? $track->trackeable->name : '' }}</td>
                                 <td> {{ $track->size }}</td>
                                 <td class="center">

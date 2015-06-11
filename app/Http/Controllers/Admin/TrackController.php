@@ -55,7 +55,7 @@ class TrackController extends Controller
         return view('admin.modules.track.index', compact('tracks'));
     }
 
-    public function  show($id)
+    public function show($id)
     {
         dd($id);
     }
@@ -63,6 +63,7 @@ class TrackController extends Controller
     public function create(Request $request)
     {
         $type = $request->get('type');
+
         // Check if The type GET PARAM is valid
         if (!isset($type) || !array_key_exists($type, $this->trackRepository->model->types)) {
             return redirect('admin/track')->with('warning', 'incorrect access');

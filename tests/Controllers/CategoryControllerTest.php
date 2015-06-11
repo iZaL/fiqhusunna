@@ -23,7 +23,6 @@ class CategoryControllerTest extends TestCase
     }
 
 
-
     public function testCreateCategory()
     {
         $catName = 'a b' . uniqid();

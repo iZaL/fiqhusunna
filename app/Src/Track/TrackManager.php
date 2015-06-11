@@ -50,39 +50,39 @@ class TrackManager
     }
 
     /**
-     * @param $category directory name
+     * @param $categorySlug directory name
      * @return $this
      */
-    public function createCategoryDirectory($category)
+    public function createCategoryDirectory($categorySlug)
     {
-        if ($this->filesystem->isDirectory($this->getUploadPath() . '/' . $category)) {
+        if ($this->filesystem->isDirectory($this->getUploadPath() . '/' . $categorySlug)) {
             return;
         }
 
         try {
-            $this->filesystem->makeDirectory($this->getUploadPath() . '/' . $category, '0775');
+            $this->filesystem->makeDirectory($this->getUploadPath() . '/' . $categorySlug, '0775');
         } catch (\Exception $e) {
-            dd('Cannot Create Directory ' . $category);
+            dd('Cannot Create Directory ' . $categorySlug);
         }
 
         return $this;
     }
 
     /**
-     * @param $category category directory name
-     * @param $album album directory name
+     * @param $categorySlug category directory name
+     * @param $albumSlug album directory name
      * @return $this
      */
-    public function createAlbumDirectory($category, $album)
+    public function createAlbumDirectory($categorySlug, $albumSlug)
     {
-        if ($this->filesystem->isDirectory($this->getUploadPath() . '/' . $category . '/' . $album)) {
+        if ($this->filesystem->isDirectory($this->getUploadPath() . '/' . $categorySlug . '/' . $albumSlug)) {
             return $this;
         }
 
         try {
-            $this->filesystem->makeDirectory($this->getUploadPath() . '/' . $category . '/' . $album, '0775');
+            $this->filesystem->makeDirectory($this->getUploadPath() . '/' . $categorySlug . '/' . $albumSlug, '0775');
         } catch (\Exception $e) {
-            dd('Cannot Create Directory ' . $category . '/' . $album);
+            dd('Cannot Create Directory ' . $categorySlug . '/' . $albumSlug);
         }
 
         return $this;
@@ -120,24 +120,34 @@ class TrackManager
     public function uploadTrack(UploadedFile $file, Track $track)
     {
         // move $track to category folder
-        $toDirectory = $this->getUploadPath() . '/';
+        $uploadDir = $this->getUploadPath() . '/';
 
+        // check for Valid Category/Album Types
         if (is_a($track->trackeable, Category::class)) {
 
-            $toDirectory .= $track->trackeable->slug;
+            // make sure the category directory exists
+            $categorySlug = $track->trackeable->slug;
+            $this->createCategoryDirectory($categorySlug);
+
+            $uploadDir .= $categorySlug;
 
         } elseif (is_a($track->trackeable, Album::class)) {
 
-            $toDirectory .= $track->trackeable->category->slug . '/' . $track->trackeable->slug;
+            $categorySlug = $track->trackeable->category->slug;
+            $albumSlug = $track->trackeable->slug;
+
+            $this->createCategoryDirectory($categorySlug);
+            $this->createAlbumDirectory($categorySlug, $albumSlug);
+
+            $uploadDir .= $categorySlug . '/' . $albumSlug;
 
         } else {
 
             throw new \Exception('Invalid Class');
         }
-        $toDirectory .= $track->url;
 
         try {
-            $file->move($toDirectory);
+            $file->move($uploadDir, $track->url);
         } catch (\Exception $e) {
             return 'Error While Moving File. ' . $e->getMessage();
         }

@@ -11,7 +11,7 @@ class Track extends BaseModel
 
     protected $table = 'tracks';
 
-    protected $localeStrings = ['title', 'description'];
+    protected $localeStrings = ['name', 'description'];
 
     public $types = [
         'album'    => 'App\Src\Album\Album',
