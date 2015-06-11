@@ -70,6 +70,17 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
+                    <a href="#"><i class="fa fa-penicl"></i> Blogs<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="{{ action('Admin\BlogController@index') }}"><i class="fa fa-list"></i> List Blog Posts</a>
+                            <a href="{{ action('Admin\BlogController@create',['type'=>'category']) }}"><i class="fa fa-plus"></i> Write Blog Post</a>
+                        </li>
+
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
                     <a href="#"><i class="fa fa-user"></i> Users<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>

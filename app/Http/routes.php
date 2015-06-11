@@ -1,77 +1,50 @@
 <?php
-/*********************************************************************************************************
- * Locale Route
- ********************************************************************************************************/
-Route::get('locale/{lang}', ['as' => 'locale.select', 'uses' => 'LocaleController@setLocale']);
 
-/*********************************************************************************************************
- * Auth Routes
- ********************************************************************************************************/
 Route::controllers([
     'auth'     => 'AuthController',
-    'password' => 'PasswordController',
+    'password' => 'PasswordController'
 ]);
 
-/*********************************************************************************************************
- * User Profile
- ********************************************************************************************************/
 Route::get('profile', 'UserController@profile');
 
-/*********************************************************************************************************
- * Sound
- ********************************************************************************************************/
 Route::resource('track', 'TrackController');
 
-/*********************************************************************************************************
- * Favorites
- ********************************************************************************************************/
-/*********************************************************************************************************
- * Comments
- ********************************************************************************************************/
-/*********************************************************************************************************
- * Rating
- ********************************************************************************************************/
-/*********************************************************************************************************
- * Categories
- ********************************************************************************************************/
-resource('category', 'CategoryController');
+Route::resource('category', 'CategoryController');
 
-/*********************************************************************************************************
- * Album
- ********************************************************************************************************/
-resource('album', 'AlbumController');
+Route::resource('album', 'AlbumController');
 
-/*********************************************************************************************************
- *
- ********************************************************************************************************/
+Route::resource('blog', 'BlogController');
 
-/*********************************************************************************************************
- * Dashboard
- ********************************************************************************************************/
-Route::get('/', 'HomeController@index');
+Route::get('locale/{lang}', ['as' => 'locale.select', 'uses' => 'LocaleController@setLocale']);
 
 Route::get('home', 'HomeController@index');
+
+Route::get('/', 'HomeController@index');
+
 
 /*********************************************************************************************************
  * Admin Routes
  ********************************************************************************************************/
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth']], function () {
 
+    Route::resource('category', 'CategoryController');
+
+    Route::resource('album', 'AlbumController');
+
+    Route::resource('track', 'TrackController');
+
+    Route::resource('photo', 'PhotoController');
+
+    Route::resource('blog', 'BlogController');
+
     Route::get('/', 'HomeController@index');
 
-    resource('category', 'CategoryController');
+//    get('track/category/create', 'TrackController@createCategoryTrack');
+//
+//    get('track/album/create', 'TrackController@createAlbumTrack');
+//
+//    post('track/upload', 'TrackController@uploadTrack');
 
-    resource('album', 'AlbumController');
-
-    resource('track', 'TrackController');
-
-    get('track/category/create', 'TrackController@createCategoryTrack');
-
-    get('track/album/create', 'TrackController@createAlbumTrack');
-
-    post('track/upload', 'TrackController@uploadTrack');
-
-    resource('photo', 'PhotoController');
 });
 
 Route::get('test', function () {

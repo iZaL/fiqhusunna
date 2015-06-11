@@ -17,6 +17,7 @@ class Photo extends BaseModel
     protected $types = [
         'album'    => 'App\Src\Album\Album',
         'category' => 'App\Src\Category\Category',
+        'blog'     => 'App\Src\Blog\Blog',
     ];
 
     public function imageable()

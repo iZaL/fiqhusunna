@@ -14,7 +14,7 @@ class CategoryControllerTest extends TestCase
     protected $trackManager;
     protected $user;
 
-    public function __construct()
+    public function setUp()
     {
         parent::setUp();
         $this->trackManager = App::make('\App\Src\Track\TrackManager');
