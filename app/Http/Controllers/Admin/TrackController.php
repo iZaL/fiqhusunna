@@ -134,10 +134,4 @@ class TrackController extends Controller
         return redirect()->back()->with('success', 'Record Deleted');
     }
 
-    public function uploadTrack(Request $request)
-    {
-        return 'true';
-        dd($request->all());
-    }
-
 }

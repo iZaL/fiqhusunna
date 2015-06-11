@@ -36,7 +36,6 @@ class UploadTrack extends Job implements SelfHandling
      */
     public function handle(TrackRepository $trackRepository, TrackManager $trackManager)
     {
-        //
         foreach ($this->request->file('tracks') as $file) {
 
             // do not upload disallowed extensions

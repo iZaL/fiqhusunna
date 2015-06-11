@@ -13,7 +13,7 @@ class TrackManager
 
     public $trackPath;
 
-    protected $allowedExtension = ['mp3'];
+    private $allowedExtension = ['mp3'];
 
     private $filesystem;
 
@@ -31,22 +31,6 @@ class TrackManager
         $this->trackRepository = $trackRepository;
         $this->setUploadPath(public_path() . '/tracks');
         $this->setTrackPath('/tracks');
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUploadPath()
-    {
-        return $this->uploadPath;
-    }
-
-    /**
-     * @param mixed $uploadPath
-     */
-    private function setUploadPath($uploadPath)
-    {
-        $this->uploadPath = $uploadPath;
     }
 
     /**
@@ -166,6 +150,22 @@ class TrackManager
         $dirName = array_pop($array);
 
         return $dirName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUploadPath()
+    {
+        return $this->uploadPath;
+    }
+
+    /**
+     * @param mixed $uploadPath
+     */
+    private function setUploadPath($uploadPath)
+    {
+        $this->uploadPath = $uploadPath;
     }
 
     /**

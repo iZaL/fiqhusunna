@@ -39,8 +39,6 @@ class TrackCrawler extends TrackManager
         $this->albumRepository = $albumRepository;
     }
 
-
-
     /**
      * Go to all directories
      * Fetch new songs that are not in the DB
@@ -120,7 +118,6 @@ class TrackCrawler extends TrackManager
 
         return $this;
     }
-
 
     /**
      * Auto Save Tracks
