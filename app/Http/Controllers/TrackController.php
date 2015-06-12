@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Src\Track\TrackManager;
 use App\Src\Track\TrackRepository;
+use Symfony\Component\Filesystem\Exception\FileNotFoundException;
 
 class TrackController extends Controller
 {
@@ -24,6 +25,11 @@ class TrackController extends Controller
     {
         $this->trackRepository = $trackRepository;
         $this->trackManager = $trackManager;
+    }
+
+    public function index()
+    {
+        dd('a');
     }
 
     public function show($id)
@@ -49,7 +55,11 @@ class TrackController extends Controller
         $downloadName = $track->name . '.' . $track->extension;
 
         // Get The Track to Download
-        $trackPath = $this->trackManager->downloadTrack($track);
+        try {
+            $trackPath = $this->trackManager->downloadTrack($track);
+        } catch (FileNotFoundException $e) {
+            return redirect('home')->with('warning', $e->getMessage());
+        }
 
         return response()->download($trackPath, $downloadName);
     }

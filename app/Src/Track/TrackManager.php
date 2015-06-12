@@ -5,6 +5,7 @@ use App\Src\Album\Album;
 use App\Src\Track\Track;
 use App\Src\Category\Category;
 use Illuminate\Filesystem\Filesystem;
+use Symfony\Component\Filesystem\Exception\FileNotFoundException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class TrackManager
@@ -86,17 +87,26 @@ class TrackManager
     {
         // If the Track's Type is Category
         // Search In Category Folder
+        $file = '';
         if (is_a($track->trackeable, Category::class)) {
 
-            return $pathType . '/' . $track->trackeable->slug . '/' . $track->url;
+            $file = $pathType . '/' . $track->trackeable->slug . '/' . $track->url;
+
         } elseif (is_a($track->trackeable, Album::class)) {
 
+            $file = $pathType . '/' . $track->trackeable->category->slug . '/' . $track->trackeable->slug . '/' . $track->url;
+
             // or Search In Album Folder
-            return $pathType . '/' . $track->trackeable->category->slug . '/' . $track->trackeable->slug . '/' . $track->url;
         } else {
 
             throw new \Exception('Invalid Class');
         }
+
+        if (!file_exists($file)) {
+            throw new FileNotFoundException('File ' . $track->name . ' Does Not Exist');
+        }
+
+        return $file;
     }
 
     /**
@@ -108,6 +118,7 @@ class TrackManager
     public function fetchTrack(Track $track)
     {
         return $this->getTrack($track, $this->getPublicPath());
+
     }
 
     /**
@@ -118,7 +129,7 @@ class TrackManager
      */
     public function downloadTrack(Track $track)
     {
-        return $this->getTrack($track, $this->getRelativePath());
+        $this->getTrack($track, $this->getRelativePath());
     }
 
     /**
@@ -225,7 +236,7 @@ class TrackManager
      * @param $getClientOriginalName
      * @return string
      */
-    public function getTrackName($getClientOriginalName)
+    public function setTrackName($getClientOriginalName)
     {
         $temp = explode('.', $getClientOriginalName);
         $ext = array_pop($temp);
@@ -238,7 +249,7 @@ class TrackManager
      * @param $getClientOriginalName
      * @return string
      */
-    public function getTrackSlug($getClientOriginalName)
+    public function setTrackSlug($getClientOriginalName)
     {
         return str_slug($getClientOriginalName);
     }
