@@ -102,10 +102,6 @@ class TrackManager
             throw new ClassNotFoundException('Invalid Class');
         }
 
-        if (!file_exists($file)) {
-            throw new FileNotFoundException('File ' . $track->name . ' Does Not Exist');
-        }
-
         return $file;
     }
 

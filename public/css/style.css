@@ -103,7 +103,7 @@ h3.highlight {
 }
 
 .navbar-nav li a:hover {
-    background-color: #66BBCC ;
+    background-color: #66BBCC;
 }
 
 .navbar-nav > .open > a, .navbar-nav > .open > a:hover, .navbar-nav > .open > a:focus {
@@ -111,7 +111,7 @@ h3.highlight {
     opacity: .9;
 }
 
-.navbar-brand a:hover{
+.navbar-brand a:hover {
     color: #004444;
 }
 
@@ -164,7 +164,7 @@ footer {
     background-color: #dfdfdf;
     color: #888;
     margin-top: 20px;
-    padding:20px 0;
+    padding: 20px 0;
     font-style: italic;
 }
 
@@ -241,13 +241,15 @@ footer {
 .pBottom10 {
     padding-bottom: 10px;
 }
+
 .pBottom20 {
     padding-bottom: 20px;
 }
 
 .mTop10 {
-    margin-top:10px;
+    margin-top: 10px;
 }
+
 .mBottom10 {
     margin-bottom: 10px;
 }
@@ -256,10 +258,12 @@ footer {
     background-color: #555;
     color: #eee;
 }
+
 .left-col-heading {
     background-color: #555;
     color: #eee;
 }
+
 .middle-col-heading {
     background-color: #555;
     color: #eee;
@@ -280,6 +284,7 @@ footer {
     left: 100%;
     z-index: 3;
 }
+
 .btn-breadcrumb .btn:not(:last-child):before {
     content: " ";
     display: block;
@@ -297,25 +302,30 @@ footer {
 }
 
 .btn-breadcrumb .btn {
-    padding:6px 12px 6px 24px;
+    padding: 6px 12px 6px 24px;
 }
+
 .btn-breadcrumb .btn:first-child {
-    padding:6px 6px 6px 10px;
+    padding: 6px 6px 6px 10px;
 }
+
 .btn-breadcrumb .btn:last-child {
-    padding:6px 18px 6px 24px;
+    padding: 6px 18px 6px 24px;
 }
 
 /** Default button **/
 .btn-breadcrumb .btn.btn-default:not(:last-child):after {
     border-left: 10px solid #fff;
 }
+
 .btn-breadcrumb .btn.btn-default:not(:last-child):before {
     border-left: 10px solid #ccc;
 }
+
 .btn-breadcrumb .btn.btn-default:hover:not(:last-child):after {
     border-left: 10px solid #ebebeb;
 }
+
 .btn-breadcrumb .btn.btn-default:hover:not(:last-child):before {
     border-left: 10px solid #adadad;
 }
@@ -330,24 +340,26 @@ footer {
 }
 
 .btn-breadcrumb > *:nth-child(n+2) {
-    display:none;
+    display: none;
 }
 
 /* === For phones =================================== */
 @media (max-width: 767px) {
     .btn-breadcrumb > *:nth-last-child(-n+2) {
-        display:block;
+        display: block;
     }
+
     .btn-breadcrumb > * div {
         max-width: 60px;
     }
 }
 
 /* === For tablets ================================== */
-@media (min-width: 768px) and (max-width:991px) {
+@media (min-width: 768px) and (max-width: 991px) {
     .btn-breadcrumb > *:nth-last-child(-n+4) {
-        display:block;
+        display: block;
     }
+
     .btn-breadcrumb > * div {
         max-width: 100px;
     }
@@ -356,10 +368,26 @@ footer {
 /* === For desktops ================================== */
 @media (min-width: 992px) {
     .btn-breadcrumb > *:nth-last-child(-n+6) {
-        display:block;
+        display: block;
     }
+
     .btn-breadcrumb > * div {
         max-width: 170px;
     }
 }
 
+.text-center {
+    text-align: center;
+}
+
+ul.album-list .title {
+    font-weight: bold;
+}
+
+ul.album-list li {
+    list-style: none;
+    margin: 0 -25px;
+}
+ul.album-list li .album-list-icon {
+    padding-left: 10px;
+}

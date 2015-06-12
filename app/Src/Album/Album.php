@@ -26,7 +26,12 @@ class Album extends BaseModel
 
     public function tracks()
     {
-        return $this->morphMany('App\Src\Track\Track', 'trackeable');
+        return $this->morphMany('App\Src\Track\Track', 'trackeable')->orderBy('created_at', 'desc');
+    }
+
+    public function recentTracks()
+    {
+        return $this->morphMany('App\Src\Track\Track', 'trackeable')->orderBy('created_at', 'desc')->take(5);
     }
 
     public function photos()

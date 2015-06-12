@@ -25,16 +25,37 @@
         <div class="panel-heading middle-col-heading">{{ trans('word.latest_tracks') }}</div>
         <div class="panel-body">
 
-            <ul class="list-group">
-                @foreach($tracks as $track)
-                    <h5>
-                        <li class="list-group-item">
-                            <a href="{{ action('TrackController@show',$track->id) }}"><i
-                                        class="fa fa-music track" data-id="{{$track->id}}"></i> {{ $track->name }}</a>
-                        </li>
-                    </h5>
-                @endforeach
-            </ul>
+            @foreach($albums as $album)
+                <div class="row">
+                    <div class="col-md-3 col-sm-4 col-xs-4">
+                        <img src="http://placehold.it/100x150/EEEEEE" class="img-responsive img-thumbnail">
+                    </div>
+                    <div class="col-md-9 col-sm-8 col-xs-8">
+                        <ul class="album-list">
+                            <p class="title"><a
+                                        href="{{action('AlbumController@show',$album->id)}}"> {{ $album->name }}</a></p>
+                            @foreach($album->recentTracks as $track)
+                                <li><i class="fa fa-headphones album-list-icon"></i><a
+                                            href="{{ action('TrackController@show',$track->id) }}">{{$track->name}}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+                <hr>
+            @endforeach
+
+
+            {{--<ul class="list-group">--}}
+            {{--@foreach($tracks as $track)--}}
+            {{--<h5>--}}
+            {{--<li class="list-group-item">--}}
+            {{--<a href="{{ action('TrackController@show',$track->id) }}"><i--}}
+            {{--class="fa fa-music track" data-id="{{$track->id}}"></i> {{ $track->name }}</a>--}}
+            {{--</li>--}}
+            {{--</h5>--}}
+            {{--@endforeach--}}
+            {{--</ul>--}}
 
         </div>
     </div>

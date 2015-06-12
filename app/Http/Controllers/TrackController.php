@@ -8,6 +8,11 @@ use Symfony\Component\Filesystem\Exception\FileNotFoundException;
 
 class TrackController extends Controller
 {
+
+    //@todo
+    // 1-
+
+
     /**
      * @var TrackRepository
      */
@@ -57,7 +62,7 @@ class TrackController extends Controller
         // Get The Track to Download
         try {
             $trackPath = $this->trackManager->downloadTrack($track);
-        } catch (FileNotFoundException $e) {
+        } catch (\Exception $e) {
             return redirect('home')->with('warning', $e->getMessage());
         }
 

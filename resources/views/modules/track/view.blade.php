@@ -133,6 +133,8 @@
         <div id="jp_container_1">
             <div class="jp-gui ui-widget ui-widget-content ui-corner-all">
                 <div class="row">
+                    <h1>{{$track->name}}</h1>
+
                     <div class="col-md-6 col-sm-12 col-xs-12">
 
                         <ul>
