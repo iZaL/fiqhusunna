@@ -30,7 +30,6 @@ $factory->define('App\Src\Category\Category', function ($faker) {
         'slug'           => str_slug($name),
         'description_ar' => $faker->text,
         'description_en' => $faker->text,
-        'views'          => numberBetween($min = 1, $max = 5000),
     ];
 });
 
@@ -44,7 +43,6 @@ $factory->define('App\Src\Album\Album', function ($faker) {
         'slug'           => str_slug($name),
         'description_ar' => $faker->text,
         'description_en' => $faker->text,
-        'views'          => numberBetween($min = 1, $max = 5000),
     ];
 });
 
@@ -52,7 +50,6 @@ $factory->define('App\Src\Track\Track', function ($faker) {
     $name = $faker->word;
 
     return [
-        'views'           => '',
         'trackeable_id'   => App\Src\Album\Album::orderByRaw("RAND()")->first()->id,
         'trackeable_type' => 'Album',
         'name_en'         => $name,
@@ -61,11 +58,23 @@ $factory->define('App\Src\Track\Track', function ($faker) {
         'description_ar'  => $faker->text,
         'slug'            => str_slug($name),
         'url'             => 'test.mp3',
-        'views'           => numberBetween($min = 1, $max = 90000),
     ];
 });
 
 $factory->define('App\Src\Blog\Blog', function ($faker) {
+    $name = $faker->word;
+
+    return [
+        'title_en'       => $name,
+        'title_ar'       => $name,
+        'description_en' => $faker->text,
+        'description_ar' => $faker->text,
+        'slug'           => str_slug($name),
+    ];
+});
+
+
+$factory->define('App\Src\View\Blog', function ($faker) {
     $name = $faker->word;
 
     return [

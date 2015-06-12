@@ -33,8 +33,7 @@ class AlbumController extends Controller
     public function show($id)
     {
         $album = $this->albumRepository->model->with('tracks')->find($id);
-        $album->increment('views');
-        $album->save();
+        $album->incrementViewCount();
         return view('modules.album.view', compact('album'));
     }
 

@@ -2,16 +2,18 @@
 
 use App\Core\BaseModel;
 use App\Core\LocaleTrait;
+use App\Src\Meta\CountableTrait;
 
 class Category extends BaseModel
 {
 
     use LocaleTrait;
 
+    use CountableTrait;
+
     protected $table = 'categories';
 
     public $rules = ['name_ar' => 'required'];
-//    public $rules = ['name_ar' => 'required|unique:categories,name_ar'];
 
     protected $morphClass = 'Category';
 
@@ -37,4 +39,8 @@ class Category extends BaseModel
         return $this->morphMany('App\Src\Photo\Photo', 'imageable');
     }
 
+    public function metas()
+    {
+        return $this->morphMany('App\Src\Meta\Meta', 'meta');
+    }
 }

@@ -113,6 +113,8 @@ return [
     'arabic'                => 'العربية',
     'english'               => 'الانجليزي',
     'latest_tracks'         => 'آخر الصوتيات',
+    'latest_albums'         => 'آخر الإصدارات',
+    'added'                 => 'المضافة',
     'latest_news'           => 'اخر الاخبار',
     'latest_articles'       => 'اخر المقالات',
     'about_us'              => 'نبذة عنا',
@@ -120,5 +122,8 @@ return [
     'articles'              => 'المقالات',
     'albums'                => 'البوم',
     'categories'            => 'التصنيفات',
-    'send'                  => 'ارسل'
+    'send'                  => 'ارسل',
+    'highest_listened_tracks' => 'الأكثر المقاطع إستماعا',
+    'this_month'=> 'هذا الشهر',
+    'today'=> 'هذا اليوم'
 ];

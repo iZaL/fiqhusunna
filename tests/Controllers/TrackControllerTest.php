@@ -65,4 +65,21 @@ class TrackControllerTest extends TestCase
         $this->onPage('/admin/track');
     }
 
+
+//    public function testUpdatedViewCount()
+//    {
+//        \App\Src\Track\Track::create([
+//            'trackeable_id'   => 1,
+//            'trackeable_type' => 'Category',
+//            'name_ar'         => 'ass'
+//        ]);
+//        $track =  \App\Src\Track\Track::all()->first();
+//
+//        $this->visit('/track/'.$track->id);
+//        $this->seeInDatabase('metas', ['meta_id' => 1, 'meta_type', 'Track']);
+//        $this->visit('/track/1');
+////
+//        $track = \App\Src\Track\Track::all();
+//        $this->assertEquals(1, $track->count());
+//    }
 }

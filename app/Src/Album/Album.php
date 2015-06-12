@@ -2,11 +2,14 @@
 
 use App\Core\BaseModel;
 use App\Core\LocaleTrait;
+use App\Src\Meta\CountableTrait;
 
 class Album extends BaseModel
 {
 
     use LocaleTrait;
+
+    use CountableTrait;
 
     protected $table = 'albums';
 
@@ -28,6 +31,12 @@ class Album extends BaseModel
     {
         return $this->morphMany('App\Src\Track\Track', 'trackeable')->orderBy('created_at', 'desc');
     }
+
+    public function metas()
+    {
+        return $this->morphMany('App\Src\Meta\Meta', 'meta');
+    }
+
 
     public function recentTracks()
     {

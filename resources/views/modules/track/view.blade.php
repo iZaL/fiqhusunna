@@ -227,7 +227,7 @@
                                 </ul>
                             </div>
                             <div class="col-md-2 col-sm-3 col-xs-3">
-                                10202
+                                {{ $track->downloads ? $track->downloads->count() : '0' }}
                             </div>
                         </div>
                         <div class="col-md-2">
@@ -244,7 +244,7 @@
                                 </ul>
                             </div>
                             <div class="col-md-2 col-sm-3 col-xs-3">
-                                {{ $track->views }}
+                                {{ $track->metas ? $track->metas->count() : '0' }}
                             </div>
                         </div>
 

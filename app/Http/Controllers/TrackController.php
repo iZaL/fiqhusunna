@@ -40,8 +40,9 @@ class TrackController extends Controller
     public function show($id)
     {
         $track = $this->trackRepository->model->find($id);
-        $track->increment('views');
-        $track->save();
+
+        // CountableTrait
+        $track->incrementViewCount();
 
         $trackUrl = $this->trackManager->fetchTrack($track);
 
@@ -53,8 +54,6 @@ class TrackController extends Controller
         $track = $this->trackRepository->model->find($id);
 
         // Increment Download Count
-        $track->increment('downloads');
-        $track->save();
 
         // Set Name For the Track
         $downloadName = $track->name . '.' . $track->extension;
@@ -65,6 +64,9 @@ class TrackController extends Controller
         } catch (\Exception $e) {
             return redirect('home')->with('warning', $e->getMessage());
         }
+
+        // Increment Download Count (DownloadableTrait)
+        $track->incrementDownloadCount();
 
         return response()->download($trackPath, $downloadName);
     }

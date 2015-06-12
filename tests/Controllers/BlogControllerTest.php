@@ -22,9 +22,16 @@ class BlogControllerTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $user = factory('App\Src\User\User')->make();
+//        factory('App\Src\User\User')->make();
 
-        Auth::loginUsingId(1);
+        $user = \App\Src\User\User::create([
+            'name'           => 'zal',
+            'email'          => uniqid().'@live.com',
+            'password'       => bcrypt('admin'),
+            'remember_token' => str_random(10),
+            'active'         => 1
+        ]);
+        Auth::loginUsingId($user->id);
     }
 
     public function testStore()
@@ -40,7 +47,7 @@ class BlogControllerTest extends TestCase
 
         $this->seeInDatabase('blogs',
             [
-                'title_ar'        => $title,
+                'title_ar'       => $title,
                 'description_ar' => 'description',
                 'slug'           => str_slug($title)
             ]);

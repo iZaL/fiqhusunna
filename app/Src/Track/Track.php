@@ -3,13 +3,21 @@
 use App\Core\BaseModel;
 use App\Core\LocaleTrait;
 use App\Src\Category\Category;
+use App\Src\Meta\CountableTrait;
+use App\Src\Meta\DownloadableTrait;
 
 class Track extends BaseModel
 {
 
     use LocaleTrait;
 
+    use CountableTrait;
+
+    use DownloadableTrait;
+
     protected $table = 'tracks';
+
+    public $morphClass = 'Track';
 
     protected $localeStrings = ['name', 'description'];
 
@@ -23,6 +31,16 @@ class Track extends BaseModel
     public function trackeable()
     {
         return $this->morphTo();
+    }
+
+    public function metas()
+    {
+        return $this->morphMany('App\Src\Meta\Meta', 'meta');
+    }
+
+    public function downloads()
+    {
+        return $this->morphMany('App\Src\Meta\Download', 'downloadable');
     }
 
     public function getTrackeableTypeAttribute($type)

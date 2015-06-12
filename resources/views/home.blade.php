@@ -9,6 +9,56 @@
 @endsection
 
 @section('left')
+    <div class="panel" id="midCol">
+        <div class="panel-heading middle-col-heading">{{ trans('word.latest_tracks') }}</div>
+        <div class="panel-body">
+                <ul class="album-list">
+                    @foreach($latestTracks as $track)
+                        <li><i class="fa fa-headphones album-list-icon"></i><a
+                                    href="{{ action('TrackController@show',$track->id) }}">{{$track->name}}</a>
+                        </li>
+                    @endforeach
+                </ul>
+        </div>
+    </div>
+    <div class="panel" id="midCol">
+        <div class="panel-heading middle-col-heading">{{ trans('word.highest_listened_tracks') }}</div>
+        <div class="panel-body">
+            <ul class="album-list">
+                @foreach($topTracks as $track)
+                    <li><i class="fa fa-headphones album-list-icon"></i><a
+                                href="{{ action('TrackController@show',$track->id) }}">{{$track->name}}</a>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
+    <div class="panel" id="midCol">
+        <div class="panel-heading middle-col-heading">{{ trans('word.highest_listened_tracks') .' '.trans('word.this_month') }}</div>
+        <div class="panel-body">
+            <ul class="album-list">
+                @foreach($topTracksForThisMonth as $track)
+                    <li><i class="fa fa-headphones album-list-icon"></i><a
+                                href="{{ action('TrackController@show',$track->id) }}">{{$track->name}}</a>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
+    <div class="panel" id="midCol">
+        <div class="panel-heading middle-col-heading">{{ trans('word.highest_listened_tracks') .' '.trans('word.today') }}</div>
+        <div class="panel-body">
+            <ul class="album-list">
+                @foreach($topTracksForToday as $track)
+                    <li><i class="fa fa-headphones album-list-icon"></i><a
+                                href="{{ action('TrackController@show',$track->id) }}">{{$track->name}}</a>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
+
+
     @include('modules.blog.sidebar')
 @endsection
 
@@ -22,7 +72,7 @@
 @section('middle')
 
     <div class="panel" id="midCol">
-        <div class="panel-heading middle-col-heading">{{ trans('word.latest_tracks') }}</div>
+        <div class="panel-heading middle-col-heading">{{ trans('word.latest_albums') .' '. trans('word.added') }}</div>
         <div class="panel-body">
 
             @foreach($albums as $album)
