@@ -5,6 +5,7 @@ use App\Src\Album\Album;
 use App\Src\Track\Track;
 use App\Src\Category\Category;
 use Illuminate\Filesystem\Filesystem;
+use Symfony\Component\Debug\Exception\ClassNotFoundException;
 use Symfony\Component\Filesystem\Exception\FileNotFoundException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -87,7 +88,6 @@ class TrackManager
     {
         // If the Track's Type is Category
         // Search In Category Folder
-        $file = '';
         if (is_a($track->trackeable, Category::class)) {
 
             $file = $pathType . '/' . $track->trackeable->slug . '/' . $track->url;
@@ -99,7 +99,7 @@ class TrackManager
             // or Search In Album Folder
         } else {
 
-            throw new \Exception('Invalid Class');
+            throw new ClassNotFoundException('Invalid Class');
         }
 
         if (!file_exists($file)) {
@@ -129,7 +129,7 @@ class TrackManager
      */
     public function downloadTrack(Track $track)
     {
-        $this->getTrack($track, $this->getRelativePath());
+        return $this->getTrack($track, $this->getRelativePath());
     }
 
     /**
@@ -164,7 +164,7 @@ class TrackManager
 
         } else {
 
-            throw new \Exception('Invalid Class');
+            throw new ClassNotFoundException('Invalid Class');
         }
 
         // Move Uploaded File
