@@ -51,13 +51,25 @@ $factory->define('App\Src\Track\Track', function ($faker) {
 
     return [
         'views'           => '',
-        'trackeable_id'   => App\Src\Category\Category::orderByRaw("RAND()")->first()->id,
-        'trackeable_type' => 'Category',
+        'trackeable_id'   => App\Src\Album\Album::orderByRaw("RAND()")->first()->id,
+        'trackeable_type' => 'Album',
         'name_en'         => $name,
         'name_ar'         => $name,
         'description_en'  => $faker->text,
         'description_ar'  => $faker->text,
         'slug'            => str_slug($name),
         'url'             => 'test.mp3',
+    ];
+});
+
+$factory->define('App\Src\Blog\Blog', function ($faker) {
+    $name = $faker->word;
+
+    return [
+        'title_en'         => $name,
+        'title_ar'         => $name,
+        'description_en'  => $faker->text,
+        'description_ar'  => $faker->text,
+        'slug'            => str_slug($name)
     ];
 });

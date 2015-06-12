@@ -1,36 +1,43 @@
-@extends('layouts.three_col')
+@extends('layouts.one_col')
 
 @section('title')
-    {{ $album->name }}
+    {{ trans('word.blog') }}
 @endsection
 
-@section('style')
-    @parent
-    <link href="/bower_components/jquery-ui/themes/hot-sneaks/jquery-ui.min.css" rel="stylesheet">
-    <link href="/css/jplayer.css" rel="stylesheet">
-@endsection
-
-@section('script')
-    @parent
-@endsection
-
-@section('middle')
+@section('content')
     <div class="panel" id="midCol">
-        <div class="panel-heading middle-col-heading" >{{ trans('word.latest_tracks') }}</div>
+        <div class="panel-heading middle-col-heading" >{{ trans('word.articles') }}</div>
         <div class="panel-body">
 
-            @foreach($album->tracks as $track)
-                <h5><a href="{{ action('TrackController@show',$track->id) }}"><i
-                                class="fa fa-music"></i> {{ $track->name }}</a></h5>
+            @foreach($blogs as $post)
+                <h2><a href="{{ action('BlogController@show',$post->id) }}">{{ $post->title }}</a></h2>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <a href="{{ action('BlogController@show',$post->id) }}">
+                            @if($post->thumbnail)
+                                <img src="/uploads/thumbnail/{{ $post->thumbnail->name}}"
+                                     class="img-responsive img-thumbnail">
+                            @else
+                                <img src="http://placehold.it/150x100/EEEEEE" class="img-responsive img-thumbnail">
+                            @endif
+                        </a>
+                    </div>
+                    <div class="col-md-9">
+                        {!! str_limit($post->description,100) !!}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 ">
+                        <button class="btn btn-default mTop10"><a
+                                    href="{{ action('BlogController@show',$post->id) }}">More</a></button>
+                    </div>
+                </div>
+
+                <hr>
             @endforeach
+
+
         </div>
     </div>
-@endsection
-
-@section('right')
-    @include('modules.category.sidebar')
-@endsection
-
-@section('left')
-
 @endsection

@@ -21,6 +21,7 @@ class CreateCategoriesTable extends Migration {
 			$table->text('description_ar');
 			$table->text('description_en')->nullable();
 			$table->string('cover')->nullable();
+			$table->bigInteger('views')->nullable();
 			$table->timestamps();
             $table->softDeletes();
         });

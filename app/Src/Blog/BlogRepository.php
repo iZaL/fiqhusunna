@@ -16,4 +16,8 @@ class BlogRepository extends BaseRepository
         $this->model = $model;
     }
 
+    public function getSidebarPosts()
+    {
+        return $this->model->with('thumbnail')->paginate(4);
+    }
 }

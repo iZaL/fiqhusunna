@@ -10,7 +10,7 @@
                                 class="fa fa-instagram "></i></a></div>
             </div>
             <div class="col-md-8 col-xs-12">
-                Copyrights &copy; E-Boook.com {{ date('Y') }}.
+                Copyrights &copy; sound.com {{ date('Y') }}.
                 Site Developed By <a href="http://ideasowners.net" target="_blank">IdeasOwners.net</a>
             </div>
         </div>

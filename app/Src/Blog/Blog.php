@@ -20,4 +20,9 @@ class Blog extends BaseModel
     {
         return $this->morphMany('App\Src\Photo\Photo', 'imageable');
     }
+
+    public function thumbnail()
+    {
+        return $this->morphOne('App\Src\Photo\Photo', 'imageable')->where('thumbnail', 1);
+    }
 }

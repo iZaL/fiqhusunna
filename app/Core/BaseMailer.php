@@ -5,36 +5,36 @@ use App\Core\Contracts\MailerContract;
 use Config;
 use Illuminate\Mail\Mailer;
 
-abstract class BaseMailer implements MailerContract
+class BaseMailer implements MailerContract
 {
 
-    protected $mailer;
-    protected $senderEmail;
-    protected $sender;
-    protected $recepient;
-    protected $recepientName;
-    protected $subject;
-    protected $view;
+    private $mailer;
+    public $toEmail;
+    public $toName;
+    public $fromEmail;
+    public $fromName;
+    public $subject;
+    public $view;
 
     public function __construct(Mailer $mailer)
     {
-        $this->mailer      = $mailer;
-        $this->senderEmail = Config::get('mail.from.address');
-        $this->sender      = Config::get('mail.from.name');
-        $this->view        = 'emails.default';
+        $this->mailer = $mailer;
+        $this->toEmail = env('MAIL_RECEPIENTNAME');
+        $this->toName = env('MAIL_RECEPIENTEMAIL');
+        $this->view = 'emails.contact';
     }
 
-    public function fire(array $data)
+    public function fire($data)
     {
         try {
             $this->mailer->send($this->view, $data, function ($message) {
                 $message
-                    ->from($this->senderEmail, $this->sender)
-                    ->sender($this->senderEmail, $this->sender)
-                    ->to($this->recepient, $this->recepientName)
+                    ->from($this->fromEmail, $this->fromName)
+                    ->sender($this->fromEmail, $this->fromName)
+                    ->to($this->toEmail, $this->toName)
                     ->subject($this->subject);
             });
-        } catch ( \Exception $e ) {
+        } catch (\Exception $e) {
         }
     }
 }

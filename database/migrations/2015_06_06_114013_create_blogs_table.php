@@ -19,8 +19,8 @@ class CreateBlogsTable extends Migration
             $table->string('title_ar');
             $table->string('title_en')->nullable();
             $table->string('slug')->nullable();
-            $table->string('description_ar');
-            $table->string('description_en')->nullable();
+            $table->text('description_ar');
+            $table->text('description_en')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

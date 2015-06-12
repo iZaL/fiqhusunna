@@ -3,6 +3,18 @@
 @section('content')
 
     <div class="no-gutter row">
+        <div class="col-md-12">
+            @yield('banner')
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="no-gutter row">
+            @yield('breadcrumb')
+        </div>
+    </div>
+
+    <div class="no-gutter row">
 
         <div class="col-md-2">
             @yield('right')

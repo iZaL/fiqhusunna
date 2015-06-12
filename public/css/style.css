@@ -7,7 +7,6 @@
 /* end */
 
 /* custom theme + Bootstrap resets */
-@import url('http://fonts.googleapis.com/css?family=Open+Sans:300,400');
 
 header {
     min-height: 180px;
@@ -54,13 +53,18 @@ header {
 }
 
 body {
-    font-family: 'Open Sans', Arial, Helvetica, Sans-Serif;
+    font-family: Arial, Helvetica, Sans-Serif;
     font-weight: 300;
-    color: #676767;
-    background-color: #efefef;
+    color: #13141d;
+    background-color: #ffffff;
 }
 
-a, a:hover {
+a {
+    color: #004444;
+    text-decoration: none;
+}
+
+a:hover {
     color: #77CCDD;
     text-decoration: none;
 }
@@ -99,12 +103,16 @@ h3.highlight {
 }
 
 .navbar-nav li a:hover {
-    background-color: #66BBCC;
+    background-color: #66BBCC ;
 }
 
 .navbar-nav > .open > a, .navbar-nav > .open > a:hover, .navbar-nav > .open > a:focus {
     color: #000;
     opacity: .9;
+}
+
+.navbar-brand a:hover{
+    color: #004444;
 }
 
 .navbar-brand {
@@ -153,10 +161,11 @@ h3.highlight {
 }
 
 footer {
-    height: 50px;
     background-color: #dfdfdf;
     color: #888;
     margin-top: 20px;
+    padding:20px 0;
+    font-style: italic;
 }
 
 @media (min-width: 992px) {
@@ -232,7 +241,13 @@ footer {
 .pBottom10 {
     padding-bottom: 10px;
 }
+.pBottom20 {
+    padding-bottom: 20px;
+}
 
+.mTop10 {
+    margin-top:10px;
+}
 .mBottom10 {
     margin-bottom: 10px;
 }
@@ -249,3 +264,102 @@ footer {
     background-color: #555;
     color: #eee;
 }
+
+/* Breadcrumbs from http://bootsnipp.com/snippets/featured/triangle-breadcrumbs-arrows */
+.btn-breadcrumb .btn:not(:last-child):after {
+    content: " ";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 17px solid transparent;
+    border-bottom: 17px solid transparent;
+    border-left: 10px solid white;
+    position: absolute;
+    top: 50%;
+    margin-top: -17px;
+    left: 100%;
+    z-index: 3;
+}
+.btn-breadcrumb .btn:not(:last-child):before {
+    content: " ";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 17px solid transparent;
+    border-bottom: 17px solid transparent;
+    border-left: 10px solid rgb(173, 173, 173);
+    position: absolute;
+    top: 50%;
+    margin-top: -17px;
+    margin-left: 1px;
+    left: 100%;
+    z-index: 3;
+}
+
+.btn-breadcrumb .btn {
+    padding:6px 12px 6px 24px;
+}
+.btn-breadcrumb .btn:first-child {
+    padding:6px 6px 6px 10px;
+}
+.btn-breadcrumb .btn:last-child {
+    padding:6px 18px 6px 24px;
+}
+
+/** Default button **/
+.btn-breadcrumb .btn.btn-default:not(:last-child):after {
+    border-left: 10px solid #fff;
+}
+.btn-breadcrumb .btn.btn-default:not(:last-child):before {
+    border-left: 10px solid #ccc;
+}
+.btn-breadcrumb .btn.btn-default:hover:not(:last-child):after {
+    border-left: 10px solid #ebebeb;
+}
+.btn-breadcrumb .btn.btn-default:hover:not(:last-child):before {
+    border-left: 10px solid #adadad;
+}
+
+/* The responsive part */
+
+.btn-breadcrumb > * > div {
+    /* With less: .text-overflow(); */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.btn-breadcrumb > *:nth-child(n+2) {
+    display:none;
+}
+
+/* === For phones =================================== */
+@media (max-width: 767px) {
+    .btn-breadcrumb > *:nth-last-child(-n+2) {
+        display:block;
+    }
+    .btn-breadcrumb > * div {
+        max-width: 60px;
+    }
+}
+
+/* === For tablets ================================== */
+@media (min-width: 768px) and (max-width:991px) {
+    .btn-breadcrumb > *:nth-last-child(-n+4) {
+        display:block;
+    }
+    .btn-breadcrumb > * div {
+        max-width: 100px;
+    }
+}
+
+/* === For desktops ================================== */
+@media (min-width: 992px) {
+    .btn-breadcrumb > *:nth-last-child(-n+6) {
+        display:block;
+    }
+    .btn-breadcrumb > * div {
+        max-width: 170px;
+    }
+}
+

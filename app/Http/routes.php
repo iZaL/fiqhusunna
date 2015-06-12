@@ -5,7 +5,6 @@ Route::controllers([
     'password' => 'PasswordController'
 ]);
 
-Route::get('profile', 'UserController@profile');
 
 Route::resource('track', 'TrackController');
 
@@ -16,6 +15,16 @@ Route::resource('album', 'AlbumController');
 Route::resource('blog', 'BlogController');
 
 Route::get('locale/{lang}', ['as' => 'locale.select', 'uses' => 'LocaleController@setLocale']);
+
+Route::get('profile', 'UserController@profile');
+
+Route::get('track/download/{id}', 'TrackController@downloadTrack');
+
+Route::get('about', 'PageController@getAbout');
+
+Route::get('contact', 'PageController@getContact');
+
+Route::post('contact', 'PageController@postContact');
 
 Route::get('home', 'HomeController@index');
 

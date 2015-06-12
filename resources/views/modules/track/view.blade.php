@@ -216,7 +216,8 @@
                             <div class="col-md-1 col-sm-3 col-xs-3">
                                 <ul>
                                     <li class="ui-state-default ui-corner-all ">
-                                        <a href="#">
+                                        <a href="{{ action('TrackController@downloadTrack',$track->id) }}">
+
                                             <i class="fa fa-download icon-download"></i>
                                         </a>
                                     </li>
@@ -232,14 +233,16 @@
                                 <ul>
                                     <li class="ui-state-default ui-corner-all ">
                                         <a href="#">
+
                                             <i class="fa fa-eye icon-download"></i>
                                         </a>
+
                                     </li>
 
                                 </ul>
                             </div>
                             <div class="col-md-2 col-sm-3 col-xs-3">
-                                10202
+                                {{ $track->views }}
                             </div>
                         </div>
 

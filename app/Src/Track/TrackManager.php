@@ -10,9 +10,11 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class TrackManager
 {
 
-    public $uploadPath;
+    // mostly used to download files
+    public $relativePath;
 
-    public $trackPath;
+    // used only to play files in the site
+    public $publicPath;
 
     private $allowedExtension = ['mp3'];
 
@@ -30,8 +32,8 @@ class TrackManager
     ) {
         $this->filesystem = $filesystem;
         $this->trackRepository = $trackRepository;
-        $this->setUploadPath(public_path() . '/tracks');
-        $this->setTrackPath('/tracks');
+        $this->setRelativePath(public_path() . '/tracks');
+        $this->setPublicPath('/tracks');
     }
 
     /**
@@ -40,13 +42,13 @@ class TrackManager
      */
     public function createCategoryDirectory($categorySlug)
     {
-        if ($this->filesystem->isDirectory($this->getUploadPath() . '/' . $categorySlug)) {
+        if ($this->filesystem->isDirectory($this->getRelativePath() . '/' . $categorySlug)) {
             return;
         }
 
         // Create a Directory
         try {
-            $this->filesystem->makeDirectory($this->getUploadPath() . '/' . $categorySlug, '0775');
+            $this->filesystem->makeDirectory($this->getRelativePath() . '/' . $categorySlug, '0775');
         } catch (\Exception $e) {
             dd('Cannot Create Directory ' . $categorySlug);
         }
@@ -61,12 +63,12 @@ class TrackManager
      */
     public function createAlbumDirectory($categorySlug, $albumSlug)
     {
-        if ($this->filesystem->isDirectory($this->getUploadPath() . '/' . $categorySlug . '/' . $albumSlug)) {
+        if ($this->filesystem->isDirectory($this->getRelativePath() . '/' . $categorySlug . '/' . $albumSlug)) {
             return $this;
         }
 
         try {
-            $this->filesystem->makeDirectory($this->getUploadPath() . '/' . $categorySlug . '/' . $albumSlug, '0775');
+            $this->filesystem->makeDirectory($this->getRelativePath() . '/' . $categorySlug . '/' . $albumSlug, '0775');
         } catch (\Exception $e) {
             dd('Cannot Create Directory ' . $categorySlug . '/' . $albumSlug);
         }
@@ -75,26 +77,48 @@ class TrackManager
     }
 
     /**
-     * Get the Track File To Play
+     * @param \App\Src\Track\Track $track
+     * @param $pathType
+     * @return string
+     * @throws \Exception
+     */
+    private function getTrack(Track $track, $pathType)
+    {
+        // If the Track's Type is Category
+        // Search In Category Folder
+        if (is_a($track->trackeable, Category::class)) {
+
+            return $pathType . '/' . $track->trackeable->slug . '/' . $track->url;
+        } elseif (is_a($track->trackeable, Album::class)) {
+
+            // or Search In Album Folder
+            return $pathType . '/' . $track->trackeable->category->slug . '/' . $track->trackeable->slug . '/' . $track->url;
+        } else {
+
+            throw new \Exception('Invalid Class');
+        }
+    }
+
+    /**
+     * Get Public Path of Track to Play
      * @param $track
      * @return string
      * @throws \Exception
      */
     public function fetchTrack(Track $track)
     {
-        // If the Track's Type is Category
-        // Search In Category Folder
-        if (is_a($track->trackeable, Category::class)) {
+        return $this->getTrack($track, $this->getPublicPath());
+    }
 
-            return $this->getTrackPath() . '/' . $track->trackeable->slug . '/' . $track->url;
-        } elseif (is_a($track->trackeable, Album::class)) {
-
-            // or Search In Album Folder
-            return $this->getTrackPath() . '/' . $track->trackeable->category->slug . '/' . $track->trackeable->slug . '/' . $track->url;
-        } else {
-
-            throw new \Exception('Invalid Class');
-        }
+    /**
+     * Get Relative Path of Track to Download
+     * @param \App\Src\Track\Track $track
+     * @return string
+     * @throws \Exception
+     */
+    public function downloadTrack(Track $track)
+    {
+        return $this->getTrack($track, $this->getRelativePath());
     }
 
     /**
@@ -106,7 +130,7 @@ class TrackManager
     public function uploadTrack(UploadedFile $file, Track $track)
     {
         // move $track to category folder
-        $uploadDir = $this->getUploadPath() . '/';
+        $uploadDir = $this->getRelativePath() . '/';
 
         // check for Valid Category/Album Types
         if (is_a($track->trackeable, Category::class)) {
@@ -158,17 +182,17 @@ class TrackManager
     /**
      * @return mixed
      */
-    public function getUploadPath()
+    public function getRelativePath()
     {
-        return $this->uploadPath;
+        return $this->relativePath;
     }
 
     /**
-     * @param mixed $uploadPath
+     * @param mixed $relativePath
      */
-    private function setUploadPath($uploadPath)
+    private function setRelativePath($relativePath)
     {
-        $this->uploadPath = $uploadPath;
+        $this->relativePath = $relativePath;
     }
 
     /**
@@ -183,17 +207,17 @@ class TrackManager
      * get relative track path ( For Frontend)
      * @return mixed
      */
-    public function getTrackPath()
+    public function getPublicPath()
     {
-        return $this->trackPath;
+        return $this->publicPath;
     }
 
     /**
-     * @param mixed $trackPath
+     * @param mixed $publicPath
      */
-    private function setTrackPath($trackPath)
+    private function setPublicPath($publicPath)
     {
-        $this->trackPath = $trackPath;
+        $this->publicPath = $publicPath;
     }
 
     /**

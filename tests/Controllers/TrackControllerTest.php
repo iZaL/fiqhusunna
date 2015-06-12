@@ -39,13 +39,13 @@ class TrackControllerTest extends TestCase
     public function testStore()
     {
         //
-        if (!file_exists($this->trackManager->getUploadPath() . '/' . $this->category->slug)) {
-            mkdir($this->trackManager->getUploadPath() . '/' . $this->category->slug);
+        if (!file_exists($this->trackManager->getRelativePath() . '/' . $this->category->slug)) {
+            mkdir($this->trackManager->getRelativePath() . '/' . $this->category->slug);
         }
         $this->visit('/admin/track/create?type=category')
             ->type('category', 'trackeable_type')
             ->type($this->category->id, 'trackeable_id')
-            ->attach($this->trackManager->getUploadPath() . '/test.mp3', 'tracks[]')
+            ->attach($this->trackManager->getRelativePath() . '/test.mp3', 'tracks[]')
             ->press('Save');
 
         $this->seeInDatabase('tracks',
@@ -57,10 +57,10 @@ class TrackControllerTest extends TestCase
         $track = \App\Src\Track\Track::where('trackeable_id', $this->category->id)->where('trackeable_type',
             'Category')->first();
 
-//        $this->assertFileExists($this->trackManager->getUploadPath() . '/' . $this->category->slug . '/' . $track->url);
+//        $this->assertFileExists($this->trackManager->getRelativePath() . '/' . $this->category->slug . '/' . $track->url);
 //
-//        rmdir($this->trackManager->getUploadPath() . '/' . $this->category->slug . '/' . $track->url);
-        rmdir($this->trackManager->getUploadPath() . '/' . $this->category->slug);
+//        rmdir($this->trackManager->getRelativePath() . '/' . $this->category->slug . '/' . $track->url);
+        rmdir($this->trackManager->getRelativePath() . '/' . $this->category->slug);
 
         $this->onPage('/admin/track');
     }

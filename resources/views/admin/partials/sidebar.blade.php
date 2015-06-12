@@ -74,7 +74,7 @@
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="{{ action('Admin\BlogController@index') }}"><i class="fa fa-list"></i> List Blog Posts</a>
-                            <a href="{{ action('Admin\BlogController@create',['type'=>'category']) }}"><i class="fa fa-plus"></i> Write Blog Post</a>
+                            <a href="{{ action('Admin\BlogController@create') }}"><i class="fa fa-plus"></i> Write Blog Post</a>
                         </li>
 
                     </ul>

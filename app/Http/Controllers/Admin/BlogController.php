@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateBlogPostRequest;
 use App\Jobs\CreateBlogPost;
 use App\Src\Blog\BlogRepository;
+use App\Src\Photo\PhotoRepository;
 
 class BlogController extends Controller
 {
@@ -36,9 +37,9 @@ class BlogController extends Controller
 
     public function show($id)
     {
-        $blogs = $this->blogRepository->model->with('photos')->find($id);
+        $blog = $this->blogRepository->model->with('photos')->find($id);
 
-        return view('admin.modules.blog.view',compact('blogs'));
+        return view('admin.modules.blog.view',compact('blog'));
     }
 
     public function create()
@@ -56,11 +57,30 @@ class BlogController extends Controller
 
     public function edit($id)
     {
+        $blog = $this->blogRepository->model->with('photos')->find($id);
 
+        return view('admin.modules.blog.edit',compact('blog'));
     }
 
-    public function update($id)
+    /**
+     * @param CreateBlogPostRequest $request
+     * @param PhotoRepository $photoRepository
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(CreateBlogPostRequest $request, PhotoRepository $photoRepository, $id)
     {
+        $blog = $this->blogRepository->model->find($id);
+
+        $blog->update($request->all());
+
+        if ($request->hasFile('cover')) {
+            $file = $this->request->file('cover');
+
+            $photoRepository->replace($file, $blog, ['thumbnail' => 1]);
+        }
+
+        return redirect('admin/blog')->with('message', 'success');
 
     }
 

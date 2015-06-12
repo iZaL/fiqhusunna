@@ -3,6 +3,6 @@
 interface MailerContract
 {
 
-    public function fire(array $data);
+    public function fire($data);
 
 }

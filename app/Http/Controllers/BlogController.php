@@ -27,14 +27,16 @@ class BlogController extends Controller
      */
     public function index()
     {
-        return view('modules.blog.index');
+        $blogs = $this->blogRepository->model->paginate(20);
+
+        return view('modules.blog.index', compact('blogs'));
     }
 
     public function show($id)
     {
-        $blogs = $this->blogRepository->model->with('photos')->find($id);
+        $post = $this->blogRepository->model->with('photos')->find($id);
 
-        return view('modules.blog.view',compact('blogs'));
+        return view('modules.blog.view', compact('post'));
     }
 
 }

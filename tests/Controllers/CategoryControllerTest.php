@@ -38,9 +38,9 @@ class CategoryControllerTest extends TestCase
 
         $category = \App\Src\Category\Category::where('name_ar', $catName)->first();
 
-        $this->assertFileExists($this->trackManager->getUploadPath() . '/' . $category->slug);
+        $this->assertFileExists($this->trackManager->getRelativePath() . '/' . $category->slug);
 
-        rmdir($this->trackManager->getUploadPath() . '/' . $category->slug);
+        rmdir($this->trackManager->getRelativePath() . '/' . $category->slug);
 
         $this->seeInDatabase('photos', ['imageable_type' => 'Category', 'imageable_id' => $category->id]);
 

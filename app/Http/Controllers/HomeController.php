@@ -18,7 +18,7 @@ class HomeController extends Controller
     public function index(InstagramManager $instagram, TrackRepository $trackRepository)
     {
         $medias = $instagram->getUserMedia('1097866395');
-        $instas = array_slice($medias->data, 0, 4);
+        $instas = array_slice($medias->data, 0,2);
 
         $tracks = $trackRepository->model->paginate(50)->all();
 

@@ -16,7 +16,7 @@
 @section('content')
 
     <div class="mTop10">
-        {!! Form::model($blog,['action' => ['Admin\BlogController@update',$album->id], 'method' => 'patch'], ['class'=>'form-horizontal']) !!}
+        {!! Form::model($blog,['action' => ['Admin\BlogController@update',$blog->id], 'method' => 'patch'], ['class'=>'form-horizontal']) !!}
 
 
         <div class="form-group">
@@ -34,6 +34,8 @@
         </div>
 
         {!! Form::close() !!}
+
+        @include('admin.modules.photo._delete',['record' => $blog])
 
     </div>
 

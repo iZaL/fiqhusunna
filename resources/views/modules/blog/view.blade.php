@@ -1,36 +1,25 @@
-@extends('layouts.three_col')
+@extends('layouts.one_col')
 
 @section('title')
-    {{ $album->name }}
+    {{ $post->title }}
 @endsection
 
-@section('style')
-    @parent
-    <link href="/bower_components/jquery-ui/themes/hot-sneaks/jquery-ui.min.css" rel="stylesheet">
-    <link href="/css/jplayer.css" rel="stylesheet">
-@endsection
+@section('content')
 
-@section('script')
-    @parent
-@endsection
-
-@section('middle')
-    <div class="panel" id="midCol">
-        <div class="panel-heading middle-col-heading" >{{ trans('word.latest_tracks') }}</div>
+    <div class="panel">
+        <div class="panel-heading" style="background-color:#111;color:#fff;">{{ trans('word.blog') }}</div>
         <div class="panel-body">
+            <div class="col-md-12">
 
-            @foreach($album->tracks as $track)
-                <h5><a href="{{ action('TrackController@show',$track->id) }}"><i
-                                class="fa fa-music"></i> {{ $track->name }}</a></h5>
-            @endforeach
+                <h1><a href="{{ action('BlogController@show',$post->id) }}">{{ $post->title }}</a></h1>
+
+                <div class="row mTop10">
+                    {!! $post->description !!}
+                </div>
+            </div>
         </div>
+
     </div>
-@endsection
-
-@section('right')
-    @include('modules.category.sidebar')
-@endsection
-
-@section('left')
+    <div class="clear:both"></div>
 
 @endsection

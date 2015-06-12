@@ -25,7 +25,6 @@
                         <thead>
                         <tr>
                             <th>Title</th>
-                            <th>Category</th>
                             <th>Description</th>
                             <th>Edit</th>
                             <th>Delete</th>
@@ -35,7 +34,7 @@
                         @foreach($blogs as $blog)
                             <tr class="gradeU">
                                 <td> {{ $blog->title }}</td>
-                                <td> {!! $blog->description !!}</td>
+                                <td> {!! str_limit($blog->description,100) !!}</td>
                                 <td class="center">
                                     <p data-placement="top" data-toggle="tooltip" title="Edit">
                                         <a href={{action('Admin\BlogController@edit',$blog->id)}}>

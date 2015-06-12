@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         'types',
         'albums',
         'tracks',
+        'blogs'
     ];
 
     /**
@@ -31,8 +32,9 @@ class DatabaseSeeder extends Seeder
             $this->cleanDatabase();
             factory('App\Src\User\User', 1)->create();
             factory('App\Src\Category\Category', 5)->create();
-            factory('App\Src\Album\Album', 15)->create();
-            factory('App\Src\Track\Track', 100)->create();
+            factory('App\Src\Album\Album', 10)->create();
+            factory('App\Src\Track\Track', 1000)->create();
+//            factory('App\Src\Blog\Blog', 50)->create();
         }
     }
 

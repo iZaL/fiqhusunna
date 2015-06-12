@@ -23,8 +23,8 @@ class TrackManagerTest extends TestCase
     {
         $catDir = uniqid();
         $this->trackManager->createCategoryDirectory($catDir);
-        $this->assertFileExists($this->trackManager->getUploadPath() . '/' . $catDir);
-        rmdir($this->trackManager->getUploadPath() . '/' . $catDir);
+        $this->assertFileExists($this->trackManager->getRelativePath() . '/' . $catDir);
+        rmdir($this->trackManager->getRelativePath() . '/' . $catDir);
     }
 
     public function testCreateAlbumDirectory()
@@ -33,14 +33,14 @@ class TrackManagerTest extends TestCase
         $albumDir = uniqid();
         $this->trackManager->createCategoryDirectory($catDir);
         $this->trackManager->createAlbumDirectory($catDir, $albumDir);
-        $this->assertFileExists($this->trackManager->getUploadPath() . '/' . $catDir . '/' . $albumDir);
-        rmdir($this->trackManager->getUploadPath() . '/' . $catDir . '/' . $albumDir);
-        rmdir($this->trackManager->getUploadPath() . '/' . $catDir);
+        $this->assertFileExists($this->trackManager->getRelativePath() . '/' . $catDir . '/' . $albumDir);
+        rmdir($this->trackManager->getRelativePath() . '/' . $catDir . '/' . $albumDir);
+        rmdir($this->trackManager->getRelativePath() . '/' . $catDir);
     }
 
     public function testCreateCategoryTrack()
     {
-        $file = $this->trackManager->getUploadPath() . '/test.mp3';
+        $file = $this->trackManager->getRelativePath() . '/test.mp3';
 
         $catDir = uniqid();
 
@@ -58,9 +58,9 @@ class TrackManagerTest extends TestCase
         $this->trackManager->createCategoryDirectory($catDir);
         $this->trackManager->uploadTrack($file, $track);
 
-        $this->assertFileExists($this->trackManager->getUploadPath() . '/' . $catDir);
-//        $this->assertFileExists($this->trackManager->getTrackPath() . '/' . $catDir . '/' . $track->url);
-//        rmdir($this->trackManager->getUploadPath() . '/' . $catDir . '/' . $track->url);
-        rmdir($this->trackManager->getUploadPath() . '/' . $catDir);
+        $this->assertFileExists($this->trackManager->getRelativePath() . '/' . $catDir);
+//        $this->assertFileExists($this->trackManager->getPublicPath() . '/' . $catDir . '/' . $track->url);
+//        rmdir($this->trackManager->getRelativePath() . '/' . $catDir . '/' . $track->url);
+        rmdir($this->trackManager->getRelativePath() . '/' . $catDir);
     }
 }
