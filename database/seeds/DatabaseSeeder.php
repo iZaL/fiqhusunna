@@ -17,7 +17,9 @@ class DatabaseSeeder extends Seeder
         'types',
         'albums',
         'tracks',
-        'blogs'
+        'blogs',
+        'metas',
+        'downloads'
     ];
 
     /**

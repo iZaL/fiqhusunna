@@ -46,6 +46,7 @@ class TrackRepository extends BaseRepository
             ->where('metas.created_at', '>', $date)
             ->groupBy('meta_id')
             ->orderBy('track_count', 'DESC')
+            ->orderBy('metas.created_at','DESC')
             ->get();
     }
 

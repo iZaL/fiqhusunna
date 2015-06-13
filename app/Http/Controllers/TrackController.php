@@ -65,6 +65,7 @@ class TrackController extends Controller
             return redirect('home')->with('warning', $e->getMessage());
         }
 
+        // @todo : check if track exists
         // Increment Download Count (DownloadableTrait)
         $track->incrementDownloadCount();
 
