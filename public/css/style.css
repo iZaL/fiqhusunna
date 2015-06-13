@@ -391,3 +391,8 @@ ul.album-list li {
 ul.album-list li .album-list-icon {
     padding-left: 10px;
 }
+
+.img-tiny {
+    height:50px;
+    width:50px;
+}

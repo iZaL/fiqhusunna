@@ -29,7 +29,7 @@ class Album extends BaseModel
 
     public function tracks()
     {
-        return $this->morphMany('App\Src\Track\Track', 'trackeable')->orderBy('created_at', 'desc');
+        return $this->morphMany('App\Src\Track\Track', 'trackeable');
     }
 
     public function metas()
@@ -37,14 +37,18 @@ class Album extends BaseModel
         return $this->morphMany('App\Src\Meta\Meta', 'meta');
     }
 
-
     public function recentTracks()
     {
-        return $this->morphMany('App\Src\Track\Track', 'trackeable')->orderBy('created_at', 'desc')->take(5);
+        return $this->tracks()->latest()->take(5);
     }
 
     public function photos()
     {
         return $this->morphMany('App\Src\Photo\Photo', 'imageable');
+    }
+
+    public function thumbnail()
+    {
+        return $this->morphOne('App\Src\Photo\Photo', 'imageable')->where('thumbnail', 1);
     }
 }

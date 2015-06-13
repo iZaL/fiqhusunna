@@ -32,14 +32,15 @@ class BlogController extends Controller
     public function index()
     {
         $blogs = $this->blogRepository->model->all();
-        return view('admin.modules.blog.index',compact('blogs'));
+
+        return view('admin.modules.blog.index', compact('blogs'));
     }
 
     public function show($id)
     {
         $blog = $this->blogRepository->model->with('photos')->find($id);
 
-        return view('admin.modules.blog.view',compact('blog'));
+        return view('admin.modules.blog.view', compact('blog'));
     }
 
     public function create()
@@ -59,7 +60,7 @@ class BlogController extends Controller
     {
         $blog = $this->blogRepository->model->with('photos')->find($id);
 
-        return view('admin.modules.blog.edit',compact('blog'));
+        return view('admin.modules.blog.edit', compact('blog'));
     }
 
     /**
@@ -76,7 +77,6 @@ class BlogController extends Controller
 
         if ($request->hasFile('cover')) {
             $file = $this->request->file('cover');
-
             $photoRepository->replace($file, $blog, ['thumbnail' => 1]);
         }
 

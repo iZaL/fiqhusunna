@@ -39,6 +39,11 @@ class Category extends BaseModel
         return $this->morphMany('App\Src\Photo\Photo', 'imageable');
     }
 
+    public function thumbnail()
+    {
+        return $this->morphOne('App\Src\Photo\Photo', 'imageable')->where('thumbnail', 1);
+    }
+
     public function metas()
     {
         return $this->morphMany('App\Src\Meta\Meta', 'meta');

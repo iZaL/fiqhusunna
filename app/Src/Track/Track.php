@@ -38,6 +38,11 @@ class Track extends BaseModel
         return $this->morphMany('App\Src\Meta\Meta', 'meta');
     }
 
+    public function topTracks()
+    {
+        return $this->morphOne('App\Src\Meta\Meta', 'meta')->selectRaw('meta_id, count(*) as count')->groupBy('meta_id')->orderBy('count', 'desc')->limit(1);
+    }
+
     public function downloads()
     {
         return $this->morphMany('App\Src\Meta\Download', 'downloadable');

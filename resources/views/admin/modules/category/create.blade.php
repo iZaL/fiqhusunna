@@ -51,6 +51,7 @@
         </div>
 
         <div class="form-group">
+            <button type="submit" class="btn btn-primary form-control">Save</button>
             {!! Form::submit('Save', ['class' => 'btn btn-primary form-control']) !!}
         </div>
 

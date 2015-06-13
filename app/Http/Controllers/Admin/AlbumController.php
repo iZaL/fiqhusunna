@@ -100,12 +100,22 @@ class AlbumController extends Controller
         return view('admin.modules.album.edit', compact('album', 'categories'));
     }
 
-    public function update(Request $request, $id)
+    /**
+     * @param Request $request
+     * @param PhotoRepository $photoRepository
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(Request $request, PhotoRepository $photoRepository, $id)
     {
-        $this->validate($request, $this->albumRepository->model->rules);
+        $this->validate($request, ['name_ar' => 'required|unique:albums,name_ar,'.$id, 'category_id' => 'required:numeric|not_in:0']);
 
         $album = $this->albumRepository->model->find($id);
         $album->update($request->all());
+
+        if ($request->hasFile('cover')) {
+            $photoRepository->replace($request->file('cover'), $album, ['thumbnail' => 1], $id);
+        }
 
         return redirect('admin')->with('message', 'success');
 

@@ -8,7 +8,8 @@
 @section('breadcrumb')
     <div id="bc1" class="btn-group btn-breadcrumb pBottom20">
         <a href="{{url('home')}}" class="btn btn-default"><i class="fa fa-home"></i>&nbsp; </a>
-        <a href="{{action('CategoryController@show',$category->id)}}" class="btn btn-default "><i class="fa fa-folder"></i> {{ $category->name }}</a>
+        <a href="{{action('CategoryController@show',$category->id)}}" class="btn btn-default "><i
+                    class="fa fa-folder"></i> {{ $category->name }}</a>
     </div>
 @endsection
 
@@ -25,13 +26,24 @@
 
 @section('middle')
     <div class="panel" id="midCol">
-        <div class="panel-heading middle-col-heading" >{{ trans('word.albums') }}</div>
+        <div class="panel-heading middle-col-heading">{{ trans('word.albums') }}</div>
         <div class="panel-body">
+            <ul class="list-group">
 
-            @foreach($category->albums as $album)
-                <h5><a href="{{ action('AlbumController@show',$album->id) }}"><i
-                                class="fa fa-headphones"></i> {{ $album->name }}</a></h5>
-            @endforeach
+                @foreach($category->albums as $album)
+                    <h5>
+                        <li class="list-group-item">
+                            @if($album->thumbnail)
+                                <img src="/uploads/thumbnail/{{ $album->thumbnail->name}}"
+                                     class="img-responsive img-thumbnail img-tiny">
+                            @else
+                                <img src="http://placehold.it/50x50/EEEEEE" class="img-responsive img-thumbnail">
+                            @endif
+                                <a href="{{ action('AlbumController@show',$album->id) }}"> {{ $album->name }}</a>
+                        </li>
+                    </h5>
+                @endforeach
+            </ul>
         </div>
     </div>
 

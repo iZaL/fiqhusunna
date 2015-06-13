@@ -31,7 +31,7 @@ class CategoryController extends Controller
 
     public function show($id, TrackManager $trackManager)
     {
-        $category = $this->categoryRepository->model->with('albums', 'tracks')->find($id);
+        $category = $this->categoryRepository->model->with('albums.thumbnail', 'tracks')->find($id);
         $category->incrementViewCount();
 
         return view('modules.category.view', compact('category'));
