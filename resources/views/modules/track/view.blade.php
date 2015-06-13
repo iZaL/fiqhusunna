@@ -7,7 +7,80 @@
 @section('style')
     @parent
     <link href="/bower_components/jquery-ui/themes/hot-sneaks/jquery-ui.min.css" rel="stylesheet">
-    <link href="/css/jplayer.css" rel="stylesheet">
+    {{--<link href="/css/jplayer.css" rel="stylesheet">--}}
+    <style>
+
+
+        .jp-gui ul li {
+            list-style: none;
+            cursor: pointer;
+            float: right;
+            padding: 10px;
+        }
+
+        li.jp-pause,
+        li.jp-repeat-off,
+        li.jp-unmute,
+        .jp-no-solution {
+            display: none;
+        }
+
+        .jp-progress-slider .ui-slider-handle {
+            cursor: pointer;
+        }
+
+
+        .jp-volume-slider .ui-slider-handle {
+            height: 8px;
+            width: 8px;
+            cursor: pointer;
+        }
+
+        .jp-gui.jp-no-volume .jp-volume-slider {
+            display: none;
+        }
+
+        .ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
+            -webkit-border-radius: 0px;
+            -moz-border-radius: 0px;
+            border-radius: 0px;
+        }
+
+        .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+            background-url: none;
+            background: #13141D;
+            border: none;
+        }
+
+        .ui-widget-header {
+            background: none;
+        }
+
+        .slider-horizontal .ui-slider-handle {
+            top: -4px;
+        }
+
+        .ui-slider .ui-slider-handle {
+            z-index: 2;
+            width: 3px;
+            height: 15px;
+        }
+
+        .ui-slider-horizontal .ui-slider-handle {
+            top: -4px;
+            margin-left: -2px;
+        }
+
+        .ui-slider-horizontal {
+            height: 8px;
+        }
+        .ui-widget-content {
+            border:none;
+            background:none;
+            background: antiquewhite;
+        }
+
+    </style>
 @endsection
 
 @section('script')
@@ -68,14 +141,14 @@
             // A pointer to the jPlayer data object
             myPlayerData = myPlayer.data("jPlayer");
 
-            $('.jp-gui ul li').hover(
-                    function () {
-                        $(this).addClass('ui-state-hover');
-                    },
-                    function () {
-                        $(this).removeClass('ui-state-hover');
-                    }
-            );
+//            $('.jp-gui ul li').hover(
+//                    function () {
+//                        $(this).addClass('ui-state-hover');
+//                    },
+//                    function () {
+//                        $(this).removeClass('ui-state-hover');
+//                    }
+//            );
 //
 //        // Create the progress slider control
             myControl.progress.slider({
@@ -126,136 +199,89 @@
 
 @section('content')
 
-    <div class="no-gutter row">
+    <div id="jquery_jplayer_1" class="jp-jplayer"></div>
 
-        <div id="jquery_jplayer_1" class="jp-jplayer"></div>
+    <div id="jp_container_1">
+        <div class="jp-gui">
+            <h1>{{$track->name}} </h1>
 
-        <div id="jp_container_1">
-            <div class="jp-gui ui-widget ui-widget-content ui-corner-all">
-                <div class="row">
-                    <h1>{{$track->name}}</h1>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <ul>
+                    <div class="col-md-2 col-sm-6 col-xs-5">
+                        <div class="jp-volume-slider ui-slider ui-slider-horizontal mTop15"
+                             aria-disabled="false">
+                            <div class="ui-slider-range ui-slider-range-min"
+                                 style="width: 52%;"></div>
+                            <a class="ui-slider-handle ui-state-default" href="#"
+                               style="left: 52%;"></a>
+                        </div>
+                    </div>
 
-                    <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="col-md-2 col-sm-4 col-xs-5">
+                        <li class="jp-repeat">
+                            <a href="javascript:;" class="jp-repeat" tabindex="1"
+                               title="repeat"><i class="fa fa-repeat"></i></a>
+                        </li>
+                        <li class="jp-repeat-off" style="display: none;">
+                            <a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off"
+                               style="display: none;">
+                                <i class="fa fa-refresh"></i>
+                            </a>
+                        </li>
+                        <li class="jp-mute ">
+                            <a href="javascript:;"
+                               class="jp-mute"
+                               tabindex="1" title="mute"><i
+                                        class="fa fa-volume-off"></i></a>
+                        </li>
+                        <li class="jp-unmute" style="display: none;">
+                            <a href="javascript:;" class="jp-unmute" tabindex="1"
+                               title="unmute" style="display: none;"><i class="fa fa-volume-up"></i></a>
+                        </li>
+                    </div>
 
-                        <ul>
+                    <div class="col-md-4 col-sm-8 col-xs-8">
+                        <div class="jp-progress-slider ui-slider ui-slider-horizontal mTop15"
+                             aria-disabled="false">
+                            <div class="ui-slider-range  ui-slider-range-min"
+                                 style="width: 0%;"></div>
+                            <a class="ui-slider-handle ui-state-default" href="#"
+                               style="left: 0%;"></a>
+                        </div>
+                    </div>
 
-                            <div class="col-md-2 col-sm-6 col-xs-5">
-                                <div class="jp-volume-slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
-                                     aria-disabled="false">
-                                    <div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min"
-                                         style="width: 52%;"></div>
-                                    <a class="ui-slider-handle ui-state-default ui-corner-all" href="#"
-                                       style="left: 52%;"></a>
-                                </div>
-                            </div>
-
-                            <div class="col-md-3 col-sm-4 col-xs-5">
-                                <li class="jp-repeat ui-state-default ui-corner-all"><a href="javascript:;"
-                                                                                        class="jp-repeat ui-icon ui-icon-refresh"
-                                                                                        tabindex="1"
-                                                                                        title="repeat">repeat</a>
-                                </li>
-                                <li class="jp-repeat-off ui-state-default ui-state-active ui-corner-all"
-                                    style="display: none;">
-                                    <a
-                                            href="javascript:;" class="jp-repeat-off ui-icon ui-icon-refresh"
-                                            tabindex="1"
-                                            title="repeat off" style="display: none;">repeat off</a></li>
-                                <li class="jp-mute ui-state-default ui-corner-all"><a href="javascript:;"
-                                                                                      class="jp-mute ui-icon ui-icon-volume-off"
-                                                                                      tabindex="1" title="mute">mute</a>
-                                </li>
-                                <li class="jp-unmute ui-state-default ui-state-active ui-corner-all"
-                                    style="display: none;">
-                                    <a
-                                            href="javascript:;" class="jp-unmute ui-icon ui-icon-volume-off"
-                                            tabindex="1"
-                                            title="unmute" style="display: none;">unmute</a></li>
-                                <li class="jp-volume-max ui-state-default ui-corner-all"><a href="javascript:;"
-                                                                                            class="jp-volume-max ui-icon ui-icon-volume-on"
-                                                                                            tabindex="1"
-                                                                                            title="max volume">max
-                                        volume</a></li>
-
-                            </div>
-
-                            <div class="col-md-4 col-sm-8 col-xs-8">
-                                <div class="jp-progress-slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
-                                     aria-disabled="false">
-                                    <div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min"
-                                         style="width: 0%;"></div>
-                                    <a class="ui-slider-handle ui-state-default ui-corner-all" href="#"
-                                       style="left: 0%;"></a>
-                                </div>
-                            </div>
-
-                            <div class="col-md-2 col-sm-4 col-xs-4">
-                                <li class="jp-play ui-state-default ui-corner-all"><a href="javascript:;"
-                                                                                      class="jp-play ui-icon ui-icon-play"
-                                                                                      tabindex="1" title="play">play</a>
-                                </li>
-                                <li class="jp-pause ui-state-default ui-corner-all" style="display: none;"><a
-                                            href="javascript:;"
-                                            class="jp-pause ui-icon ui-icon-pause"
-                                            tabindex="1"
-                                            title="pause"
-                                            style="display: none;">pause</a>
-                                </li>
-
-                                <li class="jp-stop ui-state-default ui-corner-all"><a href="javascript:;"
-                                                                                      class="jp-stop ui-icon ui-icon-stop"
-                                                                                      tabindex="1" title="stop">stop</a>
-
-                                </li>
-
-                            </div>
-
-                        </ul>
+                    <div class="col-md-1 col-sm-4 col-xs-4">
+                        <li class="jp-play"><a href="javascript:;" class="jp-play" tabindex="1" title="play">
+                                <i class="fa fa-play"></i></a>
+                        </li>
+                        <li class="jp-pause" style="display: none;"><a
+                                    href="javascript:;"
+                                    class="jp-pause"
+                                    tabindex="1"
+                                    title="pause"
+                                    style="display: none;"><i class="fa fa-pause"></i></a>
+                        </li>
 
                     </div>
-                    <div class="col-md-12 pTop10">
-                        <div class="col-md-2">
-                            <div class="col-md-1 col-sm-3 col-xs-3">
-                                <ul>
-                                    <li class="ui-state-default ui-corner-all ">
-                                        <a href="{{ action('TrackController@downloadTrack',$track->id) }}">
 
-                                            <i class="fa fa-download icon-download"></i>
-                                        </a>
-                                    </li>
+                </ul>
 
-                                </ul>
-                            </div>
-                            <div class="col-md-2 col-sm-3 col-xs-3">
-                                {{ $track->downloads ? $track->downloads->count() : '0' }}
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="col-md-1 col-sm-3 col-xs-3">
-                                <ul>
-                                    <li class="ui-state-default ui-corner-all ">
-                                        <a href="#">
-
-                                            <i class="fa fa-eye icon-download"></i>
-                                        </a>
-
-                                    </li>
-
-                                </ul>
-                            </div>
-                            <div class="col-md-2 col-sm-3 col-xs-3">
-                                {{ $track->metas ? $track->metas->count() : '0' }}
-                            </div>
-                        </div>
-
-                    </div>
+            </div>
+            <div class="col-md-12 pTop10">
+                <div class="col-md-2 col-sm-3 col-xs-3">
+                    <a href="{{ action('TrackController@downloadTrack',$track->id) }}">
+                        <i class="fa fa-download"></i>
+                    </a>
+                    {{ $track->downloads ? $track->downloads->count() : '0' }}
+                </div>
+                <div class="col-md-1 col-sm-3 col-xs-3">
+                    <a href="#">
+                        <i class="fa fa-eye"></i>
+                    </a>
+                    {{ $track->metas ? $track->metas->count() : '0' }}
                 </div>
             </div>
-            <div class="jp-no-solution" style="display: none;">
-                <span>Update Required</span>
-                To play the media you will need to either update your browser to a recent version or update your <a
-                        href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
-            </div>
         </div>
+
     </div>
 @endsection
