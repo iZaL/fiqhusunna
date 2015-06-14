@@ -38,7 +38,6 @@ class UploadTrack extends Job implements SelfHandling
     {
         foreach ($this->request->file('tracks') as $file) {
 
-
             // do not upload disallowed extensions
             if (!in_array($file->getClientOriginalExtension(), $trackManager->getAllowedExtension())) {
                 continue;
@@ -47,8 +46,8 @@ class UploadTrack extends Job implements SelfHandling
             $track = $trackRepository->model->create(array_merge([
                 'trackeable_id'   => $this->request->trackeable_id,
                 'trackeable_type' => $this->request->trackeable_type,
-                'name_ar'         => $trackManager->setTrackName($file->getClientOriginalName()),
-                'slug'            => $trackManager->setTrackSlug($file->getClientOriginalName()),
+                'name_ar'         => $file->getClientOriginalName(),
+                'slug'            => $file->getClientOriginalName(),
                 'url'             => $trackRepository->setHashedName($file)->getHashedName(),
                 'extension'       => $file->getClientOriginalExtension(),
                 'size'            => $file->getClientSize(),

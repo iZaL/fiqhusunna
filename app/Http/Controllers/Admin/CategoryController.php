@@ -62,10 +62,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request, Storage $storage, PhotoRepository $photoRepository)
     {
-        $this->validate($request, $this->categoryRepository->model->rules);
+        $this->validate($request, [
+            'name_ar' => 'required|unique:categories,name_ar',
+            'cover'   => 'image'
+        ]);
 
-        $category = $this->categoryRepository->model->create(array_merge($request->all(),
-            ['slug' => str_slug($request->name_ar)]));
+        $category = $this->categoryRepository->model->fill(array_merge($request->all(),
+            ['slug' => $request->name_ar]));
 
         //create a folder
         $this->trackManager->createCategoryDirectory($category->slug);
@@ -74,6 +77,8 @@ class CategoryController extends Controller
         if ($request->hasFile('cover')) {
             $photoRepository->attach($request->file('cover'), $category, ['thumbnail' => 1]);
         }
+
+        $category->save();
 
         return redirect('/admin/category')->with('message', 'success');
     }
@@ -88,15 +93,31 @@ class CategoryController extends Controller
 
     public function update(Request $request, PhotoRepository $photoRepository, $id)
     {
-        $this->validate($request, ['name_ar' => 'required|unique:categories,name_ar,' . $id]);
+        $this->validate($request, [
+            'name_ar' => 'required|unique:categories,name_ar,' . $id,
+            'cover'   => 'image'
+        ]);
 
         $category = $this->categoryRepository->model->find($id);
 
-        $category->update($request->all());
+        $oldSlug = $category->slug;
+
+        $category->fill(array_merge($request->all(),
+            ['slug' => $request->name_ar]));
+
+        if ($category->isDirty('name_ar')) {
+
+            $this->trackManager->updateCategoryDirectory($oldSlug, $category->slug);
+
+        }
 
         if ($request->hasFile('cover')) {
+
             $photoRepository->replace($request->file('cover'), $category, ['thumbnail' => 1], $id);
+
         }
+
+        $category->save();
 
         return redirect('admin/category')->with('message', 'success');
 

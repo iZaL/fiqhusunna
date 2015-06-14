@@ -34,7 +34,7 @@ class UploadTrackRequest extends Request
         foreach ($tracks as $key => $file) // add individual rules to each image
         {
 //            $rules['tracks.'.$key] = 'required|mimes:audio/mp3,mp3,audio/mpeg,application/octet-stream';
-            $rules['tracks.' . $key] = 'required';
+            $rules['tracks.' . $key] = 'required|unique:tracks,name_ar';
         }
 
         return $rules;

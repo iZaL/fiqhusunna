@@ -42,30 +42,23 @@ abstract class BaseImageService extends BaseRepository
     {
         $this->setHashedName($image);
 
-        try {
-            foreach ($imageDimensions as $imageDimension) {
-                switch ($imageDimension) {
-                    case 'large':
-                        Image::make($image->getRealPath())->resize($this->largeImageWidth,
-                            $this->largeImageHeight)->save($this->largeImagePath . $this->hashedName);
-                        break;
-                    case 'medium':
-                        Image::make($image->getRealPath())->resize($this->mediumImageWidth,
-                            $this->mediumImageHeight)->save($this->mediumImagePath . $this->hashedName);
-                        break;
-                    case 'thumbnail':
-                        Image::make($image->getRealPath())->resize($this->thumbnailImageWidth,
-                            $this->thumbnailImageHeight)->save($this->thumbnailImagePath . $this->hashedName);
-                        break;
-                    default :
-                        break;
-                }
+        foreach ($imageDimensions as $imageDimension) {
+            switch ($imageDimension) {
+                case 'large':
+                    Image::make($image->getRealPath())->resize($this->largeImageWidth,
+                        $this->largeImageHeight)->save($this->largeImagePath . $this->hashedName);
+                    break;
+                case 'medium':
+                    Image::make($image->getRealPath())->resize($this->mediumImageWidth,
+                        $this->mediumImageHeight)->save($this->mediumImagePath . $this->hashedName);
+                    break;
+                case 'thumbnail':
+                    Image::make($image->getRealPath())->resize($this->thumbnailImageWidth,
+                        $this->thumbnailImageHeight)->save($this->thumbnailImagePath . $this->hashedName);
+                    break;
+                default :
+                    break;
             }
-        } catch ( Exception $e ) {
-//            dd($e->getMessage());
-            throw new \Exception('Error While Uploading Image. '.$e->getMessage());
-
-            return false;
         }
 
         return $this;

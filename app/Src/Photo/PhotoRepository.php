@@ -53,15 +53,13 @@ class PhotoRepository extends BaseRepository
         $upload = $this->uploadFile($file, $model);
 
         if (!$upload) {
-            return false;
+            throw new \Exception('Image Could Not be uploaded to the Server');
         }
 
         $photo = $this->create($model, array_merge($fields, ['name' => $upload->getHashedName()]));
 
         if (!$photo) {
-            $this->addError('Could Not save the photo record in the database');
-
-            return false;
+            throw new \Exception('Image Record Could No be created in the Database');
         }
 
         return $this;
@@ -87,7 +85,7 @@ class PhotoRepository extends BaseRepository
     public function replace(UploadedFile $file, Model $model, $fields = [], $imageableID)
     {
         $reflectionModel = new \ReflectionClass($model);
-        $photos          = $this->model->where('imageable_type',
+        $photos = $this->model->where('imageable_type',
             $reflectionModel->getShortName())->where('imageable_id', $imageableID)->where('thumbnail', 1)->get();
 
         // delete the old file
@@ -134,7 +132,7 @@ class PhotoRepository extends BaseRepository
 
     public function getClassShortName(Model $model)
     {
-        $model          = new \ReflectionClass($model);
+        $model = new \ReflectionClass($model);
         $classShortName = $model->getShortName();
 
         return $classShortName;

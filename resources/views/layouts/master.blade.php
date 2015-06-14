@@ -29,6 +29,8 @@
             }
         </style>
         <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/css/bootstrap-flat.css" rel="stylesheet">
+        <link href="/css/bootstrap.min.css" rel="stylesheet">
         @if(App::getLocale() == 'ar')
             <link href="/bower_components/bootstrap-rtl/dist/css/bootstrap-rtl.css" rel="stylesheet">
         @endif

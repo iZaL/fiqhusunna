@@ -50,7 +50,7 @@ class TrackController extends Controller
      */
     public function index()
     {
-        $tracks = $this->trackRepository->model->all();
+        $tracks = $this->trackRepository->model->paginate(100);
 
         return view('admin.modules.track.index', compact('tracks'));
     }
@@ -95,32 +95,6 @@ class TrackController extends Controller
     {
         $job = (new UploadTrack($request));
         $this->dispatch($job);
-
-        return redirect('admin/track')->with('message', 'success');
-    }
-
-    public function edit($id)
-    {
-        $track = $this->trackRepository->model->find($id);
-        $type = '';
-
-        if (class_basename($track->trackeable_type) == 'Category') {
-            $type = 'Category';
-            $trackeables = $this->categoryRepository->model->all()->lists('name_ar', 'id');
-        } else {
-            $type = 'Album';
-            $trackeables = $this->albumRepository->model->all()->lists('name_ar', 'id');
-        }
-
-        return view('admin.modules.track.edit', compact('track', 'trackeables', 'type'));
-    }
-
-    public function update(Request $request, $id)
-    {
-        $this->validate($request, $this->trackRepository->model->rules);
-
-        $track = $this->trackRepository->model->find($id);
-        $track->update($request->all());
 
         return redirect('admin/track')->with('message', 'success');
     }

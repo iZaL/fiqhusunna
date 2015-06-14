@@ -7,6 +7,7 @@ use App\Http\Requests\CreateBlogPostRequest;
 use App\Jobs\CreateBlogPost;
 use App\Src\Blog\BlogRepository;
 use App\Src\Photo\PhotoRepository;
+use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
@@ -48,10 +49,27 @@ class BlogController extends Controller
         return view('admin.modules.blog.create');
     }
 
-    public function store(CreateBlogPostRequest $request)
+    public function store(Request $request, PhotoRepository $photoRepository)
     {
-        $job = (new CreateBlogPost($request));
-        $this->dispatch($job);
+
+        $this->validate($request, [
+            'title_ar'       => 'required',
+            'description_ar' => 'required',
+            'cover'          => 'image'
+        ]);
+
+        $blog = $this->blogRepository->model->create([
+            'title_ar'       => $this->request->title_ar,
+            'description_ar' => $this->request->description_ar,
+            'user_id'        => Auth::user()->id,
+            'slug'           => str_slug($this->request->title_ar)
+        ]);
+
+        if ($this->request->hasFile('cover')) {
+            $file = $this->request->file('cover');
+
+            $photoRepository->attach($file, $blog, ['thumbnail' => 1]);
+        }
 
         return redirect('admin/blog')->with('message', 'success');
     }
@@ -64,13 +82,19 @@ class BlogController extends Controller
     }
 
     /**
-     * @param CreateBlogPostRequest $request
+     * @param Request $request
      * @param PhotoRepository $photoRepository
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(CreateBlogPostRequest $request, PhotoRepository $photoRepository, $id)
+    public function update(Request $request, PhotoRepository $photoRepository, $id)
     {
+        $this->validate($request, [
+            'title_ar'       => 'required',
+            'description_ar' => 'required',
+            'cover'          => 'image'
+        ]);
+
         $blog = $this->blogRepository->model->find($id);
 
         $blog->update($request->all());
@@ -86,6 +110,9 @@ class BlogController extends Controller
 
     public function destroy($id)
     {
+        $blog = $this->blogRepository->model->find($id);
+        $blog->delete();
 
+        return redirect()->back()->with('success', 'Record Deleted');
     }
 }

@@ -15,8 +15,6 @@ class Album extends BaseModel
 
     protected $morphClass = 'Album';
 
-    public $rules = ['name_ar' => 'required|unique:albums,name_ar', 'category_id' => 'required:numeric|not_in:0'];
-
     protected $guarded = ['id'];
 
     protected $localeStrings = ['name', 'description'];
@@ -50,5 +48,10 @@ class Album extends BaseModel
     public function thumbnail()
     {
         return $this->morphOne('App\Src\Photo\Photo', 'imageable')->where('thumbnail', 1);
+    }
+
+    public function setSlugAttribute($value)
+    {
+        return $this->attributes['slug'] = slug($value);
     }
 }

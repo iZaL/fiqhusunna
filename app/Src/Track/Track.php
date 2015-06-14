@@ -40,7 +40,8 @@ class Track extends BaseModel
 
     public function topTracks()
     {
-        return $this->morphOne('App\Src\Meta\Meta', 'meta')->selectRaw('meta_id, count(*) as count')->groupBy('meta_id')->orderBy('count', 'desc')->limit(1);
+        return $this->morphOne('App\Src\Meta\Meta',
+            'meta')->selectRaw('meta_id, count(*) as count')->groupBy('meta_id')->orderBy('count', 'desc')->limit(1);
     }
 
     public function downloads()
@@ -79,6 +80,26 @@ class Track extends BaseModel
     public function setTrackeableTypeAttribute($value)
     {
         $this->attributes['trackeable_type'] = ucfirst($value);
+    }
+
+    public function setSlugAttribute($value)
+    {
+        return $this->attributes['slug'] = slug($value);
+    }
+
+
+    /**
+     * Get the Clean Name For Track (Strip Extensions, and Secure)
+     * @param $value
+     * @return string
+     */
+    public function setNameArAttribute($value)
+    {
+        $temp = explode('.', $value);
+        $ext = array_pop($temp);
+        $name = implode('.', $temp);
+
+        return strip_tags(e($name));
     }
 
 }

@@ -28,7 +28,6 @@
                             <th>Title</th>
                             <th>Type</th>
                             <th>Size</th>
-                            <th>Edit</th>
                             <th>Delete</th>
                         </tr>
                         </thead>
@@ -38,14 +37,6 @@
                                 <td> {{ $track->name }}</td>
                                 <td> {{ $track->trackeable ? $track->trackeable->name : '' }}</td>
                                 <td> {{ $track->size }}</td>
-                                <td class="center">
-                                    <p data-placement="top" data-toggle="tooltip" title="Edit">
-                                        <a href={{action('Admin\TrackController@edit',$track->id)}}>
-                                            <button class="btn btn-primary btn-xs"><span
-                                                        class="glyphicon glyphicon-pencil"></span></button>
-                                        </a>
-                                    </p>
-                                </td>
                                 <td class="center">
                                     <p data-placement="top" data-toggle="tooltip" title="Delete">
                                         {!! Form::open(['action' => ['Admin\TrackController@destroy', $track->id], 'method' => 'DELETE'], ['class'=>'form-horizontal']) !!}

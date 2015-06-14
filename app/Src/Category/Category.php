@@ -13,8 +13,6 @@ class Category extends BaseModel
 
     protected $table = 'categories';
 
-    public $rules = ['name_ar' => 'required'];
-
     protected $morphClass = 'Category';
 
     protected $guarded = ['id'];
@@ -47,5 +45,10 @@ class Category extends BaseModel
     public function metas()
     {
         return $this->morphMany('App\Src\Meta\Meta', 'meta');
+    }
+
+    public function setSlugAttribute($value)
+    {
+        return $this->attributes['slug'] = slug($value);
     }
 }

@@ -11,7 +11,6 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class TrackManager
 {
-
     // mostly used to download files
     public $relativePath;
 
@@ -49,31 +48,64 @@ class TrackManager
         }
 
         // Create a Directory
-        try {
-            $this->filesystem->makeDirectory($this->getRelativePath() . '/' . $categorySlug, '0775');
-        } catch (\Exception $e) {
-            dd('Cannot Create Directory ' . $categorySlug);
+        $this->filesystem->makeDirectory($this->getRelativePath() . '/' . $categorySlug, '0775');
+
+        return $this;
+    }
+
+    /**
+     * @param $oldCategorySlug
+     * @param string $categorySlug directory name
+     * @return $this
+     * @throws \Exception
+     */
+    public function updateCategoryDirectory($oldCategorySlug, $categorySlug)
+    {
+
+        if (!$this->filesystem->isDirectory($this->getRelativePath() . '/' . $oldCategorySlug)) {
+            throw new \Exception('old directory not found');
         }
+
+        // Rename a Directory
+        $this->filesystem->move($this->getRelativePath() . '/' . $oldCategorySlug,
+            $this->getRelativePath() . '/' . $categorySlug);
+
+        return $this;
+    }
+
+
+    /**
+     * @param string $categorySlug category directory name
+     * @param string $albumSlug album directory name
+     * @return $this
+     * @throws \Exception
+     */
+    public function createAlbumDirectory($categorySlug, $albumSlug)
+    {
+        if ($this->filesystem->isDirectory($this->getRelativePath() . '/' . $categorySlug . '/' . $albumSlug)) {
+            return ;
+        }
+
+        $this->filesystem->makeDirectory($this->getRelativePath() . '/' . $categorySlug . '/' . $albumSlug, '0775');
 
         return $this;
     }
 
     /**
      * @param string $categorySlug category directory name
+     * @param $oldAlbumSlug
      * @param string $albumSlug album directory name
      * @return $this
+     * @throws \Exception
      */
-    public function createAlbumDirectory($categorySlug, $albumSlug)
+    public function updateAlbumDirectory($categorySlug, $oldAlbumSlug, $albumSlug)
     {
-        if ($this->filesystem->isDirectory($this->getRelativePath() . '/' . $categorySlug . '/' . $albumSlug)) {
-            return $this;
+        if (!$this->filesystem->isDirectory($this->getRelativePath() . '/' . $categorySlug . '/' . $oldAlbumSlug)) {
+            throw new \Exception('old directory not found');
         }
 
-        try {
-            $this->filesystem->makeDirectory($this->getRelativePath() . '/' . $categorySlug . '/' . $albumSlug, '0775');
-        } catch (\Exception $e) {
-            dd('Cannot Create Directory ' . $categorySlug . '/' . $albumSlug);
-        }
+        $this->filesystem->name($this->getRelativePath() . '/' . $categorySlug . '/' . $oldAlbumSlug,
+            $this->getRelativePath() . '/' . $categorySlug . '/' . $albumSlug);
 
         return $this;
     }
@@ -164,11 +196,7 @@ class TrackManager
         }
 
         // Move Uploaded File
-        try {
-            $file->move($uploadDir, $track->url);
-        } catch (\Exception $e) {
-            return 'Error While Moving File. ' . $e->getMessage();
-        }
+        $file->move($uploadDir, $track->url);
 
         return $this;
     }
@@ -225,29 +253,6 @@ class TrackManager
     private function setPublicPath($publicPath)
     {
         $this->publicPath = $publicPath;
-    }
-
-    /**
-     * Get the Clean Name For Track (Strip Extensions, and Secure)
-     * @param $getClientOriginalName
-     * @return string
-     */
-    public function setTrackName($getClientOriginalName)
-    {
-        $temp = explode('.', $getClientOriginalName);
-        $ext = array_pop($temp);
-        $name = implode('.', $temp);
-
-        return strip_tags(e($name));
-    }
-
-    /**
-     * @param $getClientOriginalName
-     * @return string
-     */
-    public function setTrackSlug($getClientOriginalName)
-    {
-        return str_slug($getClientOriginalName);
     }
 
 }
