@@ -95,15 +95,16 @@ h3.highlight {
     color: #fff;
     padding-left: 20px;
     padding-right: 20px;
-    border-left: 1px solid #66BBCC;
+    border-right: 1px solid #66BBCC;
 }
 
 .navbar-nav > li:last-child > a {
-    border-right: 1px solid #66BBCC;
+    border-left: 1px solid #66BBCC;
 }
 
 .navbar-nav li a:hover {
     background-color: #66BBCC;
+    color: #004444;
 }
 
 .navbar-nav > .open > a, .navbar-nav > .open > a:hover, .navbar-nav > .open > a:focus {
@@ -111,13 +112,14 @@ h3.highlight {
     opacity: .9;
 }
 
-.navbar-brand a:hover {
-    color: #004444;
-}
-
 .navbar-brand {
     color: #fff;
 }
+
+.navbar-brand:hover {
+    color: #004444;
+}
+
 
 .accordion-group {
     border-width: 0;
@@ -166,6 +168,7 @@ footer {
     margin-top: 20px;
     padding: 20px 0;
     font-style: italic;
+    text-align: center;
 }
 
 @media (min-width: 992px) {
@@ -401,4 +404,12 @@ ul.album-list li .album-list-icon {
 .img-tiny {
     height:50px;
     width:50px;
+}
+
+.active {
+    font-weight: bold;
+}
+.active-cat {
+    font-weight: bold;
+    background: #efefef;
 }

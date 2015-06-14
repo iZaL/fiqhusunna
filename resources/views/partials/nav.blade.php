@@ -8,9 +8,9 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="{{ action('BlogController@index') }}">{{ trans('word.blog') }}</a></li>
-                <li><a href="{{ action('PageController@getAbout') }}">{{ trans('word.about_us') }}</a></li>
-                <li><a href="{{ action('PageController@getContact') }}">{{ trans('word.contact_us') }}</a></li>
+                <li><a class="{{ (Request::segment('1') == 'blog' ? 'active' :  false ) }}" href="{{ action('BlogController@index') }}">{{ trans('word.blog') }}</a></li>
+                <li><a class="{{ (Request::segment('1') == 'about' ? 'active' :  false ) }}" href="{{ action('PageController@getAbout') }}">{{ trans('word.about_us') }}</a></li>
+                <li><a class="{{ (Request::segment('1') == 'contact' ? 'active' :  false ) }}" href="{{ action('PageController@getContact') }}">{{ trans('word.contact_us') }}</a></li>
             </ul>
         </div>
     </div>
