@@ -98,8 +98,9 @@ class Track extends BaseModel
         $temp = explode('.', $value);
         $ext = array_pop($temp);
         $name = implode('.', $temp);
+        $name = strip_tags(e($name));
 
-        return strip_tags(e($name));
+        return $this->attributes['name_ar'] = slug($name);
     }
 
 }

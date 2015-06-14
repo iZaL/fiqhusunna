@@ -33,9 +33,9 @@ class DatabaseSeeder extends Seeder
             Model::unguard();
             $this->cleanDatabase();
             factory('App\Src\User\User', 1)->create();
-            factory('App\Src\Category\Category', 5)->create();
-            factory('App\Src\Album\Album', 10)->create();
-            factory('App\Src\Track\Track', 1000)->create();
+//            factory('App\Src\Category\Category', 5)->create();
+//            factory('App\Src\Album\Album', 10)->create();
+//            factory('App\Src\Track\Track', 1000)->create();
 //            factory('App\Src\Blog\Blog', 50)->create();
         }
     }

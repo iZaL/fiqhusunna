@@ -128,10 +128,10 @@ class AlbumController extends Controller
             $photoRepository->replace($request->file('cover'), $album, ['thumbnail' => 1], $id);
         }
 
-//        if ($album->isDirty('name_ar')) {
-                $this->trackManager->updateAlbumDirectory($album->category->slug, $oldAlbumSlug,
-                    $album->slug);
-//        }
+        if ($album->isDirty('name_ar')) {
+            $this->trackManager->updateAlbumDirectory($album->category->slug, $oldAlbumSlug,
+                $album->slug);
+        }
 
         $album->save();
 

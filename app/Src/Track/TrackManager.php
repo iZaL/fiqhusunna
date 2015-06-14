@@ -100,12 +100,14 @@ class TrackManager
      */
     public function updateAlbumDirectory($categorySlug, $oldAlbumSlug, $albumSlug)
     {
-        if (!$this->filesystem->isDirectory($this->getRelativePath() . '/' . $categorySlug . '/' . $oldAlbumSlug)) {
+        $oldPath = $this->getRelativePath() . '/' . $categorySlug . '/' . $oldAlbumSlug;
+        $newPath = $this->getRelativePath() . '/' . $categorySlug . '/' . $albumSlug;
+
+        if (!$this->filesystem->isDirectory($oldPath)) {
             throw new \Exception('old directory not found');
         }
 
-        $this->filesystem->name($this->getRelativePath() . '/' . $categorySlug . '/' . $oldAlbumSlug,
-            $this->getRelativePath() . '/' . $categorySlug . '/' . $albumSlug);
+        $this->filesystem->move($oldPath, $newPath);
 
         return $this;
     }

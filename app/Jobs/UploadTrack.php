@@ -43,7 +43,7 @@ class UploadTrack extends Job implements SelfHandling
                 continue;
             }
 
-            $track = $trackRepository->model->create(array_merge([
+            $track = $trackRepository->model->fill(array_merge([
                 'trackeable_id'   => $this->request->trackeable_id,
                 'trackeable_type' => $this->request->trackeable_type,
                 'name_ar'         => $file->getClientOriginalName(),
@@ -57,6 +57,7 @@ class UploadTrack extends Job implements SelfHandling
 
             $trackManager->uploadTrack($file, $track);
 
+            $track->save();
         }
     }
 
