@@ -84,9 +84,8 @@ class Track extends BaseModel
 
     public function setSlugAttribute($value)
     {
-        return $this->attributes['slug'] = slug($value);
+        return $this->attributes['slug'] = slug(tidify($value));
     }
-
 
     /**
      * Get the Clean Name For Track (Strip Extensions, and Secure)
@@ -95,12 +94,7 @@ class Track extends BaseModel
      */
     public function setNameArAttribute($value)
     {
-        $temp = explode('.', $value);
-        $ext = array_pop($temp);
-        $name = implode('.', $temp);
-        $name = strip_tags(e($name));
-
-        return $this->attributes['name_ar'] = slug($name);
+        return $this->attributes['name_ar'] = tidify($value);
     }
 
 }

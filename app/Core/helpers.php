@@ -40,6 +40,7 @@ if (!function_exists('slug')) {
     }
 }
 
+
 /**
  * Make Slug that Includes RTL chars
  */
@@ -72,5 +73,27 @@ if (!function_exists('slug_rtl')) {
 
         return $string;
 
+    }
+}
+
+/**
+ * Tidy's the String
+ * Removes Extension
+ */
+if (!function_exists('tidify')) {
+
+    /**
+     * @param $value
+     * @return string
+     */
+    function tidify($value)
+    {
+        $temp = explode('.', $value);
+
+        array_pop($temp);
+        $name = implode('.', $temp);
+        $name = strip_tags(e($name));
+
+        return $name;
     }
 }
