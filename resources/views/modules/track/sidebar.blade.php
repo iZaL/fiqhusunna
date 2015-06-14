@@ -1,8 +1,10 @@
-<div class="panel" >
-    <div class="panel-heading middle-col-heading"><i class="fa fa-headphones"></i> {{ trans('word.latest_tracks') }}</div>
+<div class="panel">
+    <div class="panel-heading left-col-heading"><i
+                class="fa fa-headphones"></i> {{ isset($title) ? $title : trans('word.latest_tracks') }}</div>
     <div class="panel-body">
 
         <ul class="list-group">
+
             @foreach($record->tracks as $track)
                 <h5>
                     <li class="list-group-item"><a href="{{ action('TrackController@show',$track->id) }}"><i

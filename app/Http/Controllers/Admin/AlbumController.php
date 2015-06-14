@@ -77,17 +77,18 @@ class AlbumController extends Controller
         $this->validate($request, [
             'name_ar'     => 'required|unique:albums,name_ar',
             'category_id' => 'required:numeric|not_in:0',
-            'cover'       => 'image'
+//            'cover'       => 'image'
         ]);
 
-        $album = $this->albumRepository->model->create(array_merge($request->all(),
+        $album = $this->albumRepository->model->fill(array_merge($request->all(),
             ['slug' => $request->get('name_ar')]));
 
-        $category = $this->categoryRepository->model->find($request->get('category_id'));
+        $category = $this->categoryRepository->model->find($album->category_id);
 
         //create a folder
         $this->trackManager->createAlbumDirectory($category->slug, $album->slug);
 
+        $album->save();
         // upload photos
         if ($request->hasFile('cover')) {
             $photoRepository->attach($request->file('cover'), $album, ['thumbnail' => 1]);

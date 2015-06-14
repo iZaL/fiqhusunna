@@ -8,6 +8,7 @@ use App\Jobs\CreateBlogPost;
 use App\Src\Blog\BlogRepository;
 use App\Src\Photo\PhotoRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
 {
@@ -55,18 +56,18 @@ class BlogController extends Controller
         $this->validate($request, [
             'title_ar'       => 'required',
             'description_ar' => 'required',
-            'cover'          => 'image'
+//            'cover'          => 'image'
         ]);
 
         $blog = $this->blogRepository->model->create([
-            'title_ar'       => $this->request->title_ar,
-            'description_ar' => $this->request->description_ar,
+            'title_ar'       => $request->title_ar,
+            'description_ar' => $request->description_ar,
             'user_id'        => Auth::user()->id,
-            'slug'           => str_slug($this->request->title_ar)
+            'slug'           => $request->title_ar
         ]);
 
-        if ($this->request->hasFile('cover')) {
-            $file = $this->request->file('cover');
+        if ($request->hasFile('cover')) {
+            $file = $request->file('cover');
 
             $photoRepository->attach($file, $blog, ['thumbnail' => 1]);
         }

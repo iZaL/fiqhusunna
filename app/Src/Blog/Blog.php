@@ -25,4 +25,9 @@ class Blog extends BaseModel
     {
         return $this->morphOne('App\Src\Photo\Photo', 'imageable')->where('thumbnail', 1);
     }
+
+    public function setSlugAttribute($value)
+    {
+        return $this->attributes['slug'] = slug($value);
+    }
 }

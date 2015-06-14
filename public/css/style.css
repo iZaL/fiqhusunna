@@ -269,12 +269,12 @@ footer {
 }
 
 .left-col-heading {
-    background-color: #555;
+    background-color: #000000;
     color: #eee;
 }
 
 .middle-col-heading {
-    background-color: #555;
+    background-color: #373737;
     color: #eee;
 }
 
@@ -421,3 +421,4 @@ ul.album-list li .album-list-icon {
     font-weight: bold;
     background: #efefef;
 }
+

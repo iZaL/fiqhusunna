@@ -22,24 +22,16 @@ class BlogControllerTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-//        factory('App\Src\User\User')->make();
 
-        $user = \App\Src\User\User::create([
-            'name'           => 'zal',
-            'email'          => uniqid().'@live.com',
-            'password'       => bcrypt('admin'),
-            'remember_token' => str_random(10),
-            'active'         => 1
-        ]);
-        Auth::loginUsingId($user->id);
+        $this->user = factory('App\Src\User\User', 1)->create(['email' => uniqid() . '@email.com']);
+
     }
 
     public function testStore()
     {
-
-
         $title = uniqid();
-        $this->visit('/admin/blog/create')
+        $this->actingAs($this->user)
+            ->visit('/admin/blog/create')
             ->type($title, 'title_ar')
             ->type('description', 'description_ar')
             ->attach(public_path() . '/img/product_02.jpg', 'cover')

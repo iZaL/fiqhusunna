@@ -15,7 +15,7 @@ class TrackManager
     public $relativePath;
 
     // used only to play files in the site
-    public $publicPath;
+    public $absolutePath;
 
     private $allowedExtension = ['mp3'];
 
@@ -34,7 +34,7 @@ class TrackManager
         $this->filesystem = $filesystem;
         $this->trackRepository = $trackRepository;
         $this->setRelativePath(public_path() . '/tracks');
-        $this->setPublicPath('/tracks');
+        $this->setAbsoultePath('/tracks');
     }
 
     /**
@@ -147,7 +147,7 @@ class TrackManager
      */
     public function fetchTrack(Track $track)
     {
-        return $this->getTrack($track, $this->getPublicPath());
+        return $this->getTrack($track, $this->getAbsoultePath());
 
     }
 
@@ -244,17 +244,17 @@ class TrackManager
      * get relative track path ( For Frontend)
      * @return mixed
      */
-    public function getPublicPath()
+    public function getAbsoultePath()
     {
-        return $this->publicPath;
+        return $this->absolutePath;
     }
 
     /**
      * @param mixed $publicPath
      */
-    private function setPublicPath($publicPath)
+    private function setAbsoultePath($publicPath)
     {
-        $this->publicPath = $publicPath;
+        $this->absolutePath = $publicPath;
     }
 
 }
