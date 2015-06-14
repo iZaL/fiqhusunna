@@ -83,7 +83,7 @@ class TrackManager
     public function createAlbumDirectory($categorySlug, $albumSlug)
     {
         if ($this->filesystem->isDirectory($this->getRelativePath() . '/' . $categorySlug . '/' . $albumSlug)) {
-            return ;
+            return;
         }
 
         $this->filesystem->makeDirectory($this->getRelativePath() . '/' . $categorySlug . '/' . $albumSlug, '0775');
