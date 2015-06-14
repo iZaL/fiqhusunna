@@ -42,13 +42,14 @@ class PhotoRepository extends BaseRepository
     }
 
     /**
+     * Uploads a photo and then Creates an Entry in the Database
      * @param UploadedFile $file
      * @param Model $model
-     * @param array $fields
+     * @param array $dbFields
      * @return bool
-     * Uploads a photo and then Creates an Entry in the Database
+     * @throws \Exception
      */
-    public function attach(UploadedFile $file, Model $model, $fields = [])
+    public function attach(UploadedFile $file, Model $model, $dbFields = [])
     {
         $upload = $this->uploadFile($file, $model);
 
@@ -56,7 +57,7 @@ class PhotoRepository extends BaseRepository
             throw new \Exception('Image Could Not be uploaded to the Server');
         }
 
-        $photo = $this->create($model, array_merge($fields, ['name' => $upload->getHashedName()]));
+        $photo = $this->create($model, array_merge($dbFields, ['name' => $upload->getHashedName()]));
 
         if (!$photo) {
             throw new \Exception('Image Record Could No be created in the Database');

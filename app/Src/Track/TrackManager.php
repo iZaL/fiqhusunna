@@ -12,10 +12,10 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class TrackManager
 {
     // mostly used to download files
-    public $relativePath;
+    private $relativePath;
 
     // used only to play files in the site
-    public $absolutePath;
+    private $absolutePath;
 
     private $allowedExtension = ['mp3'];
 
@@ -217,6 +217,14 @@ class TrackManager
     }
 
     /**
+     * @return array
+     */
+    public function getAllowedExtension()
+    {
+        return $this->allowedExtension;
+    }
+
+    /**
      * @return mixed
      */
     public function getRelativePath()
@@ -230,14 +238,6 @@ class TrackManager
     private function setRelativePath($relativePath)
     {
         $this->relativePath = $relativePath;
-    }
-
-    /**
-     * @return array
-     */
-    public function getAllowedExtension()
-    {
-        return $this->allowedExtension;
     }
 
     /**

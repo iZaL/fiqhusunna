@@ -50,7 +50,7 @@ class AlbumControllerTest extends TestCase
             ->select($this->category->id, 'category_id')
             ->type($albumName, 'name_ar')
             ->type('description', 'description_ar')
-            ->attach(public_path() . '/img/product_02.jpg', 'cover')
+            ->attach(public_path() . '/img/test.jpg', 'cover')
             ->press('Save');
 
         $this->seeInDatabase('albums',
@@ -102,7 +102,7 @@ class AlbumControllerTest extends TestCase
 //            ->select($this->category->id, 'category_id')
 //            ->type($updateName, 'name_ar')
 //            ->type('description', 'description_ar')
-//            ->attach(public_path() . '/img/product_02.jpg', 'cover')
+//            ->attach(public_path() . '/img/test.jpg', 'cover')
 //            ->press('Save');
 //
 //        $this->seeInDatabase('albums',

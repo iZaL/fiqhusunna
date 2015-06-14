@@ -18,19 +18,18 @@ class CategoryControllerTest extends TestCase
     {
         parent::setUp();
         $this->trackManager = App::make('\App\Src\Track\TrackManager');
-        $user = factory('App\Src\User\User')->make();
-        $this->user = $this->be($user);
+        $this->user = factory('App\Src\User\User', 1)->create(['email' => uniqid() . '@email.com']);
     }
 
 
     public function testCreateCategory()
     {
-        $catName = 'a b' . uniqid();
+        $catName = uniqid();
 
         $this->visit('/admin/category/create')
             ->type($catName, 'name_ar')
             ->type('description', 'description_ar')
-            ->attach(public_path() . '/img/product_02.jpg', 'cover')
+            ->attach(public_path() . '/img/test.jpg', 'cover')
             ->press('Save');
 
         $this->seeInDatabase('categories',
@@ -38,19 +37,21 @@ class CategoryControllerTest extends TestCase
 
         $category = \App\Src\Category\Category::where('name_ar', $catName)->first();
 
+        // check folder exists
         $this->assertFileExists($this->trackManager->getRelativePath() . '/' . $category->slug);
-
         rmdir($this->trackManager->getRelativePath() . '/' . $category->slug);
 
+        // check cat thumb image exists
         $this->seeInDatabase('photos', ['imageable_type' => 'Category', 'imageable_id' => $category->id]);
 
         $photos = \App\Src\Photo\Photo::where('imageable_type', 'Category')->where('imageable_id',
             $category->id)->first();
 
+        // check image exist on server
         $this->fileExists(base_path(public_path() . '/uploads/thumbnail/' . $photos->name));
-
         unlink(public_path() . '/uploads/thumbnail/' . $photos->name);
 
+        // redirect
         $this->onPage('/admin/category');
     }
 

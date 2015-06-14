@@ -34,7 +34,7 @@ class BlogControllerTest extends TestCase
             ->visit('/admin/blog/create')
             ->type($title, 'title_ar')
             ->type('description', 'description_ar')
-            ->attach(public_path() . '/img/product_02.jpg', 'cover')
+            ->attach(public_path() . '/img/test.jpg', 'cover')
             ->press('Save');
 
         $this->seeInDatabase('blogs',

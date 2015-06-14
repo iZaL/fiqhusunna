@@ -7,8 +7,6 @@ use App\Src\Category\CategoryRepository;
 use App\Src\Photo\PhotoRepository;
 use App\Src\Track\TrackManager;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -56,15 +54,14 @@ class CategoryController extends Controller
 
     /**
      * @param Request $request
-     * @param Storage $storage
      * @param PhotoRepository $photoRepository
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(Request $request, Storage $storage, PhotoRepository $photoRepository)
+    public function store(Request $request, PhotoRepository $photoRepository)
     {
         $this->validate($request, [
             'name_ar' => 'required|unique:categories,name_ar',
-            'cover'   => 'image'
+//            'cover'   => 'image'
         ]);
 
         $category = $this->categoryRepository->model->fill(array_merge($request->all(),
@@ -73,12 +70,14 @@ class CategoryController extends Controller
         //create a folder
         $this->trackManager->createCategoryDirectory($category->slug);
 
+        $category->save();
+
         // upload photos
         if ($request->hasFile('cover')) {
+
             $photoRepository->attach($request->file('cover'), $category, ['thumbnail' => 1]);
         }
 
-        $category->save();
 
         return redirect('/admin/category')->with('message', 'success');
     }
@@ -95,7 +94,7 @@ class CategoryController extends Controller
     {
         $this->validate($request, [
             'name_ar' => 'required|unique:categories,name_ar,' . $id,
-            'cover'   => 'image'
+//            'cover'   => 'image'
         ]);
 
         $category = $this->categoryRepository->model->find($id);
