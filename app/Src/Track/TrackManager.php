@@ -250,11 +250,11 @@ class TrackManager
     }
 
     /**
-     * @param mixed $publicPath
+     * @param mixed $absolutePath
      */
-    private function setAbsoultePath($publicPath)
+    private function setAbsoultePath($absolutePath)
     {
-        $this->absolutePath = $publicPath;
+        $this->absolutePath = $absolutePath;
     }
 
 }
