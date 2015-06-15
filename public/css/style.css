@@ -269,13 +269,15 @@ footer {
 }
 
 .left-col-heading {
-    background-color: #000000;
+    background-color: #eeb467;
     color: #eee;
+    background-color: #19314C;
 }
 
 .middle-col-heading {
     background-color: #373737;
     color: #eee;
+    background-color: #26545A;
 }
 
 /* Breadcrumbs from http://bootsnipp.com/snippets/featured/triangle-breadcrumbs-arrows */

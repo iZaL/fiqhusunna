@@ -1,7 +1,7 @@
 @inject('blog','App\Src\Blog\BlogRepository')
 
 <div class="panel">
-    <div class="panel-heading" style="background-color:#111;color:#fff;">{{ trans('word.latest_articles') }} </div>
+    <div class="panel-heading left-col-heading">{{ trans('word.latest_articles') }} </div>
     <div class="panel-body">
 
         @foreach($blog->getSidebarPosts() as $post)

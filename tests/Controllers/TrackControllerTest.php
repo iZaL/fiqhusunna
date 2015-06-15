@@ -63,10 +63,10 @@ class TrackControllerTest extends TestCase
     }
 
 
-    public function testUpdatedViewCount()
+    public function testUpdateViewCount()
     {
         $track = factory('App\Src\Track\Track', 1)->create();
-//        $track = factory('App\Src\Meta\Meta', 1)->create(['meta_id' => $track->id]);
+//        $meta = factory('App\Src\Meta\Meta', 1)->create(['meta_id' => $track->id]);
         $this->visit('/track/' . $track->id);
         $this->seeInDatabase('metas', ['meta_id' => $track->id, 'meta_type', 'Track']);
         $this->assertEquals(1, $track->count());
