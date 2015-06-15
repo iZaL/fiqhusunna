@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0fe2aec0c9fb4583448c972584512689",
+    "hash": "20bfd28810d97b74a2688fd1e3e7bf69",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -332,7 +332,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Intervention/image/zipball/f388f8cbdecb28e960d257c975dc9b5254c4c7ba",
+                "url": "https://api.github.com/repos/Intervention/image/zipball/1009557c32205b077e34b2ae611e6316fa423021",
                 "reference": "f388f8cbdecb28e960d257c975dc9b5254c4c7ba",
                 "shasum": ""
             },
@@ -521,6 +521,50 @@
                 "tokenizer"
             ],
             "time": "2015-03-11 20:06:43"
+        },
+        {
+            "name": "laravel/elixir",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/elixir.git",
+                "reference": "e1a8b0580c0f66b595a228eb2e34585f570eb771"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/elixir/zipball/e1a8b0580c0f66b595a228eb2e34585f570eb771",
+                "reference": "e1a8b0580c0f66b595a228eb2e34585f570eb771",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeffrey Way",
+                    "email": "jeffrey@laracasts.com"
+                },
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
+                }
+            ],
+            "time": "2014-10-14 17:59:08"
         },
         {
             "name": "laravel/framework",
@@ -3521,6 +3565,7 @@
     "stability-flags": {
         "intervention/image": 20,
         "pda/pheanstalk": 20,
+        "laravel/elixir": 20,
         "barryvdh/laravel-debugbar": 20,
         "barryvdh/laravel-ide-helper": 20
     },
