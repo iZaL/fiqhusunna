@@ -57,7 +57,7 @@ $factory->define('App\Src\Track\Track', function ($faker) {
         'description_en'  => $faker->text,
         'description_ar'  => $faker->text,
         'slug'            => str_slug($name),
-        'url'             => 'test.mp3',
+        'url'             => '/tracks/test.mp3',
     ];
 });
 
@@ -76,8 +76,8 @@ $factory->define('App\Src\Blog\Blog', function ($faker) {
 $factory->define('App\Src\Meta\Meta', function ($faker) {
     $name = $faker->word;
     return [
-        'trackeable_id'   => App\Src\Track\Track::orderByRaw("RAND()")->first()->id,
-        'trackeable_type' => 'Track',
-        'ip'              => $faker->ipv4
+//        'meta_id'   => App\eSrc\Track\Track::orderByRaw("RAND()")->first()->id,
+//        'meta_type' => 'Track',
+        'ip'        => $faker->ipv4
     ];
 });

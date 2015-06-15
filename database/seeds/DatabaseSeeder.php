@@ -33,10 +33,12 @@ class DatabaseSeeder extends Seeder
             Model::unguard();
             $this->cleanDatabase();
             factory('App\Src\User\User', 1)->create();
-//            factory('App\Src\Category\Category', 5)->create();
-//            factory('App\Src\Album\Album', 10)->create();
-//            factory('App\Src\Track\Track', 1000)->create();
-//            factory('App\Src\Blog\Blog', 50)->create();
+            factory('App\Src\Category\Category', 5)->create();
+            factory('App\Src\Album\Album', 10)->create();
+            $tracks = factory('App\Src\Track\Track', 200)->create()->each(function ($u) {
+                $u->metas()->save(factory('App\Src\Meta\Meta')->make());
+            });
+            factory('App\Src\Blog\Blog', 10)->create();
 //            factory('App\Src\Meta\Meta', 50)->create();
         }
     }
