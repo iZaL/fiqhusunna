@@ -60,7 +60,6 @@ class BlogControllerTest extends TestCase
 
     public function testUpdate()
     {
-        $this->user = factory('App\Src\User\User', 1)->create(['email' => uniqid() . '@email.com']);
         $blog = factory('App\Src\Blog\Blog', 1)->create();
 
         $title = uniqid();
