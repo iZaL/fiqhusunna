@@ -56,7 +56,7 @@ $factory->define('App\Src\Track\Track', function ($faker) {
         'name_ar'         => $name,
         'description_en'  => $faker->text,
         'description_ar'  => $faker->text,
-        'slug'            => str_slug($name),
+        'slug'            => $name,
         'url'             => '/tracks/test.mp3',
     ];
 });
