@@ -52,12 +52,12 @@ $factory->define('App\Src\Track\Track', function ($faker) {
     return [
         'trackeable_id'   => App\Src\Category\Category::orderByRaw("RAND()")->first()->id,
         'trackeable_type' => 'Category',
-        'name_en'         => $name,
         'name_ar'         => $name,
-        'description_en'  => $faker->text,
+        'name_en'         => $name,
         'description_ar'  => $faker->text,
+        'description_en'  => $faker->text,
         'slug'            => $name,
-        'url'             => '/tracks/test.mp3',
+        'url'             => 'tracks/'.slug($name).'/test.mp3',
     ];
 });
 
