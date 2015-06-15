@@ -73,15 +73,11 @@ $factory->define('App\Src\Blog\Blog', function ($faker) {
     ];
 });
 
-
-$factory->define('App\Src\View\Blog', function ($faker) {
+$factory->define('App\Src\Meta\Meta', function ($faker) {
     $name = $faker->word;
-
     return [
-        'title_en'       => $name,
-        'title_ar'       => $name,
-        'description_en' => $faker->text,
-        'description_ar' => $faker->text,
-        'slug'           => str_slug($name),
+        'trackeable_id'   => App\Src\Track\Track::orderByRaw("RAND()")->first()->id,
+        'trackeable_type' => 'Track',
+        'ip'              => $faker->ipv4
     ];
 });

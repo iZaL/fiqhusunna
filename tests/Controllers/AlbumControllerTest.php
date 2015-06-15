@@ -36,7 +36,8 @@ class AlbumControllerTest extends TestCase
         $uniqueName = uniqid();
 
         $category = factory('App\Src\Category\Category', 1)->create([
-            'name_ar' => $uniqueName
+            'name_ar' => $uniqueName,
+            'slug'    => $uniqueName
         ]);
 
         $albumName = uniqid();
@@ -105,7 +106,7 @@ class AlbumControllerTest extends TestCase
 
         $updateName = uniqid();
 
-        $this->visit('/admin/album/'.$oldAlbum->id.'/edit/')
+        $this->visit('/admin/album/' . $oldAlbum->id . '/edit/')
             ->select($category->id, 'category_id')
             ->type($updateName, 'name_ar')
             ->type('description', 'description_ar')

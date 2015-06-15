@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
 //            factory('App\Src\Album\Album', 10)->create();
 //            factory('App\Src\Track\Track', 1000)->create();
 //            factory('App\Src\Blog\Blog', 50)->create();
+//            factory('App\Src\Meta\Meta', 50)->create();
         }
     }
 

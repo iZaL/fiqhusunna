@@ -14,72 +14,65 @@ class TrackControllerTest extends TestCase
 
     protected $trackManager;
     protected $user;
-    protected $catName;
-    protected $albumName;
-    protected $category;
 
     public function setUp()
     {
         parent::setUp();
 
         $this->trackManager = App::make('\App\Src\Track\TrackManager');
-        $user = factory('App\Src\User\User')->make();
-        $this->catName = uniqid();
-        $this->category = \App\Src\Category\Category::create([
-            'name_en'        => $this->catName,
-            'name_ar'        => $this->catName,
-            'slug'           => str_slug($this->catName),
-            'description_ar' => 'description',
-            'description_en' => 'description',
-        ]);
-        $this->user = $this->be($user);
+        $this->user = factory('App\Src\User\User', 1)->create(['email' => uniqid() . '@email.com']);
+
 
     }
 
     public function testStore()
     {
         //
-        if (!file_exists($this->trackManager->getRelativePath() . '/' . $this->category->slug)) {
-            mkdir($this->trackManager->getRelativePath() . '/' . $this->category->slug);
+        $uniqueName = uniqid();
+        $category = factory('App\Src\Category\Category', 1)->create([
+            'name_ar' => $uniqueName,
+            'slug'    => $uniqueName
+        ]);
+
+        if (!file_exists($this->trackManager->getRelativePath() . '/' . $category->slug)) {
+            mkdir($this->trackManager->getRelativePath() . '/' . $category->slug);
         }
+
         $this->visit('/admin/track/create?type=category')
             ->type('category', 'trackeable_type')
-            ->type($this->category->id, 'trackeable_id')
+            ->type($category->id, 'trackeable_id')
             ->attach($this->trackManager->getRelativePath() . '/test.mp3', 'tracks[]')
             ->press('Save');
 
         $this->seeInDatabase('tracks',
             [
-                'trackeable_id'   => $this->category->id,
-                'trackeable_type' => 'Category'
+                'trackeable_id'   => $category->id,
+                'trackeable_type' => 'Category',
+                'name_ar'         => $category->name
             ]);
 
-        $track = \App\Src\Track\Track::where('trackeable_id', $this->category->id)->where('trackeable_type',
+        $track = \App\Src\Track\Track::where('trackeable_id', $category->id)->where('trackeable_type',
             'Category')->first();
 
-//        $this->assertFileExists($this->trackManager->getRelativePath() . '/' . $this->category->slug . '/' . $track->url);
+        $this->assertFileExists($this->trackManager->getRelativePath() . '/' . $category->slug . '/' . $track->url);
 //
-//        rmdir($this->trackManager->getRelativePath() . '/' . $this->category->slug . '/' . $track->url);
-        rmdir($this->trackManager->getRelativePath() . '/' . $this->category->slug);
+        rmdir($this->trackManager->getRelativePath() . '/' . $category->slug . '/' . $track->url);
+        rmdir($this->trackManager->getRelativePath() . '/' . $category->slug);
 
         $this->onPage('/admin/track');
     }
 
 
-//    public function testUpdatedViewCount()
-//    {
-//        \App\Src\Track\Track::create([
-//            'trackeable_id'   => 1,
-//            'trackeable_type' => 'Category',
-//            'name_ar'         => 'ass'
-//        ]);
-//        $track =  \App\Src\Track\Track::all()->first();
-//
-//        $this->visit('/track/'.$track->id);
-//        $this->seeInDatabase('metas', ['meta_id' => 1, 'meta_type', 'Track']);
-//        $this->visit('/track/1');
-////
-//        $track = \App\Src\Track\Track::all();
-//        $this->assertEquals(1, $track->count());
-//    }
+    public function testUpdatedViewCount()
+    {
+        $track = factory('App\Src\Track\Track', 1)->create();
+//        $track = factory('App\Src\Meta\Meta', 1)->create(['meta_id' => $track->id]);
+        $this->visit('/track/' . $track->id);
+        $this->seeInDatabase('metas', ['meta_id' => $track->id, 'meta_type', 'Track']);
+        $this->assertEquals(1, $track->count());
+
+        $this->visit('/track/' . $track->id);
+        $track = \App\Src\Meta\Meta::all();
+        $this->assertEquals(1, $track->count());
+    }
 }
