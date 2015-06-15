@@ -58,4 +58,39 @@ class BlogControllerTest extends TestCase
         $this->onPage('/admin/blog');
     }
 
+    public function testUpdate()
+    {
+        $this->user = factory('App\Src\User\User', 1)->create(['email' => uniqid() . '@email.com']);
+        $blog = factory('App\Src\Blog\Blog', 1)->create();
+
+        $title = uniqid();
+        $this->actingAs($this->user)
+            ->visit('/admin/blog/'.$blog->id.'/edit/')
+            ->type($title, 'title_ar')
+            ->type('description', 'description_ar')
+            ->attach(public_path() . '/img/test.jpg', 'cover')
+            ->press('Save');
+
+        $this->seeInDatabase('blogs',
+            [
+                'title_ar'       => $title,
+                'description_ar' => 'description',
+                'slug'           => str_slug($title)
+            ]);
+
+        $blog = \App\Src\Blog\Blog::where('title_ar', $title)->first();
+
+        $this->seeInDatabase('photos', ['imageable_type' => 'Blog', 'imageable_id' => $blog->id]);
+
+        $photos = \App\Src\Photo\Photo::where('imageable_type', 'Blog')->where('imageable_id',
+            $blog->id)->first();
+
+        $this->fileExists(base_path(public_path() . '/uploads/thumbnail/' . $photos->name));
+
+        unlink(public_path() . '/uploads/thumbnail/' . $photos->name);
+
+        $this->onPage('/admin/blog');
+    }
+
+
 }

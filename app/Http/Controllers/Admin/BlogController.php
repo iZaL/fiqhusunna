@@ -93,16 +93,16 @@ class BlogController extends Controller
         $this->validate($request, [
             'title_ar'       => 'required',
             'description_ar' => 'required',
-            'cover'          => 'image'
+//            'cover'          => 'image'
         ]);
 
         $blog = $this->blogRepository->model->find($id);
 
-        $blog->update($request->all());
+        $blog->update(array_merge(['slug' => $request->title_ar], $request->except('cover')));
 
         if ($request->hasFile('cover')) {
-            $file = $this->request->file('cover');
-            $photoRepository->replace($file, $blog, ['thumbnail' => 1]);
+            $file = $request->file('cover');
+            $photoRepository->replace($file, $blog, ['thumbnail' => 1], $id);
         }
 
         return redirect('admin/blog')->with('message', 'success');
