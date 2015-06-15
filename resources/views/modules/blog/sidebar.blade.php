@@ -12,7 +12,7 @@
                     <a href="{{ action('BlogController@show',$post->id) }}">
                         @if($post->thumbnail)
                             <img src="/uploads/thumbnail/{{ $post->thumbnail->name}}"
-                                 class="img-responsive img-thumbnail">
+                                 class="img-responsive img-thumbnail img-album-thumb">
                         @else
                             <img src="http://placehold.it/150x100/EEEEEE" class="img-responsive img-thumbnail">
                         @endif

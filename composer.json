@@ -10,8 +10,7 @@
         "laravelcollective/html": "~5.0",
         "vinkla/instagram": "~2.0",
         "intervention/image": "dev-master",
-        "pda/pheanstalk": "~3.0@dev",
-        "laravel/elixir": "^1.0@dev"
+        "pda/pheanstalk": "~3.0@dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -44,6 +43,7 @@
         ],
         "post-update-cmd": [
             "php artisan clear-compiled",
+            "php artisan ide-helper:generate",
             "php artisan optimize"
         ],
         "post-root-package-install": [

@@ -437,3 +437,20 @@ ul.album-list li .album-list-icon {
     background: #efefef;
 }
 
+.logo {
+    max-width: 100%;
+    max-height:180px;
+}
+
+.banner {
+    max-width: 100%;
+    max-height:180px;
+}
+
+.ad {
+    background-url: "/img/ad.jpg"
+}
+
+.img-album-thumb {
+    max-height:150px;
+}

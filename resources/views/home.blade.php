@@ -1,7 +1,7 @@
 @extends('layouts.three_col')
 
 @section('banner')
-    {{--    @include('partials.instagram')--}}
+    @include('partials.instagram')
 @endsection
 
 @section('right')
@@ -32,8 +32,16 @@
         <div class="panel-body">
             @foreach($albums as $album)
                 <div class="row">
+
                     <div class="col-md-3 col-sm-4 col-xs-4">
-                        <img src="http://placehold.it/100x150/EEEEEE" class="img-responsive img-thumbnail">
+                        @if($album->thumbnail)
+                            <img src="/uploads/thumbnail/{{ $album->thumbnail->name}}"
+                                 class="img-responsive img-thumbnail img-album-thumb">
+                        @else
+                            <img src="http://placehold.it/100x150/EEEEEE"
+                                 class="img-responsive img-thumbnail img-album-thumb">
+                        @endif
+
                     </div>
                     <div class="col-md-9 col-sm-8 col-xs-8">
                         <ul class="album-list">

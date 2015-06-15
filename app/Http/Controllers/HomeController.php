@@ -22,8 +22,8 @@ class HomeController extends Controller
         TrackRepository $trackRepository,
         AlbumRepository $albumRepository
     ) {
-//        $medias = $instagram->getUserMedia('1097866395');
-//        $instas = array_slice($medias->data, 0, 4);
+        $medias = $instagram->getUserMedia('1791483929');
+        $instas = array_slice($medias->data, 0, 4);
 
         $albums = $albumRepository->model->paginate(4);
 

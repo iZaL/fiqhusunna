@@ -7,13 +7,14 @@
 @section('breadcrumb')
     <div id="bc1" class="btn-group btn-breadcrumb pBottom20">
         <a href="{{url('home')}}" class="btn btn-default"><i class="fa fa-home"></i>&nbsp; </a>
-        <a href="{{action('CategoryController@show',$album->category->id)}}" class="btn btn-default "><i
-                    class="fa fa-folder"></i> {{ $album->category->name }}</a>
-        <a href="{{action('AlbumController@show',$album->id)}}" class="btn btn-default "><i
-                    class="fa fa-folder"></i> {{ $album->name }}</a>
+        @if($album->category)
+            <a href="{{action('CategoryController@show',$album->category->id)}}" class="btn btn-default "><i
+                        class="fa fa-folder"></i> {{ $album->category->name }}</a>
+            <a href="{{action('AlbumController@show',$album->id)}}" class="btn btn-default "><i
+                        class="fa fa-folder"></i> {{ $album->name }}</a>
+        @endif
     </div>
 @endsection
-
 
 @section('style')
     @parent

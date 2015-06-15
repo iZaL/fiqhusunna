@@ -2,19 +2,9 @@
 
 <div id="jp_container_1">
     <div class="jp-gui">
-        <h1>{{$track->name}} </h1>
 
-        <div class="col-md-12 pTop10">
-            <a href="{{ action('TrackController@downloadTrack',$track->id) }}">
-                <i class="fa fa-download"></i>
-            </a>
-            {{ $track->downloads ? $track->downloads->count() : '0' }}
-            &nbsp;&nbsp;&nbsp;
-            <a href="#">
-                <i class="fa fa-eye"></i>
-            </a>
-            {{ $track->metas ? $track->metas->count() : '0' }}
-        </div>
+
+
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <ul>
