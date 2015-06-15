@@ -50,8 +50,8 @@ $factory->define('App\Src\Track\Track', function ($faker) {
     $name = $faker->word;
 
     return [
-        'trackeable_id'   => App\Src\Album\Album::orderByRaw("RAND()")->first()->id,
-        'trackeable_type' => 'Album',
+        'trackeable_id'   => App\Src\Category\Category::orderByRaw("RAND()")->first()->id,
+        'trackeable_type' => 'Category',
         'name_en'         => $name,
         'name_ar'         => $name,
         'description_en'  => $faker->text,

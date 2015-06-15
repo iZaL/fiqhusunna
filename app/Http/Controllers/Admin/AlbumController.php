@@ -116,14 +116,14 @@ class AlbumController extends Controller
         $this->validate($request, [
             'name_ar'     => 'required|unique:albums,name_ar,' . $id,
             'category_id' => 'required:numeric|not_in:0',
-            'cover'       => 'image'
+//            'cover'       => 'image'
         ]);
 
         $album = $this->albumRepository->model->find($id);
 
         $oldAlbumSlug = $album->slug;
 
-        $album->fill(array_merge(['slug' => $request->name_ar], $request->all()));
+        $album->fill(array_merge(['slug' => $request->name_ar], $request->except('cover')));
 
         if ($request->hasFile('cover')) {
             $photoRepository->replace($request->file('cover'), $album, ['thumbnail' => 1], $id);
@@ -136,7 +136,7 @@ class AlbumController extends Controller
 
         $album->save();
 
-        return redirect('admin')->with('message', 'success');
+        return redirect('admin/album')->with('message', 'success');
 
     }
 

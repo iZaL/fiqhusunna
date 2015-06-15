@@ -17,6 +17,8 @@ class TrackManagerTest extends TestCase
         parent::setUp();
 
         $this->trackManager = App::make('\App\Src\Track\TrackManager');
+        $this->user = factory('App\Src\User\User', 1)->create(['email' => uniqid() . '@email.com']);
+
     }
 
     public function testCreateCategoryDirectory()
@@ -43,24 +45,30 @@ class TrackManagerTest extends TestCase
         $file = $this->trackManager->getRelativePath() . '/test.mp3';
 
         $catDir = uniqid();
+        $trackDir = uniqid();
 
-        $file = new \Symfony\Component\HttpFoundation\File\UploadedFile($file, 'test.mp3');
+        $trackUrl = uniqid() . '.mp3';
 
-        $track = \App\Src\Track\Track::create([
-            'name_ar'        => 'test',
-            'url'             => 'test.mp3',
-            'slug'            => 'test.mp3',
-            'trackeable_id'   => 1,
-            'trackeable_type' => 'Category',
-            'size'            => '12212'
+        $category = factory('App\Src\Category\Category', 1)->create([
+            'name_ar' => $catDir
         ]);
 
-        $this->trackManager->createCategoryDirectory($catDir);
+        $track = factory('App\Src\Track\Track', 1)->create([
+            'name_ar'       => $trackDir,
+            'slug'          => $trackDir,
+            'url'           => $trackUrl,
+            'trackeable_id' => $category->id
+        ]);
+
+        $file = new \Symfony\Component\HttpFoundation\File\UploadedFile($file, $track->url);
+
+        $this->trackManager->createCategoryDirectory($category->slug);
+
         $this->trackManager->uploadTrack($file, $track);
 
-        $this->assertFileExists($this->trackManager->getRelativePath() . '/' . $catDir);
-//        $this->assertFileExists($this->trackManager->getPublicPath() . '/' . $catDir . '/' . $track->url);
-//        rmdir($this->trackManager->getRelativePath() . '/' . $catDir . '/' . $track->url);
-        rmdir($this->trackManager->getRelativePath() . '/' . $catDir);
+        $this->assertFileExists($this->trackManager->getRelativePath() . '/' . $category->slug);
+        $this->assertFileExists($this->trackManager->getRelativePath() . '/' . $category->slug . '/' . $track->url);
+        rmdir($this->trackManager->getRelativePath() . '/' . $category->slug . '/' . $track->url);
+        rmdir($this->trackManager->getRelativePath() . '/' . $category->slug);
     }
 }

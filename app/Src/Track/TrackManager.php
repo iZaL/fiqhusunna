@@ -34,7 +34,7 @@ class TrackManager
         $this->filesystem = $filesystem;
         $this->trackRepository = $trackRepository;
         $this->setRelativePath(public_path() . '/tracks');
-        $this->setAbsoultePath('/tracks');
+        $this->setAbsolutePath('/tracks');
     }
 
     /**
@@ -147,7 +147,7 @@ class TrackManager
      */
     public function fetchTrack(Track $track)
     {
-        return $this->getTrack($track, $this->getAbsoultePath());
+        return $this->getTrack($track, $this->getAbsolutePath());
 
     }
 
@@ -244,7 +244,7 @@ class TrackManager
      * get relative track path ( For Frontend)
      * @return mixed
      */
-    public function getAbsoultePath()
+    public function getAbsolutePath()
     {
         return $this->absolutePath;
     }
@@ -252,7 +252,7 @@ class TrackManager
     /**
      * @param mixed $absolutePath
      */
-    private function setAbsoultePath($absolutePath)
+    private function setAbsolutePath($absolutePath)
     {
         $this->absolutePath = $absolutePath;
     }

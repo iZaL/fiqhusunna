@@ -65,7 +65,7 @@ class CategoryControllerTest extends TestCase
         $catName = uniqid();
 
         $this->actingAs($this->user)
-            ->visit('/admin/category/'.$oldCategory->id.'/edit')
+            ->visit('/admin/category/' . $oldCategory->id . '/edit')
             ->type($catName, 'name_ar')
             ->type('description', 'description_ar')
             ->attach(public_path() . '/img/test.jpg', 'cover')
