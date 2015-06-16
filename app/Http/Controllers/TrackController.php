@@ -48,7 +48,7 @@ class TrackController extends Controller
 
         // only for test.
         if (!file_exists($trackUrl)) {
-            $trackUrl = 'test.mp3';
+            $trackUrl = '/test.mp3';
         }
 
         return view('modules.track.view', compact('track', 'trackUrl'));
