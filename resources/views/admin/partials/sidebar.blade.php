@@ -70,52 +70,11 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-penicl"></i> Blogs<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-pencil"></i> Blogs<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="{{ action('Admin\BlogController@index') }}"><i class="fa fa-list"></i> List Blog Posts</a>
                             <a href="{{ action('Admin\BlogController@create') }}"><i class="fa fa-plus"></i> Write Blog Post</a>
-                        </li>
-
-                    </ul>
-                    <!-- /.nav-second-level -->
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-user"></i> Users<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="{{ action('HomeController@index') }}"><i class="fa fa-list"></i> List</a>
-                        </li>
-
-                    </ul>
-                    <!-- /.nav-second-level -->
-                </li>
-
-                <li>
-                    <a href="#"><i class="fa fa-comments"></i> Comments<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="{{ action('HomeController@index') }}"><i class="fa fa-list"></i> List</a>
-                        </li>
-
-                    </ul>
-                    <!-- /.nav-second-level -->
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-star-half-o"></i> Ratings<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="{{ action('HomeController@index') }}"><i class="fa fa-list"></i> List</a>
-                        </li>
-
-                    </ul>
-                    <!-- /.nav-second-level -->
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-thumbs-o-up"></i> Favorites<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="{{ action('HomeController@index') }}"><i class="fa fa-list"></i> List</a>
                         </li>
 
                     </ul>
