@@ -48,7 +48,7 @@ class TrackManager
         }
 
         // Create a Directory
-        $this->filesystem->makeDirectory($this->getRelativePath() . '/' . $categorySlug, '0777', true);
+        $this->filesystem->makeDirectory($this->getRelativePath() . '/' . $categorySlug, '0777', true, true);
 
         return $this;
     }
