@@ -7,13 +7,10 @@
 @section('content')
 
     <div class="panel">
-        <div class="panel-heading" style="background-color:#111;color:#fff;">{{ trans('word.blog') }}</div>
+        <div class="panel-heading" style="background-color:#111;color:#fff;"><h3>{{ $post->title }}</h3></div>
         <div class="panel-body">
             <div class="col-md-12">
-
-                <h1><a href="{{ action('BlogController@show',$post->id) }}">{{ $post->title }}</a></h1>
-
-                <div class="row mTop10">
+                <div class="row">
                     {!! $post->description !!}
                 </div>
             </div>
