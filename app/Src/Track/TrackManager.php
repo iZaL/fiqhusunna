@@ -33,7 +33,7 @@ class TrackManager
     ) {
         $this->filesystem = $filesystem;
         $this->trackRepository = $trackRepository;
-        $this->setRelativePath(public_path() . '\\tracks');
+        $this->setRelativePath(public_path() . '/tracks');
         $this->setAbsolutePath('/tracks');
     }
 
@@ -43,12 +43,12 @@ class TrackManager
      */
     public function createCategoryDirectory($categorySlug)
     {
-        if ($this->filesystem->isDirectory($this->getRelativePath() . '\\' . $categorySlug)) {
+        if ($this->filesystem->isDirectory($this->getRelativePath() . '/' . $categorySlug)) {
             return;
         }
 
         // Create a Directory
-        $this->filesystem->makeDirectory($this->getRelativePath() . '\\' . $categorySlug, '0777', true);
+        $this->filesystem->makeDirectory($this->getRelativePath() . '/' . $categorySlug, '0777', true);
 
         return $this;
     }
@@ -62,13 +62,13 @@ class TrackManager
     public function updateCategoryDirectory($oldCategorySlug, $categorySlug)
     {
 
-        if (!$this->filesystem->isDirectory($this->getRelativePath() . '\\' . $oldCategorySlug)) {
+        if (!$this->filesystem->isDirectory($this->getRelativePath() . '/' . $oldCategorySlug)) {
             throw new \Exception('old directory not found');
         }
 
         // Rename a Directory
-        $this->filesystem->move($this->getRelativePath() . '\\' . $oldCategorySlug,
-            $this->getRelativePath() . '\\' . $categorySlug);
+        $this->filesystem->move($this->getRelativePath() . '/' . $oldCategorySlug,
+            $this->getRelativePath() . '/' . $categorySlug);
 
         return $this;
     }
@@ -82,11 +82,11 @@ class TrackManager
      */
     public function createAlbumDirectory($categorySlug, $albumSlug)
     {
-        if ($this->filesystem->isDirectory($this->getRelativePath() . '\\' . $categorySlug . '\\' . $albumSlug)) {
+        if ($this->filesystem->isDirectory($this->getRelativePath() . '/' . $categorySlug . '/' . $albumSlug)) {
             return;
         }
 
-        $this->filesystem->makeDirectory($this->getRelativePath() . '\\' . $categorySlug . '\\' . $albumSlug, '0777'
+        $this->filesystem->makeDirectory($this->getRelativePath() . '/' . $categorySlug . '/' . $albumSlug, '0777'
             );
 
         return $this;
@@ -101,8 +101,8 @@ class TrackManager
      */
     public function updateAlbumDirectory($categorySlug, $oldAlbumSlug, $albumSlug)
     {
-        $oldPath = $this->getRelativePath() . '\\' . $categorySlug . '\\' . $oldAlbumSlug;
-        $newPath = $this->getRelativePath() . '\\' . $categorySlug . '\\' . $albumSlug;
+        $oldPath = $this->getRelativePath() . '/' . $categorySlug . '/' . $oldAlbumSlug;
+        $newPath = $this->getRelativePath() . '/' . $categorySlug . '/' . $albumSlug;
 
         if (!$this->filesystem->isDirectory($oldPath)) {
             throw new \Exception('old directory not found');
@@ -125,11 +125,11 @@ class TrackManager
         // Search In Category Folder
         if (is_a($track->trackeable, Category::class)) {
 
-            $file = $pathType . '\\' . $track->trackeable->slug . '\\' . $track->url;
+            $file = $pathType . '/' . $track->trackeable->slug . '/' . $track->url;
 
         } elseif (is_a($track->trackeable, Album::class)) {
 
-            $file = $pathType . '\\' . $track->trackeable->category->slug . '\\' . $track->trackeable->slug . '\\' . $track->url;
+            $file = $pathType . '/' . $track->trackeable->category->slug . '/' . $track->trackeable->slug . '/' . $track->url;
 
             // or Search In Album Folder
         } else {
@@ -172,7 +172,7 @@ class TrackManager
     public function uploadTrack(UploadedFile $file, Track $track)
     {
         // move $track to category folder
-        $uploadDir = $this->getRelativePath() . '\\';
+        $uploadDir = '/tracks';
 
         // check for Valid Category/Album Types
         if (is_a($track->trackeable, Category::class)) {
@@ -191,7 +191,7 @@ class TrackManager
             $this->createCategoryDirectory($categorySlug);
             $this->createAlbumDirectory($categorySlug, $albumSlug);
 
-            $uploadDir .= $categorySlug . '\\' . $albumSlug;
+            $uploadDir .= $categorySlug . '/' . $albumSlug;
 
         } else {
 
