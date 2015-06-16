@@ -25,7 +25,7 @@ class HomeController extends Controller
         $medias = $instagram->getUserMedia('1791483929');
         $instas = array_slice($medias->data, 0, 4);
 
-        $albums = $albumRepository->model->has('recentTracks')->paginate(4);
+        $albums = $albumRepository->model->has('recentTracks')->latest()->paginate(4);
         // @todo : Eager load the relation
         foreach ($albums as $album) {
             $album->load('recentTracks');
