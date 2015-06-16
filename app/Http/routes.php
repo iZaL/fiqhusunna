@@ -58,7 +58,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
 
 Route::get('test', function () {
 
-    echo exec('whoami');
+    echo ini_get('upload_max_filesize'), ", " , ini_get('post_max_size');
+//    echo exec('whoami');
 //
 //    $trackUploader = App::make('\App\Src\Track\TrackCrawler');
 //
