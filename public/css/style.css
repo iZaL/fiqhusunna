@@ -454,3 +454,8 @@ ul.album-list li .album-list-icon {
 .img-album-thumb {
     max-height:150px;
 }
+
+.blog-title {
+    background-color: #246679;
+    color: #fff;
+}
