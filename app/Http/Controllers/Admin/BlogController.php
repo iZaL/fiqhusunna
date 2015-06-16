@@ -56,7 +56,7 @@ class BlogController extends Controller
         $this->validate($request, [
             'title_ar'       => 'required',
             'description_ar' => 'required',
-//            'cover'          => 'image'
+            'cover'          => 'image'
         ]);
 
         $blog = $this->blogRepository->model->create([
@@ -93,7 +93,7 @@ class BlogController extends Controller
         $this->validate($request, [
             'title_ar'       => 'required',
             'description_ar' => 'required',
-//            'cover'          => 'image'
+            'cover'          => 'image'
         ]);
 
         $blog = $this->blogRepository->model->find($id);

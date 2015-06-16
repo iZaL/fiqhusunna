@@ -61,7 +61,7 @@ class CategoryController extends Controller
     {
         $this->validate($request, [
             'name_ar' => 'required|unique:categories,name_ar',
-//            'cover'   => 'image'
+            'cover'   => 'image'
         ]);
 
         $category = $this->categoryRepository->model->fill(array_merge($request->all(),
@@ -94,7 +94,7 @@ class CategoryController extends Controller
     {
         $this->validate($request, [
             'name_ar' => 'required|unique:categories,name_ar,' . $id,
-//            'cover'   => 'image'
+            'cover'   => 'image'
         ]);
 
         $category = $this->categoryRepository->model->find($id);

@@ -77,7 +77,7 @@ class AlbumController extends Controller
         $this->validate($request, [
             'name_ar'     => 'required|unique:albums,name_ar',
             'category_id' => 'required:numeric|not_in:0',
-//            'cover'       => 'image'
+            'cover'       => 'image'
         ]);
 
         $album = $this->albumRepository->model->fill(array_merge($request->all(),
@@ -116,7 +116,7 @@ class AlbumController extends Controller
         $this->validate($request, [
             'name_ar'     => 'required|unique:albums,name_ar,' . $id,
             'category_id' => 'required:numeric|not_in:0',
-//            'cover'       => 'image'
+            'cover'       => 'image'
         ]);
 
         $album = $this->albumRepository->model->find($id);
