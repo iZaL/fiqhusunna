@@ -13,7 +13,7 @@ class Album extends BaseModel
 
     protected $table = 'albums';
 
-    protected $morphClass = 'Album';
+    public $morphClass = 'Album';
 
     protected $guarded = ['id'];
 

@@ -46,6 +46,11 @@ class TrackController extends Controller
 
         $trackUrl = $this->trackManager->fetchTrack($track);
 
+        // only for test.
+        if (!file_exists($trackUrl)) {
+            $trackUrl = $this->trackManager->getAbsolutePath() . '/test.mp3';
+        }
+
         return view('modules.track.view', compact('track', 'trackUrl'));
     }
 

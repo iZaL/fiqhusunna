@@ -2,6 +2,7 @@ function jplayer(track, trackUrl) {
 
     var track = track;
     var trackUrl = trackUrl;
+
     var myPlayer = $("#jquery_jplayer_1"),
         myPlayerData,
         fixFlash_mp4, // Flag: The m4a and m4v Flash player gives some old currentTime values when changed.

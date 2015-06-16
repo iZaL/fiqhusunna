@@ -13,7 +13,7 @@ class Category extends BaseModel
 
     protected $table = 'categories';
 
-    protected $morphClass = 'Category';
+    public $morphClass = 'Category';
 
     protected $guarded = ['id'];
 

@@ -21,7 +21,10 @@ class TrackControllerTest extends TestCase
 
         $this->trackManager = App::make('\App\Src\Track\TrackManager');
         $this->user = factory('App\Src\User\User', 1)->create(['email' => uniqid() . '@email.com']);
+    }
 
+    public function testIndex()
+    {
 
     }
 

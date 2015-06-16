@@ -30,6 +30,7 @@ $factory->define('App\Src\Category\Category', function ($faker) {
         'slug'           => str_slug($name),
         'description_ar' => $faker->text,
         'description_en' => $faker->text,
+        'created_at' => $faker->dateTimeBetween($startDate = '-2 months', $endDate = 'now')
     ];
 });
 
@@ -43,11 +44,12 @@ $factory->define('App\Src\Album\Album', function ($faker) {
         'slug'           => str_slug($name),
         'description_ar' => $faker->text,
         'description_en' => $faker->text,
+        'created_at' => $faker->dateTimeBetween($startDate = '-2 months', $endDate = 'now')
     ];
 });
 
 $factory->define('App\Src\Track\Track', function ($faker) {
-    $name = $faker->word;
+    $name = $faker->word . '.mp3';
 
     return [
         'trackeable_id'   => App\Src\Category\Category::orderByRaw("RAND()")->first()->id,
@@ -57,7 +59,8 @@ $factory->define('App\Src\Track\Track', function ($faker) {
         'description_ar'  => $faker->text,
         'description_en'  => $faker->text,
         'slug'            => $name,
-        'url'             => 'tracks/'.slug($name).'/test.mp3',
+        'url'             => 'test.mp3',
+        'created_at'      => $faker->dateTimeBetween($startDate = '-2 months', $endDate = 'now'),
     ];
 });
 
@@ -70,14 +73,15 @@ $factory->define('App\Src\Blog\Blog', function ($faker) {
         'description_en' => $faker->text,
         'description_ar' => $faker->text,
         'slug'           => str_slug($name),
+        'created_at' => $faker->dateTimeBetween($startDate = '-2 months', $endDate = 'now')
     ];
 });
 
 $factory->define('App\Src\Meta\Meta', function ($faker) {
-    $name = $faker->word;
     return [
-//        'meta_id'   => App\eSrc\Track\Track::orderByRaw("RAND()")->first()->id,
-//        'meta_type' => 'Track',
-        'ip'        => $faker->ipv4
+        'meta_id'   => App\Src\Track\Track::orderByRaw("RAND()")->first()->id,
+        'meta_type' => 'Track',
+        'ip'         => $faker->ipv4,
+        'created_at' => $faker->dateTimeBetween($startDate = '-2 months', $endDate = 'now')
     ];
 });
