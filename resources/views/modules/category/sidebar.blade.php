@@ -5,7 +5,7 @@
         <i class="fa fa-folder-open"></i> {{trans('word.categories') }}  {{ isset($title) ? $title : '' }} </div>
     <div class="panel-body">
         <ul class="nav nav-stacked">
-            @foreach($category->with('thumbnail')->paginate(20) as $category)
+            @foreach($category->with('thumbnail')->latest()->paginate(20) as $category)
                 <li>
                     <a href="{{action('CategoryController@show',str_slug($category->id))}}">
                         @if($category->thumbnail)

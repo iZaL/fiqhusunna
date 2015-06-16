@@ -19,19 +19,23 @@
     <meta name="viewport" content="width=device-width">
 
     @section('style')
-        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/bower_components/bootstrap-rtl/dist/css/bootstrap-rtl.css">
-        <link rel="stylesheet" href="/bower_components/fontawesome/css/font-awesome.min.css">
-        <link rel="stylesheet" href="/css/jplayer.css">
-        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="{{ elixir('css/all.css') }}">
+        {{--<link rel="stylesheet" href="css/all.css">--}}
+        <style>
+            @import url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
+
+            html, body {
+                font-family: 'Droid Arabic Kufi' !important;
+            }
+
+            h1, h2, h3, h4, span, p, div, table {
+                font-family: 'Droid Arabic Kufi' !important;
+            }
+        </style>
     @show
 
     @section('script')
-        <script src="/bower_components/jquery/dist/jquery.min.js"></script>
-        <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="/bower_components/jplayer/dist/jplayer/jquery.jplayer.min.js"></script>
-        <script src="/bower_components/jquery-ui/jquery-ui.min.js"></script>
-        <script src="/js/script.js"></script>
+        <script src="{{ elixir('js/app.js') }}"></script>
     @show
 
 </head>

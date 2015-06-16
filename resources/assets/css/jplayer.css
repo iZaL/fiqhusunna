@@ -1,0 +1,122 @@
+.ui-slider {
+    position: relative;
+}
+.ui-slider-horizontal .ui-slider-handle {
+    top: -4px;
+    margin-left: -2px;
+}
+.ui-slider .ui-slider-handle {
+    z-index: 2;
+    width: 3px;
+    height: 15px;
+}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    background-url: none;
+    background: #13141D;
+    border: none;
+}
+.jp-progress-slider .ui-slider-handle {
+    cursor: pointer;
+}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    border: 1px solid #93c3cd;
+    font-weight: bold;
+    color: #333;
+}
+.ui-slider-horizontal .ui-slider-handle {
+    top: -.3em;
+    margin-left: -.6em;
+}
+.ui-slider .ui-slider-handle {
+    position: absolute;
+    z-index: 2;
+    width: 1.2em;
+    height: 1.2em;
+    cursor: default;
+    -ms-touch-action: none;
+    touch-action: none;
+}
+
+.jp-gui ul li {
+    list-style: none;
+    cursor: pointer;
+    float: right;
+    padding: 10px;
+    color: antiquewhite;
+    background-color: rgb(219, 218, 215);
+    margin: 0 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    max-width: 40px;
+    min-width: 40px;
+    text-align: center;
+}
+
+.player-icon {
+    color: #646E7E;
+}
+
+li.jp-pause,
+li.jp-repeat-off,
+li.jp-unmute,
+.jp-no-solution {
+    display: none;
+}
+
+.jp-progress-slider .ui-slider-handle {
+    cursor: pointer;
+}
+
+.jp-volume-slider .ui-slider-handle {
+    height: 8px;
+    width: 8px;
+    cursor: pointer;
+}
+
+.jp-gui.jp-no-volume .jp-volume-slider {
+    display: none;
+}
+
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    background-url: none;
+    background: #13141D;
+    border: none;
+}
+
+.ui-widget-header {
+    background: none;
+}
+
+.slider-horizontal .ui-slider-handle {
+    top: -4px;
+}
+
+.ui-slider .ui-slider-handle {
+    z-index: 2;
+    width: 3px;
+    height: 15px;
+}
+
+.ui-slider-horizontal .ui-slider-handle {
+    top: -4px;
+    margin-left: -2px;
+}
+
+.ui-slider-horizontal {
+    height: 8px;
+}
+
+.ui-widget-content {
+    border: none;
+    background: antiquewhite;
+}
+
+
+
+

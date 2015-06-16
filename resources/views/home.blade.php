@@ -64,5 +64,5 @@
         </div>
     </div>
     @include('modules.album.result',['record'=>$topAlbums])
-    @include('modules.album.result',['title'=> trans('word.highest_listened_albums') .' '. trans('word.this_month') ,'record'=>$topAlbumsForThisMonth])
+    @include('modules.album.result',['title'=> trans('word.highest_visited_albums') .' '. trans('word.this_month') ,'record'=>$topAlbumsForThisMonth])
 @endsection
