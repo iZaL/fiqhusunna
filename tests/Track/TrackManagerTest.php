@@ -42,7 +42,7 @@ class TrackManagerTest extends TestCase
 
     public function testCreateCategoryTrack()
     {
-        $file = $this->trackManager->getRelativePath() . '/test.mp3';
+        $file = '/test.mp3';
 
         $catDir = uniqid();
         $trackDir = uniqid();
