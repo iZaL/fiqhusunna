@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
 
             factory('App\Src\User\User', 1)->create();
 
-            $categories = factory('App\Src\Category\Category', 5)->create();
+            $categories = factory('App\Src\Category\Category', 10)->create();
 
             $albums = factory('App\Src\Album\Album', 10)->create()
                 ->each(function ($alb) {
@@ -43,17 +43,17 @@ class DatabaseSeeder extends Seeder
 
             // to assosiate with track
             $trackeables = [$categories->random(), $albums->random()];
-            shuffle($trackeables);
             $randomTrackeable = array_rand($trackeables);
+
             $trackeable = $trackeables[$randomTrackeable];
 
-            factory('App\Src\Track\Track', 100)->create([
+            factory('App\Src\Track\Track', 50)->create([
                 'trackeable_id'   => $trackeable->id,
                 'trackeable_type' => $trackeable->morphClass
             ]);
 
             factory('App\Src\Blog\Blog', 10)->create();
-            factory('App\Src\Meta\Meta', 50)->create();
+            factory('App\Src\Meta\Meta', 20)->create();
 
     }
 

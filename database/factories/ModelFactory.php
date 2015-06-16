@@ -14,7 +14,7 @@
 $factory->define('App\Src\User\User', function ($faker) {
     return [
         'name'           => 'zal',
-        'email'          => 'z4ls@live.com',
+        'email'          => 'admin@test.com',
         'password'       => bcrypt('admin'),
         'remember_token' => str_random(10),
         'active'         => 1
@@ -80,8 +80,8 @@ $factory->define('App\Src\Blog\Blog', function ($faker) {
 $factory->define('App\Src\Meta\Meta', function ($faker) {
     return [
         'meta_id'   => App\Src\Track\Track::orderByRaw("RAND()")->first()->id,
-        'meta_type' => 'Track',
+        'meta_type' => $faker->randomElement(['Album','Category'],1),
         'ip'         => $faker->ipv4,
-        'created_at' => $faker->dateTimeBetween($startDate = '-1 week', $endDate = 'now')
+        'created_at' => $faker->dateTimeBetween($startDate = '-2 week', $endDate = 'now')
     ];
 });
