@@ -49,7 +49,7 @@ class TrackManager
 
         $directory = $this->getRelativePath() . '/' . $categorySlug;
         // Create a Directory
-        $this->filesystem->makeDirectory($directory, '777', true);
+        $this->filesystem->makeDirectory($directory, 0777, true);
 
         return $this;
     }
