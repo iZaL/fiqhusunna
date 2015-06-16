@@ -33,7 +33,7 @@ class TrackManager
     ) {
         $this->filesystem = $filesystem;
         $this->trackRepository = $trackRepository;
-        $this->setRelativePath(public_path() . '/tracks');
+        $this->setRelativePath(base_path() . '/tracks');
         $this->setAbsolutePath('/tracks');
     }
 
@@ -172,7 +172,7 @@ class TrackManager
     public function uploadTrack(UploadedFile $file, Track $track)
     {
         // move $track to category folder
-        $uploadDir = '/tracks/';
+        $uploadDir = $this->getRelativePath() . '/';
 
         // check for Valid Category/Album Types
         if (is_a($track->trackeable, Category::class)) {
