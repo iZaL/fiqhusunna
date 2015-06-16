@@ -2,9 +2,9 @@
 
 use App\Core\BaseModel;
 use App\Core\LocaleTrait;
-use App\Src\Category\Category;
 use App\Src\Meta\CountableTrait;
 use App\Src\Meta\DownloadableTrait;
+use Carbon\Carbon;
 
 class Track extends BaseModel
 {
@@ -56,6 +56,40 @@ class Track extends BaseModel
         return array_get($this->types, $type, $type);
     }
 
+    /**
+     * @param string $timeSpan
+     * @param int $paginate
+     * @return mixed Get The Votes That are
+     * Get The Votes That are
+     */
+    public function getTopTracks($timeSpan = 'all', $paginate = 10)
+    {
+        switch ($timeSpan) {
+            case 'all':
+                $date = '0000';
+                break;
+            case 'today':
+                $date = Carbon::yesterday();
+                break;
+            case 'this-month':
+                $date = new Carbon('last month');
+                break;
+            default:
+                $date = '0000';
+                break;
+        }
+
+        return $this
+            ->selectRaw('tracks.*, count(*) as track_count, meta_id, meta_type')
+            ->join('metas', 'tracks.id', '=', 'metas.meta_id')
+            ->where('meta_type', 'Track')
+            ->where('metas.created_at', '>', $date)
+            ->groupBy('meta_id')
+            ->orderBy('track_count', 'DESC')
+            ->orderBy('metas.created_at', 'DESC')
+            ->paginate($paginate);
+    }
+
 
     public function getSizeAttribute($bytes)
     {
@@ -96,5 +130,6 @@ class Track extends BaseModel
     {
         return $this->attributes['name_ar'] = tidify($value);
     }
+
 
 }

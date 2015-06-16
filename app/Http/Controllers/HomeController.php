@@ -28,7 +28,7 @@ class HomeController extends Controller
         $albums = $albumRepository->model->paginate(4);
 
         // @todo : Eager load the relation
-        foreach($albums as $album) {
+        foreach ($albums as $album) {
             $album->load('recentTracks');
         }
 
@@ -36,13 +36,13 @@ class HomeController extends Controller
         $latestTracks = $trackRepository->model->with('metas')->orderBy('created_at', 'desc')->paginate(10);
 
         // Get Top Tracks For All Time
-        $topTracks = $trackRepository->getTopTracks();
+        $topTracks = $trackRepository->model->getTopTracks('all', 10);
 
         // Get Top Tracks For Today
-        $topTracksForToday = $trackRepository->getTopTracks('today');
+        $topTracksForToday = $trackRepository->model->getTopTracks('today', 10);
 
         // Get Top Tracks For This Month
-        $topTracksForThisMonth = $trackRepository->getTopTracks('this-month');
+        $topTracksForThisMonth = $trackRepository->model->getTopTracks('this-month', 10);
 
         // Do No Return Empty Records
         if (!count($topTracksForToday)) {
