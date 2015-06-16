@@ -172,7 +172,7 @@ class TrackManager
     public function uploadTrack(UploadedFile $file, Track $track)
     {
         // move $track to category folder
-        $uploadDir = '/tracks';
+        $uploadDir = '/tracks/';
 
         // check for Valid Category/Album Types
         if (is_a($track->trackeable, Category::class)) {
