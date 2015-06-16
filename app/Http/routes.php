@@ -58,10 +58,12 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
 
 Route::get('test', function () {
 
-    $trackUploader = App::make('\App\Src\Track\TrackCrawler');
-
-    $trackUploader->syncTracks();
-
-    dd('done');
+    echo 'who am i';
+//
+//    $trackUploader = App::make('\App\Src\Track\TrackCrawler');
+//
+//    $trackUploader->syncTracks();
+//
+//    dd('done');
 
 });
