@@ -17,12 +17,11 @@ trait CountableTrait
 
         $yesterday = new Carbon('yesterday');
 
-//        $hasUserVisitedToday = $this->metas()->where('ip', $userIP)->where('created_at', '>', $yesterday)->get();
-//        $hasUserVisitedToday = $this->metas()->where('ip', $userIP)->where('created_at', '>', $yesterday)->get();
+        $hasUserVisitedToday = $this->metas()->where('ip', $userIP)->where('created_at', '>', $yesterday)->get();
 
-//        if (!count($hasUserVisitedToday)) {
+        if (!count($hasUserVisitedToday)) {
             $this->metas()->create(['ip' => $userIP]);
-//        }
+        }
 
     }
 
