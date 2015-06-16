@@ -62,14 +62,15 @@ class TrackManager
      */
     public function updateCategoryDirectory($oldCategorySlug, $categorySlug)
     {
-
-        if (!$this->filesystem->isDirectory($this->getRelativePath() . '/' . $oldCategorySlug)) {
+        $oldDirectory = $this->getRelativePath() . '/' . $oldCategorySlug;
+        $newDirectory = $this->getRelativePath() . '/' . $categorySlug
+        if (!$this->filesystem->isDirectory($oldDirectory)) {
             throw new \Exception('old directory not found');
         }
 
         // Rename a Directory
-        $this->filesystem->move($this->getRelativePath() . '/' . $oldCategorySlug,
-            $this->getRelativePath() . '/' . $categorySlug);
+        $this->filesystem->move($oldDirectory,
+            $newDirectory);
 
         return $this;
     }
