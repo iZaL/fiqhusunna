@@ -86,7 +86,7 @@ class TrackManager
             return;
         }
 
-        $this->filesystem->makeDirectory($this->getRelativePath() . '/' . $categorySlug . '/' . $albumSlug, '0775',true);
+        $this->filesystem->makeDirectory($this->getAbsolutePath() . '/' . $categorySlug . '/' . $albumSlug, '0775',true);
 
         return $this;
     }
