@@ -16,11 +16,11 @@
 
     <div class="no-gutter row">
 
-        <div class="col-md-2">
+        <div class="col-md-3">
             @yield('right')
         </div>
 
-        <div class="col-md-5">
+        <div class="col-md-4">
             @yield('middle')
         </div>
 

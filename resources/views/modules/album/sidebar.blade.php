@@ -1,5 +1,5 @@
 <div class="panel" id="midCol">
-    <div class="panel-heading middle-col-heading"><i class="fa fa-music"></i> {{ trans('word.albums') }}</div>
+    <div class="panel-heading middle-col-heading"><i class="fa fa-music"></i>  {{trans('word.albums') }}  {{ isset($title) ? $title : '' }}</div>
     <div class="panel-body">
         <ul class="list-group">
 

@@ -52,15 +52,15 @@ $factory->define('App\Src\Track\Track', function ($faker) {
     $name = $faker->word . '.mp3';
 
     return [
-        'trackeable_id'   => App\Src\Category\Category::orderByRaw("RAND()")->first()->id,
-        'trackeable_type' => 'Category',
+//        'trackeable_id'   => App\Src\Category\Category::orderByRaw("RAND()")->first()->id,
+//        'trackeable_type' => 'Category',
         'name_ar'         => $name,
         'name_en'         => $name,
         'description_ar'  => $faker->text,
         'description_en'  => $faker->text,
         'slug'            => $name,
         'url'             => 'test.mp3',
-        'created_at'      => $faker->dateTimeBetween($startDate = '-2 months', $endDate = 'now'),
+        'created_at'      => $faker->dateTimeBetween($startDate = '-1 week', $endDate = 'now'),
     ];
 });
 
@@ -82,6 +82,6 @@ $factory->define('App\Src\Meta\Meta', function ($faker) {
         'meta_id'   => App\Src\Track\Track::orderByRaw("RAND()")->first()->id,
         'meta_type' => 'Track',
         'ip'         => $faker->ipv4,
-        'created_at' => $faker->dateTimeBetween($startDate = '-2 months', $endDate = 'now')
+        'created_at' => $faker->dateTimeBetween($startDate = '-1 week', $endDate = 'now')
     ];
 });

@@ -120,10 +120,11 @@ return [
     'about_us'              => 'نبذة عنا',
     'contact_us'            => 'اتصل بنا',
     'articles'              => 'المقالات',
-    'albums'                => 'البوم',
+    'albums'                => 'الإصدارات',
     'categories'            => 'التصنيفات',
     'send'                  => 'ارسل',
     'highest_listened_tracks' => 'الأكثر المقاطع إستماعا',
+    'highest_listened_albums' => 'الأكثر الإصدارات إستماعا',
     'this_month'=> 'هذا الشهر',
     'today'=> 'هذا اليوم'
 ];

@@ -3,6 +3,7 @@
 use App\Core\BaseModel;
 use App\Core\LocaleTrait;
 use App\Src\Meta\CountableTrait;
+use Carbon\Carbon;
 
 class Album extends BaseModel
 {
@@ -50,8 +51,38 @@ class Album extends BaseModel
         return $this->morphOne('App\Src\Photo\Photo', 'imageable')->where('thumbnail', 1);
     }
 
-    public function setSlugAttribute($value)
+    /**
+     * @param string $timeSpan
+     * @param int $paginate
+     * @return mixed Get The Votes That are
+     * Get The Votes That are
+     */
+    public function getTopAlbums($timeSpan = 'all', $paginate = 10)
     {
-        return $this->attributes['slug'] = slug($value);
+        switch ($timeSpan) {
+            case 'all':
+                $date = '0000';
+                break;
+            case 'today':
+                $date = Carbon::yesterday();
+                break;
+            case 'this-month':
+                $date = new Carbon('last month');
+                break;
+            default:
+                $date = '0000';
+                break;
+        }
+
+        return $this
+            ->selectRaw('albums.*, count(*) as aggregate, meta_id, meta_type')
+            ->join('metas', 'albums.id', '=', 'metas.meta_id')
+            ->where('meta_type', 'Album')
+            ->where('metas.created_at', '>', $date)
+            ->groupBy('meta_id')
+            ->orderBy('aggregate', 'DESC')
+            ->orderBy('metas.created_at', 'DESC')
+            ->paginate($paginate);
     }
+
 }

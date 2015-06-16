@@ -11,7 +11,7 @@
             <a href="{{action('CategoryController@show',$album->category->id)}}" class="btn btn-default "><i
                         class="fa fa-folder"></i> {{ $album->category->name }}</a>
             <a href="{{action('AlbumController@show',$album->id)}}" class="btn btn-default "><i
-                        class="fa fa-folder"></i> {{ $album->name }}</a>
+                        class="fa fa-music"></i> {{ $album->name }}</a>
         @endif
     </div>
 @endsection

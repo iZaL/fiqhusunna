@@ -25,12 +25,15 @@ class HomeController extends Controller
         $medias = $instagram->getUserMedia('1791483929');
         $instas = array_slice($medias->data, 0, 4);
 
-        $albums = $albumRepository->model->paginate(4);
-
+        $albums = $albumRepository->model->has('recentTracks')->paginate(4);
         // @todo : Eager load the relation
         foreach ($albums as $album) {
             $album->load('recentTracks');
         }
+
+        $topAlbums = $albumRepository->model->getTopAlbums('all', 10);
+
+        $topAlbumsForThisMonth = $albumRepository->model->getTopAlbums('this-month', 10);
 
         // Get all Tracks
         $latestTracks = $trackRepository->model->with('metas')->orderBy('created_at', 'desc')->paginate(10);
@@ -54,7 +57,7 @@ class HomeController extends Controller
         }
 
         return view('home',
-            compact('instas', 'albums', 'latestTracks', 'topTracks', 'topTracksForToday', 'topTracksForThisMonth'));
+            compact('instas', 'albums', 'latestTracks', 'topTracks', 'topTracksForToday', 'topTracksForThisMonth','topAlbums','topAlbumsForThisMonth'));
     }
 
 }

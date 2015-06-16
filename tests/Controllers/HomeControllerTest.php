@@ -26,7 +26,7 @@ class HomeControllerTest extends TestCase
     public function testIndex()
     {
 
-        $track = App::make(App\Src\Track\Track::class);
+        $track = App::make('\App\Src\Track\Track');
 
         $categories = factory('App\Src\Category\Category', 5)->create();
 

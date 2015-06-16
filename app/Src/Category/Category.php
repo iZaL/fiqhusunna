@@ -47,8 +47,4 @@ class Category extends BaseModel
         return $this->morphMany('App\Src\Meta\Meta', 'meta');
     }
 
-    public function setSlugAttribute($value)
-    {
-        return $this->attributes['slug'] = slug($value);
-    }
 }

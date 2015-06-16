@@ -80,12 +80,12 @@ class Track extends BaseModel
         }
 
         return $this
-            ->selectRaw('tracks.*, count(*) as track_count, meta_id, meta_type')
+            ->selectRaw('tracks.*, count(*) as aggregate, meta_id, meta_type')
             ->join('metas', 'tracks.id', '=', 'metas.meta_id')
             ->where('meta_type', 'Track')
             ->where('metas.created_at', '>', $date)
             ->groupBy('meta_id')
-            ->orderBy('track_count', 'DESC')
+            ->orderBy('aggregate', 'DESC')
             ->orderBy('metas.created_at', 'DESC')
             ->paginate($paginate);
     }
@@ -114,11 +114,6 @@ class Track extends BaseModel
     public function setTrackeableTypeAttribute($value)
     {
         $this->attributes['trackeable_type'] = ucfirst($value);
-    }
-
-    public function setSlugAttribute($value)
-    {
-        return $this->attributes['slug'] = slug(tidify($value));
     }
 
     /**

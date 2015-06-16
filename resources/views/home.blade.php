@@ -30,7 +30,9 @@
     <div class="panel">
         <div class="panel-heading middle-col-heading">{{ trans('word.latest_albums') .' '. trans('word.added') }}</div>
         <div class="panel-body">
+
             @foreach($albums as $album)
+
                 <div class="row">
 
                     <div class="col-md-3 col-sm-4 col-xs-4">
@@ -46,7 +48,8 @@
                     <div class="col-md-9 col-sm-8 col-xs-8">
                         <ul class="album-list">
                             <p class="title"><a
-                                        href="{{action('AlbumController@show',$album->id)}}"> {{ $album->name }}</a></p>
+                                        href="{{action('AlbumController@show',$album->id)}}"> {{ $album->name }}</a>
+                            </p>
                             @foreach($album->recentTracks as $track)
                                 <li><i class="fa fa-headphones album-list-icon"></i><a
                                             href="{{ action('TrackController@show',$track->id) }}">{{$track->name}}</a>
@@ -56,7 +59,10 @@
                     </div>
                 </div>
                 <hr>
+
             @endforeach
         </div>
     </div>
+    @include('modules.album.result',['record'=>$topAlbums])
+    @include('modules.album.result',['title'=> trans('word.highest_listened_albums') .' '. trans('word.this_month') ,'record'=>$topAlbumsForThisMonth])
 @endsection

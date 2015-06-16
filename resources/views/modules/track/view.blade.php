@@ -27,12 +27,12 @@
                             class="fa fa-folder"></i> {{ $track->trackeable->name }}</a>
             @else
                 @if($track->trackeable->category)
-                    <a href="{{action('CategoryController@show',$track->trackeable->id)}}" class="btn btn-default "><i
-                                class="fa fa-folder"></i> {{ $track->trackeable->name }}</a>
+                    <a href="{{action('CategoryController@show',$track->trackeable->category->id)}}" class="btn btn-default "><i
+                                class="fa fa-folder"></i> {{ $track->trackeable->category->name }}</a>
 
-                    <a href="{{action('CategoryController@show',$track->trackeable->category->id)}}"
+                    <a href="{{action('AlbumController@show',$track->trackeable->id)}}"
                        class="btn btn-default "><i
-                                class="fa fa-music"></i> {{ $track->trackeable->category->name }}</a>
+                                class="fa fa-music"></i> {{ $track->trackeable->name }}</a>
 
                 @endif
             @endif
