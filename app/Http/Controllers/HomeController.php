@@ -47,14 +47,6 @@ class HomeController extends Controller
         // Get Top Tracks For This Month
         $topTracksForThisMonth = $trackRepository->model->getTopTracks('this-month', 10);
 
-        // Do No Return Empty Records
-        if (!count($topTracksForToday)) {
-            $topTracksForToday = $topTracks;
-        }
-
-        if (!count($topTracksForThisMonth)) {
-            $topTracksForThisMonth = $topTracks;
-        }
 
         return view('home',
             compact('instas', 'albums', 'latestTracks', 'topTracks', 'topTracksForToday', 'topTracksForThisMonth','topAlbums','topAlbumsForThisMonth'));
