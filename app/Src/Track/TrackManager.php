@@ -33,7 +33,7 @@ class TrackManager
     ) {
         $this->filesystem = $filesystem;
         $this->trackRepository = $trackRepository;
-        $this->setRelativePath(base_path() . '/tracks');
+        $this->setRelativePath(public_path() . '/tracks');
         $this->setAbsolutePath('/tracks');
     }
 
@@ -47,8 +47,9 @@ class TrackManager
             return;
         }
 
+        $directory = $this->getRelativePath() . '/' . $categorySlug;
         // Create a Directory
-        $this->filesystem->makeDirectory($this->getRelativePath() . '/' . $categorySlug, '755' );
+        $this->filesystem->makeDirectory($directory, '777', true);
 
         return $this;
     }
@@ -87,7 +88,7 @@ class TrackManager
         }
 
         $this->filesystem->makeDirectory($this->getRelativePath() . '/' . $categorySlug . '/' . $albumSlug, '0777'
-            );
+        );
 
         return $this;
     }
