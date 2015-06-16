@@ -63,7 +63,7 @@ class TrackManager
     public function updateCategoryDirectory($oldCategorySlug, $categorySlug)
     {
         $oldDirectory = $this->getRelativePath() . '/' . $oldCategorySlug;
-        $newDirectory = $this->getRelativePath() . '/' . $categorySlug
+        $newDirectory = $this->getRelativePath() . '/' . $categorySlug;
         if (!$this->filesystem->isDirectory($oldDirectory)) {
             throw new \Exception('old directory not found');
         }
