@@ -58,7 +58,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
 
 Route::get('test', function () {
 
-    echo 'who am i';
+    echo exec('whoami');
 //
 //    $trackUploader = App::make('\App\Src\Track\TrackCrawler');
 //
