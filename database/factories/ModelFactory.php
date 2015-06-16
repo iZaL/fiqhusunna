@@ -52,8 +52,8 @@ $factory->define('App\Src\Track\Track', function ($faker) {
     $name = $faker->word . '.mp3';
 
     return [
-//        'trackeable_id'   => App\Src\Category\Category::orderByRaw("RAND()")->first()->id,
-//        'trackeable_type' => 'Category',
+        'trackeable_id'   => $faker->numberBetween(1,10),
+        'trackeable_type' => $faker->randomElement(['Album','Category']),
         'name_ar'         => $name,
         'name_en'         => $name,
         'description_ar'  => $faker->text,

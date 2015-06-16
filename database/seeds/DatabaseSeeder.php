@@ -41,13 +41,12 @@ class DatabaseSeeder extends Seeder
                     $alb->category()->associate(factory('App\Src\Category\Category')->create());
                 });
 
-            // to assosiate with track
-//            $this->getTrackeable($categories, $albums);
+//            // to assosiate with track
+//            $trackeables = [$categories->random(), $albums->random()];
+//            $randomTrackeable = array_rand($trackeables);
+//            $trackeable = $trackeables[$randomTrackeable];
 
-            factory('App\Src\Track\Track', 50)->create([
-                'trackeable_id'   => $this->getTrackeable($categories, $albums)->id,
-                'trackeable_type' => $this->getTrackeable($categories, $albums)->morphClass
-            ]);
+            factory('App\Src\Track\Track', 50)->create();
 
             factory('App\Src\Blog\Blog', 10)->create();
             factory('App\Src\Meta\Meta', 20)->create();
@@ -59,21 +58,6 @@ class DatabaseSeeder extends Seeder
         foreach ($this->tables as $table) {
             DB::table($table)->truncate();
         }
-    }
-
-    /**
-     * @param $categories
-     * @param $albums
-     * @return mixed
-     */
-    public function getTrackeable($categories, $albums)
-    {
-        $trackeables = [$categories->random(), $albums->random()];
-        $randomTrackeable = array_rand($trackeables);
-
-        $trackeable = $trackeables[$randomTrackeable];
-
-        return $trackeable;
     }
 
 }
