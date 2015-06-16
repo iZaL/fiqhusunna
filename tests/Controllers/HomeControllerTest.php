@@ -3,7 +3,7 @@
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use App;
+use Illuminate\Support\Facades\App;
 
 //
 class HomeControllerTest extends TestCase
@@ -19,7 +19,7 @@ class HomeControllerTest extends TestCase
     {
         parent::setUp();
 
-        $this->trackManager = \App::make('\App\Src\Track\TrackManager');
+        $this->trackManager = App::make('\App\Src\Track\TrackManager');
         $this->user = factory('App\Src\User\User', 1)->create(['email' => uniqid() . '@email.com']);
     }
 
@@ -61,7 +61,6 @@ class HomeControllerTest extends TestCase
         $this->assertEquals('10', $albums->count());
         $this->assertEquals('100', $tracks->count());
 
-        $this->assertEquals('10', $track->getTopTracks()->count());
     }
 
 }
