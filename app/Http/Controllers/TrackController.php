@@ -9,10 +9,6 @@ use Symfony\Component\Filesystem\Exception\FileNotFoundException;
 class TrackController extends Controller
 {
 
-    //@todo
-    // 1-
-
-
     /**
      * @var TrackRepository
      */
@@ -34,22 +30,24 @@ class TrackController extends Controller
 
     public function index()
     {
-        dd('a');
+        return redirect('home');
     }
 
     public function show($id)
     {
         $track = $this->trackRepository->model->find($id);
 
+        try {
+            $trackUrl = $this->trackManager->fetchTrack($track);
+        } catch (\Exception $e) {
+            return redirect('home')->with('warning', 'Track Could Not Be loaded. Try again');
+        }
+
+        // uncomment this line for production use
+        $trackUrl = '/tracks/test.mp3';
+
         // CountableTrait
         $track->incrementViewCount();
-
-        $trackUrl = $this->trackManager->fetchTrack($track);
-
-        // only for test.
-        if (!file_exists($trackUrl)) {
-            $trackUrl = '/test.mp3';
-        }
 
         return view('modules.track.view', compact('track', 'trackUrl'));
     }
@@ -58,21 +56,20 @@ class TrackController extends Controller
     {
         $track = $this->trackRepository->model->find($id);
 
-        // Increment Download Count
-
-        // Set Name For the Track
-        $downloadName = $track->name . '.' . $track->extension;
-
         // Get The Track to Download
         try {
             $trackPath = $this->trackManager->downloadTrack($track);
         } catch (\Exception $e) {
-            return redirect('home')->with('warning', $e->getMessage());
+            return redirect('home')->with('warning', 'Track Could Not Be Download. Try again');
         }
 
-        // @todo : check if track exists
-        // Increment Download Count (DownloadableTrait)
+        // Set Name For the Track
+        $downloadName = $track->name . '.' . $track->extension;
+
         $track->incrementDownloadCount();
+
+        // uncomment this line for production use
+        $trackPath = public_path().'/tracks/test.mp3';
 
         return response()->download($trackPath, $downloadName);
     }

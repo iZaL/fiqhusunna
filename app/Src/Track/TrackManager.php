@@ -136,7 +136,7 @@ class TrackManager
             // or Search In Album Folder
         } else {
 
-            throw new ClassNotFoundException('Invalid Class');
+            throw new \Exception('Invalid Class');
         }
 
         return $file;
@@ -196,7 +196,7 @@ class TrackManager
 
         } else {
 
-            throw new ClassNotFoundException('Invalid Class');
+            throw new \Exception('Invalid Class');
         }
 
         // Move Uploaded File
