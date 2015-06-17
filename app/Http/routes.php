@@ -34,7 +34,7 @@ Route::get('/', 'HomeController@index');
 /*********************************************************************************************************
  * Admin Routes
  ********************************************************************************************************/
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth']], function () {
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['admin']], function () {
 
     Route::resource('category', 'CategoryController');
 
@@ -45,6 +45,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::resource('photo', 'PhotoController');
 
     Route::resource('blog', 'BlogController');
+
+    Route::resource('user', 'UserController');
 
     Route::get('/', 'HomeController@index');
 

@@ -17,7 +17,8 @@ $factory->define('App\Src\User\User', function ($faker) {
         'email'          => 'admin@test.com',
         'password'       => bcrypt('admin'),
         'remember_token' => str_random(10),
-        'active'         => 1
+        'active'         => 1,
+        'isAdmin'        => 1
     ];
 });
 
@@ -30,7 +31,7 @@ $factory->define('App\Src\Category\Category', function ($faker) {
         'slug'           => str_slug($name),
         'description_ar' => $faker->text,
         'description_en' => $faker->text,
-        'created_at' => $faker->dateTimeBetween($startDate = '-2 months', $endDate = 'now')
+        'created_at'     => $faker->dateTimeBetween($startDate = '-2 months', $endDate = 'now')
     ];
 });
 
@@ -44,7 +45,7 @@ $factory->define('App\Src\Album\Album', function ($faker) {
         'slug'           => str_slug($name),
         'description_ar' => $faker->text,
         'description_en' => $faker->text,
-        'created_at' => $faker->dateTimeBetween($startDate = '-2 months', $endDate = 'now')
+        'created_at'     => $faker->dateTimeBetween($startDate = '-2 months', $endDate = 'now')
     ];
 });
 
@@ -52,8 +53,8 @@ $factory->define('App\Src\Track\Track', function ($faker) {
     $name = $faker->word . '.mp3';
 
     return [
-        'trackeable_id'   => $faker->numberBetween(1,10),
-        'trackeable_type' => $faker->randomElement(['Album','Category']),
+        'trackeable_id'   => $faker->numberBetween(1, 10),
+        'trackeable_type' => $faker->randomElement(['Album', 'Category']),
         'name_ar'         => $name,
         'name_en'         => $name,
         'description_ar'  => $faker->text,
@@ -73,14 +74,14 @@ $factory->define('App\Src\Blog\Blog', function ($faker) {
         'description_en' => $faker->text,
         'description_ar' => $faker->text,
         'slug'           => str_slug($name),
-        'created_at' => $faker->dateTimeBetween($startDate = '-2 months', $endDate = 'now')
+        'created_at'     => $faker->dateTimeBetween($startDate = '-2 months', $endDate = 'now')
     ];
 });
 
 $factory->define('App\Src\Meta\Meta', function ($faker) {
     return [
-        'meta_id'   => App\Src\Track\Track::orderByRaw("RAND()")->first()->id,
-        'meta_type' => $faker->randomElement(['Album','Category'],1),
+        'meta_id'    => App\Src\Track\Track::orderByRaw("RAND()")->first()->id,
+        'meta_type'  => $faker->randomElement(['Album', 'Category'], 1),
         'ip'         => $faker->ipv4,
         'created_at' => $faker->dateTimeBetween($startDate = '-2 week', $endDate = 'now')
     ];
