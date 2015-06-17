@@ -70,6 +70,7 @@ class TrackController extends Controller
 
         // uncomment this line for production use
         $trackPath = public_path().'/test.mp3';
+        $downloadName = 'test.mp3';
 
         return response()->download($trackPath, $downloadName);
     }
