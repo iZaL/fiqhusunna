@@ -44,7 +44,7 @@ class TrackController extends Controller
         }
 
         // uncomment this line for production use
-        $trackUrl = '/tracks/test.mp3';
+        $trackUrl = '/test.mp3';
 
         // CountableTrait
         $track->incrementViewCount();
@@ -69,7 +69,7 @@ class TrackController extends Controller
         $track->incrementDownloadCount();
 
         // uncomment this line for production use
-        $trackPath = public_path().'/tracks/test.mp3';
+        $trackPath = public_path().'/test.mp3';
 
         return response()->download($trackPath, $downloadName);
     }
