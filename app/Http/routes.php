@@ -5,7 +5,6 @@ Route::controllers([
     'password' => 'PasswordController'
 ]);
 
-
 Route::resource('track', 'TrackController');
 
 Route::resource('category', 'CategoryController');
@@ -50,19 +49,10 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['adm
 
     Route::get('/', 'HomeController@index');
 
-//    get('track/category/create', 'TrackController@createCategoryTrack');
-//
-//    get('track/album/create', 'TrackController@createAlbumTrack');
-//
-//    post('track/upload', 'TrackController@uploadTrack');
-
 });
 
 Route::get('test', function () {
 
-    echo ini_get('upload_max_filesize'), ", " , ini_get('post_max_size');
-//    echo exec('whoami');
-//
 //    $trackUploader = App::make('\App\Src\Track\TrackCrawler');
 //
 //    $trackUploader->syncTracks();
