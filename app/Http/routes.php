@@ -13,8 +13,6 @@ Route::resource('album', 'AlbumController');
 
 Route::resource('blog', 'BlogController');
 
-Route::get('locale/{lang}', ['as' => 'locale.select', 'uses' => 'LocaleController@setLocale']);
-
 Route::get('profile', 'UserController@profile');
 
 Route::get('track/download/{id}', 'TrackController@downloadTrack');
