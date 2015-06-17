@@ -95,7 +95,8 @@ class Track extends BaseModel
 
     public function getSizeAttribute($bytes)
     {
-        return convertBytesToHumanReadable($bytes);
+        $bytes = convertBytesToHumanReadable($bytes);
+        return $bytes;
     }
 
     public function setTrackeableTypeAttribute($value)

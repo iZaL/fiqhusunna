@@ -97,7 +97,7 @@ if (!function_exists('tidify')) {
         return $name;
     }
 }
-if (!function_exists('tidify')) {
+if (!function_exists('convertBytesToHumanReadable')) {
 
     /**
      * @param $bytes

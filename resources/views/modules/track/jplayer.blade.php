@@ -2,9 +2,6 @@
 
 <div id="jp_container_1">
     <div class="jp-gui">
-
-
-
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <ul>
@@ -65,16 +62,9 @@
                                                                        title="pause" style="display: none;">
                                 <i class="fa fa-pause player-icon"></i></a>
                         </li>
-
-
                     </div>
-
                 </ul>
-
             </div>
         </div>
-
-
     </div>
-
 </div>

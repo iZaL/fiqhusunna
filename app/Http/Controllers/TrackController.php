@@ -44,7 +44,7 @@ class TrackController extends Controller
         }
 
         // uncomment this line for production use
-        $trackUrl = '/test.mp3';
+//        $trackUrl = '/test.mp3';
 
         // CountableTrait
         $track->incrementViewCount();
