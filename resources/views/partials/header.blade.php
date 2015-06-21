@@ -1,13 +1,16 @@
 <header class="masthead">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-sm-6 col-xs-6">
-                <a href="{{ url('home') }}" title="Sound" alt="sound app"><img src="/img/banner.png" class="logo img-responsive"></a>
+            <div class="col-md-4 col-sm-6 col-xs-6">
+                <a href="{{ url('home') }}" title="Sound" alt="sound app">
+                    <img src="/img/banner.png" class="logo img-responsive pull-right">
+                </a>
             </div>
-            <div class="col-md-6 col-sm-6 col-xs-6 ">
-                <div class="pull-right">
-                    <img src="/img/logo.png" class="banner img-responsive ">
-                </div>
+            <div class="col-md-4 col-sm-6 col-xs-6">
+                <img src="/img/logo.png" class="banner img-responsive">
+            </div>
+            <div class="col-md-4 hidden-sm hidden-xs">
+                <img src="/img/ad.jpg" class="ad img-responsive ">
             </div>
         </div>
     </div>
