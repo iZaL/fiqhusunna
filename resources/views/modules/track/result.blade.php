@@ -4,7 +4,7 @@
     <div class="panel-body">
         <ul class="list-group">
             @foreach($record as $track)
-                <li class="list-group-item"><i class="fa fa-headphones album-list-icon"></i><a
+                <li class="list-group-item"><i class="fa fa-headphones album-list-icon"></i>&nbsp;<a
                             href="{{ action('TrackController@show',$track->id) }}">{{$track->name}}</a>
                 </li>
             @endforeach
