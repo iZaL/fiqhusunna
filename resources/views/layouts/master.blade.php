@@ -34,14 +34,9 @@
         </style>
     @show
 
-    @section('script')
-        <script src="{{ elixir('js/app.js') }}"></script>
-    @show
-
 </head>
 
 <body>
-
 
 @include('partials.header')
 @include('partials.nav')
@@ -54,9 +49,12 @@
     @show
 
 </div>
+
 @include('partials.footer')
 
+@section('script')
+    <script src="{{ elixir('js/app.js') }}"></script>
+@show
 </body>
-
 
 </html>

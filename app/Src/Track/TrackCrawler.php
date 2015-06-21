@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Src\Track;
 
 use App\Src\Album\AlbumRepository;
@@ -134,7 +135,7 @@ class TrackCrawler extends TrackManager
 
         foreach ($tracks as $track) {
             // Check for valid audio extensions
-            if (in_array($track->getExtension(), $this->allowedExtension)) {
+            if (in_array($track->getExtension(), $this->getAllowedExtension())) {
 
                 // Check if the Track is not already saved in DB
                 if (!in_array($track->getRelativePathName(), $dbTracks)) {

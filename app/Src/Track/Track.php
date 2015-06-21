@@ -95,8 +95,7 @@ class Track extends BaseModel
 
     public function getSizeAttribute($bytes)
     {
-        $bytes = convertBytesToHumanReadable($bytes);
-        return $bytes;
+        return convertBytesToHumanReadable($bytes);
     }
 
     public function setTrackeableTypeAttribute($value)
@@ -111,7 +110,7 @@ class Track extends BaseModel
      */
     public function setNameArAttribute($value)
     {
-        return $this->attributes['name_ar'] = tidify($value);
+        $this->attributes['name_ar'] = tidify($value);
     }
 
 

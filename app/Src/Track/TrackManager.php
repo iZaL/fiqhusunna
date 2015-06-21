@@ -5,7 +5,6 @@ namespace App\Src\Track;
 use App\Src\Album\Album;
 use App\Src\Category\Category;
 use Illuminate\Filesystem\Filesystem;
-use Symfony\Component\Debug\Exception\ClassNotFoundException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class TrackManager
