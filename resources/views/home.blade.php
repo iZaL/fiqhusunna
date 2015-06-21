@@ -1,4 +1,4 @@
-@extends('layouts.three_col')
+@extends('layouts.two_col')
 
 @section('banner')
     @include('partials.instagram')

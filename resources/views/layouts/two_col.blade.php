@@ -8,23 +8,13 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="no-gutter row">
-            @yield('breadcrumb')
-        </div>
-    </div>
-
     <div class="no-gutter row">
 
-        <div class="col-md-3">
+        <div class="col-md-6">
             @yield('right')
         </div>
 
-        <div class="col-md-4">
-            @yield('middle')
-        </div>
-
-        <div class="col-md-5" id="content">
+        <div class="col-md-6" id="content">
             @yield('left')
         </div>
 
