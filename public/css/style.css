@@ -437,8 +437,8 @@ ul.album-list li .album-list-icon {
 }
 
 .ad {
-    max-width: 100%;
-    max-height: 180px;
+    height: 100px;
+    width: auto;
     float: left;
     padding-left: 20px;
     padding-top: 20px;
