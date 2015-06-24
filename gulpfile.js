@@ -19,11 +19,7 @@ elixir(function (mix) {
         'bower_components/fontawesome/css/font-awesome.min.css',
         'css/jplayer.css',
         'css/style.css'
-    ], 'public/css/all.css', 'public')
-        .copy(
-        'public/bower_components/fontawesome/fonts',
-        'public/build/fonts'
-    );
+    ], 'public/css/all.css', 'public');
 
     mix.scripts([
         'bower_components/jquery/dist/jquery.min.js',
