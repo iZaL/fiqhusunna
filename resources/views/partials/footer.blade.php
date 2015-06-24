@@ -6,7 +6,7 @@
                                 class="fa fa-twitter "></i></a></div>
                 <div class="col-md-1 col-xs-4 "><a href="http://www.youtube.com/user/"><i
                                 class="fa fa-youtube "></i></a></div>
-                <div class="col-md-1 col-xs-4 "><a href="http://instagram.com/"><i
+                <div class="col-md-1 col-xs-4 "><a href="http://instagram.com/hojairat_sounds"><i
                                 class="fa fa-instagram "></i></a></div>
             </div>
             <div class="col-md-8 col-xs-12">
