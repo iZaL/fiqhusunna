@@ -23,7 +23,7 @@ class HomeController extends Controller
         AlbumRepository $albumRepository
     )
     {
-        $medias = $instagram->getUserMedia('1791483929');
+        $medias = $instagram->getUserMedia('1236974079');
         $instas = array_slice($medias->data, 0, 3);
 
         // Get all Tracks
