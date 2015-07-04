@@ -14,13 +14,11 @@ class HomeController extends Controller
      *
      * @param InstagramManager $instagram
      * @param TrackRepository $trackRepository
-     * @param AlbumRepository $albumRepository
      * @return Response
      */
     public function index(
         InstagramManager $instagram,
-        TrackRepository $trackRepository,
-        AlbumRepository $albumRepository
+        TrackRepository $trackRepository
     )
     {
         $medias = $instagram->getUserMedia('1236974079');

@@ -16,3 +16,4 @@
 {{--</div>--}}
 {{--</header>--}}
 <img src="/img/hojairat-header.jpg" style="width: 100%;height: 300px;" class="hidden-xs" >
+<img src="/img/hojairat-header.jpg" style="width: 100%;height: 150px;" class="visible-xs" >
