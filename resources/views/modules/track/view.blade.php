@@ -41,6 +41,13 @@
 
     <h1>{{$track->name}} </h1>
     <div class="col-md-12 pTop10 pBottom10 mTop10" style="background-color: #D8ECF0;">
+        {{--{{ trans('word.created_at') }}--}}
+        <a href="#">
+            <i class="fa fa-pencil"></i>
+        </a>
+        {{$track->created_at->format('d-m-Y')}}
+        &nbsp;&nbsp;&nbsp;
+        {{ trans('word.save_file') }}
         <a href="{{ action('TrackController@downloadTrack',$track->id) }}">
             <i class="fa fa-download"></i>
         </a>
@@ -49,7 +56,12 @@
         <a href="#">
             <i class="fa fa-eye"></i>
         </a>
-        {{ $track->metas ? $track->metas->count() : '0' }}
+        {{ $track->metas ? $track->metas->count() : '0' }} {{ trans('word.views') }}
+        &nbsp;&nbsp;&nbsp;
+        <a href="#">
+            <i class="fa fa-database"></i>
+        </a>
+        {{ $track->size }}
     </div>
     @include('modules.track.jplayer',['track'=>$track])
 @endsection

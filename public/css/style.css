@@ -53,12 +53,14 @@ header {
 body {
     font-family: Arial, Helvetica, Sans-Serif;
     font-weight: 300;
-    color: #13141d;
+    /*color: #13141d;*/
+    color: #000000;
     background-color: #ffffff;
 }
 
 a {
-    color: #004444;
+    /*color: #004444;*/
+    color: #E43641;
     text-decoration: none;
 }
 
@@ -84,7 +86,7 @@ h3.highlight {
 }
 
 .navbar {
-    background-color: #77CCDD;
+    background-color: #E43641;
     color: #ffffff;
     border-radius: 0;
 }
@@ -93,15 +95,15 @@ h3.highlight {
     color: #fff;
     padding-left: 20px;
     padding-right: 20px;
-    border-right: 1px solid #66BBCC;
+    /*border-right: 1px solid #66BBCC;*/
 }
 
 .navbar-nav > li:last-child > a {
-    border-left: 1px solid #66BBCC;
+    /*border-left: 1px solid #66BBCC;*/
 }
 
 .navbar-nav li a:hover {
-    background-color: #66BBCC;
+    /*background-color: #66BBCC;*/
     color: #004444;
 }
 

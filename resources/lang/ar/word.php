@@ -117,7 +117,7 @@ return [
     'added'                   => 'المضافة',
     'latest_news'             => 'اخر الاخبار',
     'latest_articles'         => 'اخر المقالات',
-    'about_us'                => 'نبذة عنا',
+    'about_us'                => 'عن الرادود',
     'contact_us'              => 'اتصل بنا',
     'articles'                => 'المقالات',
     'albums'                  => 'الإصدارات',
@@ -127,5 +127,10 @@ return [
     'highest_listened_albums' => 'الأكثر الإصدارات إستماعا',
     'highest_visited_albums'  => 'الأكثر الإصدارات زيارة',
     'this_month'              => 'هذا الشهر',
-    'today'                   => 'هذا اليوم'
+    'today'                   => 'هذا اليوم',
+    'downloads' => 'تنزيل',
+    'views' => 'مشاهدة',
+    'save_file'=>'حفظ الملف',
+    'size' => 'الحجم',
+    'created_at' => ' تاريخ الإضافة'
 ];
