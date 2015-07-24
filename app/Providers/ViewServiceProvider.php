@@ -14,6 +14,9 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        view()->composer(
+            'partials.category-menu', 'App\Http\Composers\CategoryMenu'
+        );
     }
 
     /**

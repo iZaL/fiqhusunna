@@ -20,7 +20,8 @@
 
     @section('style')
         <link rel="stylesheet" href="{{ elixir('css/all.css') }}">
-        {{--<link rel="stylesheet" href="css/style.css">--}}
+        {{--<link rel="stylesheet" href="/css/style.css">--}}
+        {{--<link rel="stylesheet" href="/css/dropdown-menu.css">--}}
         <style>
             @import url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
 

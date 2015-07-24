@@ -18,7 +18,8 @@ elixir(function (mix) {
         'bower_components/bootstrap-rtl/dist/css/bootstrap-rtl.css',
         'bower_components/fontawesome/css/font-awesome.min.css',
         'css/jplayer.css',
-        'css/style.css'
+        'css/style.css',
+        'css/dropdown-menu.css'
     ], 'public/css/all.css', 'public');
 
     mix.scripts([
