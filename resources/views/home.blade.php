@@ -1,11 +1,15 @@
-@extends('layouts.two_col')
+@extends('layouts.three_col')
 
 @section('banner')
     @include('partials.instagram')
 @endsection
 
-@section('right')
+@section('middle')
     @include('modules.blog.sidebar')
+@endsection
+
+@section('right')
+    @include('modules.category.sidebar')
 @endsection
 
 @section('left')
