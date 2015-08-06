@@ -13,7 +13,5 @@
 @endsection
 
 @section('left')
-
     @include('modules.track.result',['title'=> trans('word.latest_tracks'), 'record'=>$latestTracks])
-
 @endsection
