@@ -4,8 +4,7 @@
     </IfModule>
 
     RewriteEngine On
-    php_value upload_max_filesize 40M
-    php_value post_max_size 42M
+
     # Redirect Trailing Slashes...
     RewriteRule ^(.*)/$ /$1 [L,R=301]
 
