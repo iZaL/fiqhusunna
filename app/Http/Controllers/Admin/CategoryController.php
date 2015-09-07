@@ -124,7 +124,6 @@ class CategoryController extends Controller
 
     public function destroy($id)
     {
-        dd('cat' . $id);
         $category = $this->categoryRepository->model->find($id);
         $category->delete();
 

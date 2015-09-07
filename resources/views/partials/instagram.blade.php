@@ -1,4 +1,5 @@
-<h1>{{ trans('word.instagram') }}</h1>
+<div class="panel">
+<div class="panel-heading left-col-heading" style="color: #FFF; ">{{ trans('word.instagram') }}</div>
 @foreach($instas as $insta)
     @if($insta->type='image')
         <div class="col-md-4 col-sm-4 col-xs-4">
@@ -11,3 +12,4 @@
         </div>
     @endif
 @endforeach
+</div>

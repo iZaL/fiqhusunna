@@ -102,7 +102,9 @@ class TrackController extends Controller
     public function destroy($id)
     {
         $track = $this->trackRepository->model->find($id);
-        unlink(storage_path() . '/app/tracks/' . $track->url);
+        $trackUrl = storage_path() . '/app/tracks/' . $track->url;
+        if(file_exists($trackUrl))
+        unlink($trackUrl);
         $track->delete();
 
         return redirect()->back()->with('success', 'Record Deleted');
