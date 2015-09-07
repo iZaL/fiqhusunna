@@ -45,6 +45,10 @@ class AlbumController extends Controller
             }
         ])->find($id);
 
+        if(!$album->category) {
+            return redirect()->back()->with('error','wrong access');
+        }
+
         $category = $this->categoryRepository->model->with('albums.thumbnail', 'tracks')->find($album->category->id);
 
         $album->incrementViewCount();
