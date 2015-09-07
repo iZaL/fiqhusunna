@@ -45,11 +45,11 @@ class AlbumController extends Controller
             }
         ])->find($id);
 
-        if(!$album) {
-            return redirect()->back()->with('error','unkown album');
+        if (!$album) {
+            return redirect()->back()->with('error', 'unkown album');
         }
-        if(!$album->category) {
-            return redirect()->back()->with('error','wrong access');
+        if (!$album->category) {
+            return redirect()->back()->with('error', 'wrong access');
         }
 
         $category = $this->categoryRepository->model->with('albums.thumbnail', 'tracks')->find($album->category->id);

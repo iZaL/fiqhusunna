@@ -11,7 +11,7 @@
                                         href="{{action('CategoryController@show',$category->id)}}"> {{ $category->name }}</a>
                             </li>
                             @foreach($category->albums as $album)
-                                <li class="innerHeader"><a class="innerHeader" href="{{action('AlbumController@show',$category->id)}}">{{ $album->name }}</a>
+                                <li class="innerHeader"><a class="innerHeader" href="{{action('AlbumController@show',$album->id)}}">{{ $album->name }}</a>
                                 </li>
                             @endforeach
                             <li class="divider"></li>
