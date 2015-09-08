@@ -53,7 +53,7 @@ class TrackController extends Controller
         $tracks = $this->trackRepository->model->paginate(100);
 
         $tracks->load('trackeable');
-        
+
         return view('admin.modules.track.index', compact('tracks'));
     }
 

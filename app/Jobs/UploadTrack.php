@@ -10,10 +10,15 @@ use Illuminate\Support\Facades\App;
 
 class UploadTrack extends Job implements SelfHandling
 {
+
+    // MAX parallel upload count per task
+    const MAX_UPLOAD_COUNT = 5;
+
     /**
      * @var Request
      */
     private $request;
+
     /**
      * @var TrackRepository
      */
@@ -34,14 +39,21 @@ class UploadTrack extends Job implements SelfHandling
      */
     public function handle(TrackManager $trackManager)
     {
+        $uploadCount = 1;
+
         foreach ($this->request->file('tracks') as $file) {
+
+            // guard the max upload counts per task
+            if ($uploadCount > self::MAX_UPLOAD_COUNT) {
+                break;
+            }
 
             // do not upload disallowed extensions
             if (!in_array($file->getClientOriginalExtension(), $trackManager->getAllowedExtension())) {
                 continue;
             }
 
-            $trackRepository  = App::make('App\Src\Track\TrackRepository');
+            $trackRepository = App::make('App\Src\Track\TrackRepository');
 
             $track = $trackRepository->model->fill(array_merge([
                 'trackeable_id'   => $this->request->trackeable_id,
@@ -54,12 +66,11 @@ class UploadTrack extends Job implements SelfHandling
             ], $this->request->except('tracks')));
 
             // move uploaded file
-            $track->save();
-
-            $track;
-
             $trackManager->uploadTrack($file, $track);
 
+            $track->save();
+
+            $uploadCount++;
         }
     }
 

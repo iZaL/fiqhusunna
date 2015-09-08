@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class TrackManager
 {
+
     // mostly used to download files
     private $relativePath;
 
@@ -20,6 +21,7 @@ class TrackManager
     private $filesystem;
 
     private $trackRepository;
+
 
     /**
      * @param Filesystem $filesystem
