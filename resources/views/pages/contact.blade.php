@@ -73,19 +73,11 @@
 
                         <!-- START CONTENT ITEM -->
                         <address>
-                            <strong>CompanyName</strong><br>
-                            Address 123<br>
-                            Zipcode, State, City<br>
-                            Optional country name<br>
+                            <strong>Hojairat Sounds</strong><br>
                             <br>
-                            012-345 67 89<br>
-                            info@example.com<br>
+                            00966-549054511<br>
+                            hojairatsounds@gmail.com<br>
                         </address>
-                        <div class="googlemap">
-                            <iframe width="100%" height="300" frameborder="0" scrolling="no" marginheight="0"
-                                    marginwidth="0"
-                                    src="https://maps.google.com/?ie=UTF8&amp;ll=42.065607,-77.189941&amp;spn=15.324445,23.620605&amp;t=m&amp;z=6&amp;output=embed"></iframe>
-                        </div>
                         <!-- END CONTENT ITEM -->
 
                     </div>
