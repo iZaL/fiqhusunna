@@ -51,6 +51,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['adm
 
 Route::get('test', function () {
 
+    dd(ini_get('upload_max_filesize'));
     echo phpinfo();
 //    $trackUploader = App::make('\App\Src\Track\TrackCrawler');
 //

@@ -25,7 +25,7 @@ class HomeController extends Controller
         $instas = array_slice($medias->data, 0, 3);
 
         // Get all Tracks
-        $latestTracks = $trackRepository->model->with('metas')->orderBy('created_at', 'desc')->paginate(20);
+        $latestTracks = $trackRepository->model->with('metas')->orderBy('created_at', 'desc')->paginate(10);
 
         return view('home', compact('instas', 'latestTracks', 'topTracks'));
 

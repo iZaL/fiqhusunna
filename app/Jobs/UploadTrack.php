@@ -3,10 +3,10 @@
 namespace App\Jobs;
 
 use App\Http\Requests\Request;
-use App\Jobs\Job;
 use App\Src\Track\TrackManager;
 use App\Src\Track\TrackRepository;
 use Illuminate\Contracts\Bus\SelfHandling;
+use Illuminate\Support\Facades\App;
 
 class UploadTrack extends Job implements SelfHandling
 {
@@ -30,11 +30,9 @@ class UploadTrack extends Job implements SelfHandling
 
     /**
      * Execute the job.
-     *
-     * @param TrackRepository $trackRepository
      * @param TrackManager $trackManager
      */
-    public function handle(TrackRepository $trackRepository, TrackManager $trackManager)
+    public function handle(TrackManager $trackManager)
     {
         foreach ($this->request->file('tracks') as $file) {
 
@@ -42,6 +40,8 @@ class UploadTrack extends Job implements SelfHandling
             if (!in_array($file->getClientOriginalExtension(), $trackManager->getAllowedExtension())) {
                 continue;
             }
+
+            $trackRepository  = App::make('App\Src\Track\TrackRepository');
 
             $track = $trackRepository->model->fill(array_merge([
                 'trackeable_id'   => $this->request->trackeable_id,
@@ -54,10 +54,12 @@ class UploadTrack extends Job implements SelfHandling
             ], $this->request->except('tracks')));
 
             // move uploaded file
+            $track->save();
+
+            $track;
 
             $trackManager->uploadTrack($file, $track);
 
-            $track->save();
         }
     }
 
