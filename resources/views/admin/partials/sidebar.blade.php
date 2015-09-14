@@ -58,7 +58,7 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-music"></i> Authors<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-male"></i> Authors<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="{{ action('Admin\AuthorController@index') }}"><i class="fa fa-list"></i> List</a>
