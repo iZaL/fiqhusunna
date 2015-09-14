@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UploadTrackRequest;
 use App\Jobs\UploadTrack;
 use App\Src\Album\AlbumRepository;
+use App\Src\Author\AuthorRepository;
 use App\Src\Category\CategoryRepository;
 use App\Src\Track\TrackRepository;
 use App\Src\Track\TrackUploader;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TrackController extends Controller
@@ -26,21 +28,28 @@ class TrackController extends Controller
      * @var AlbumRepository
      */
     private $albumRepository;
+    /**
+     * @var AuthorRepository
+     */
+    private $authorRepository;
 
     /**
      * Create a new controller instance.
      * @param TrackRepository $trackRepository
      * @param CategoryRepository $categoryRepository
      * @param AlbumRepository $albumRepository
+     * @param AuthorRepository $authorRepository
      */
     public function __construct(
         TrackRepository $trackRepository,
         CategoryRepository $categoryRepository,
-        AlbumRepository $albumRepository
+        AlbumRepository $albumRepository,
+        AuthorRepository $authorRepository
     ) {
         $this->trackRepository = $trackRepository;
         $this->categoryRepository = $categoryRepository;
         $this->albumRepository = $albumRepository;
+        $this->authorRepository = $authorRepository;
     }
 
     /**
@@ -50,7 +59,9 @@ class TrackController extends Controller
      */
     public function index()
     {
-        $tracks = $this->trackRepository->model->paginate(100);
+        $tracks = $this->trackRepository->model->with(['author'])->paginate(100);
+
+        $today = old('created_at') ? old('created_at')  : Carbon::now()->format('m/d/Y');
 
         $tracks->load('trackeable');
 
@@ -59,12 +70,19 @@ class TrackController extends Controller
 
     public function show($id)
     {
-        dd($id);
+        dd($this->trackRepository->model->find($id)->toArray());
     }
 
     public function create(Request $request)
     {
         $type = $request->get('type');
+
+        $authors = $this->authorRepository->model->all()->lists('name_ar','id');
+
+        $today = old('created_at') ? old('created_at')  : Carbon::now()->format('m/d/Y');
+
+
+        $authors->prepend('Choose author');
 
         // Check if The type GET PARAM is valid
         if (!isset($type) || !array_key_exists($type, $this->trackRepository->model->types)) {
@@ -86,7 +104,7 @@ class TrackController extends Controller
 
         $trackeables = $repository->model->all()->lists('name_ar', 'id');
 
-        return view('admin.modules.track.create', compact('trackeables', 'type'));
+        return view('admin.modules.track.create', compact('trackeables', 'type','authors','today'));
     }
 
     /**

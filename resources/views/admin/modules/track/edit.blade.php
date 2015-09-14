@@ -6,11 +6,16 @@
 
 @section('style')
     @parent
+    <link rel="stylesheet" href="/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.standalone.min.css">
+
 @stop
 
 @section('script')
     @parent
-
+    <script src="/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <script>
+        $('.datepicker').datepicker();
+    </script>
 @stop
 
 @section('content')

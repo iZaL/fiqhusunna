@@ -6,7 +6,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">Sound App</a>
+        <a class="navbar-brand" href="/admin">Sound App</a>
     </div>
     <!-- /.navbar-header -->
 
@@ -52,6 +52,17 @@
                         <li>
                             <a href="{{ action('Admin\AlbumController@index') }}"><i class="fa fa-list"></i> List</a>
                             <a href="{{ action('Admin\AlbumController@create') }}"><i class="fa fa-plus"></i> Add</a>
+                        </li>
+
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-music"></i> Authors<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="{{ action('Admin\AuthorController@index') }}"><i class="fa fa-list"></i> List</a>
+                            <a href="{{ action('Admin\AuthorController@create') }}"><i class="fa fa-plus"></i> Add</a>
                         </li>
 
                     </ul>

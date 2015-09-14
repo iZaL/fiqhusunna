@@ -115,7 +115,6 @@ class AlbumController extends Controller
     {
         $this->validate($request, [
             'name_ar'     => 'required|unique:albums,name_ar,' . $id,
-            'category_id' => 'required:numeric|not_in:0',
             'cover'       => 'image'
         ]);
 

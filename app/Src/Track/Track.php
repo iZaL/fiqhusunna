@@ -40,6 +40,11 @@ class Track extends BaseModel
         return $this->morphMany('App\Src\Meta\Meta', 'meta');
     }
 
+    public function author()
+    {
+        return $this->belongsTo('App\Src\Author\Author');
+    }
+
     public function topTracks()
     {
         return $this->morphOne('App\Src\Meta\Meta',
@@ -113,5 +118,9 @@ class Track extends BaseModel
         $this->attributes['name_ar'] = tidify($value);
     }
 
+    public function setRecordDateAttribute($value)
+    {
+        $this->attributes['record_date'] = Carbon::parse($value);
+    }
 
 }

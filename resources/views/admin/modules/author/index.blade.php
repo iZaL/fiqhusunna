@@ -1,8 +1,7 @@
 @extends('admin.layouts.one_col')
 
-
 @section('title')
-    <h1>Tracks</h1>
+    <h1>Authors</h1>
 @endsection
 
 @section('style')
@@ -17,7 +16,7 @@
     <div class="col-lg-12 mTop10">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Tracks
+                Authors
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
@@ -26,22 +25,27 @@
                         <thead>
                         <tr>
                             <th>Title</th>
-                            <th>Author</th>
-                            <th>Type</th>
-                            <th>Size</th>
+                            <th>Description</th>
+                            <th>Edit</th>
                             <th>Delete</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($tracks as $track)
+                        @foreach($authors as $author)
                             <tr class="gradeU">
-                                <td> {{ $track->name }}</td>
-                                <td> {{ $track->author ? $track->author->name : 'N/A' }}</td>
-                                <td> {{ $track->trackeable ? $track->trackeable->name : '' }}</td>
-                                <td> {{ $track->size }}</td>
+                                <td> {{ $author->name }}</td>
+                                <td> {!! $author->description !!}</td>
+                                <td class="center">
+                                    <p data-placement="top" data-toggle="tooltip" title="Edit">
+                                        <a href={{action('Admin\AuthorController@edit',$author->id)}}>
+                                            <button class="btn btn-primary btn-xs"><span
+                                                        class="glyphicon glyphicon-pencil"></span></button>
+                                        </a>
+                                    </p>
+                                </td>
                                 <td class="center">
                                     <p data-placement="top" data-toggle="tooltip" title="Delete">
-                                        {!! Form::open(['action' => ['Admin\TrackController@destroy', $track->id], 'method' => 'DELETE'], ['class'=>'form-horizontal']) !!}
+                                        {!! Form::open(['action' => ['Admin\AuthorController@destroy', $author->id], 'method' => 'DELETE'], ['class'=>'form-horizontal']) !!}
                                         {!! Form::submit('delete', ['class' => 'btn btn-danger btn-xs']) !!}
                                         {!! Form::close() !!}
                                     </p>
@@ -72,7 +76,7 @@
 
                         </div>
                         <div class="modal-footer">
-                            {!! Form::open(['action' => ['Admin\TrackController@destroy', 1], 'method' => 'delete'],
+                            {!! Form::open(['action' => ['Admin\AlbumController@destroy', 1], 'method' => 'delete'],
                             ['class'=>'form-horizontal']) !!}
 
                             <button type="submit" class="btn btn-success"><span

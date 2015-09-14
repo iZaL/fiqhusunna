@@ -8,7 +8,7 @@ class BaseModel extends Model
 {
     public function getDates()
     {
-        return ['created_at', 'deleted_at', 'updated_at', 'date'];
+        return ['created_at', 'deleted_at', 'updated_at', 'date', 'record_date'];
     }
 
     public function setSlugAttribute($value)

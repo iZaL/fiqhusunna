@@ -45,12 +45,16 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['adm
 
     Route::resource('user', 'UserController');
 
+    Route::resource('author', 'AuthorController');
+
     Route::get('/', 'HomeController@index');
 
 });
 
 Route::get('test', function () {
 
+    $date = '09/14/2014';
+    dd(Carbon\Carbon::parse($date));
     dd(ini_get('upload_max_filesize'));
     echo phpinfo();
 //    $trackUploader = App::make('\App\Src\Track\TrackCrawler');

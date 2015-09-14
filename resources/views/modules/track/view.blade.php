@@ -41,7 +41,6 @@
 
     <h1>{{$track->name}} </h1>
     <div class="col-md-12 pTop10 pBottom10 mTop10" style="background-color: #D8ECF0;">
-        {{--{{ trans('word.created_at') }}--}}
         <a href="#">
             <i class="fa fa-pencil"></i>
         </a>
@@ -62,6 +61,24 @@
             <i class="fa fa-database"></i>
         </a>
         {{ $track->size }}
+        <br>
+        @if($track->author)
+            <a href="#"><i class="fa fa-user"></i></a>
+            {{$track->author->name}}
+        @endif
+
+        <br>
+        @if($track->place)
+            <a href="#"><i class="fa fa-map-marker"></i></a>
+            {{$track->place}}
+        @endif
+
+        <br>
+        @if($track->record_date)
+            {{ trans('word.record_date') }} :
+            {{$track->record_date->format('m-d-Y')}}
+        @endif
+
     </div>
     @include('modules.track.jplayer',['track'=>$track])
 @endsection

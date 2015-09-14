@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Http\Requests\Request;
 use App\Src\Track\TrackManager;
 use App\Src\Track\TrackRepository;
+use Carbon\Carbon;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Support\Facades\App;
 
@@ -39,6 +40,7 @@ class UploadTrack extends Job implements SelfHandling
      */
     public function handle(TrackManager $trackManager)
     {
+
         $uploadCount = 1;
 
         foreach ($this->request->file('tracks') as $file) {
@@ -55,14 +57,20 @@ class UploadTrack extends Job implements SelfHandling
 
             $trackRepository = App::make('App\Src\Track\TrackRepository');
 
+            $recordDate = $this->request->record_date;
+
             $track = $trackRepository->model->fill(array_merge([
                 'trackeable_id'   => $this->request->trackeable_id,
                 'trackeable_type' => $this->request->trackeable_type,
+                'author_id'       => $this->request->author_id ? :null,
+                'record_date'     => $recordDate,
+                'place'           => $this->request->place,
                 'name_ar'         => $file->getClientOriginalName(),
                 'slug'            => $file->getClientOriginalName(),
                 'url'             => $trackRepository->setHashedName($file)->getHashedName(),
                 'extension'       => $file->getClientOriginalExtension(),
                 'size'            => $file->getClientSize(),
+
             ], $this->request->except('tracks')));
 
             // move uploaded file
