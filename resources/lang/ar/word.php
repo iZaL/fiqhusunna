@@ -135,5 +135,6 @@ return [
     'size' => 'الحجم',
     'created_at' => ' تاريخ الإضافة',
     'browse' => 'الفئات',
-    'record_date' => 'تاريخ التسجيل'
+    'record_date' => 'تاريخ التسجيل',
+    'record_date_hijri' => 'تاريخ التسجيل الهجري'
 ];

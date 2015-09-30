@@ -64,6 +64,7 @@ class UploadTrack extends Job implements SelfHandling
                 'trackeable_type' => $this->request->trackeable_type,
                 'author_id'       => $this->request->author_id ? :null,
                 'record_date'     => $recordDate,
+                'record_date_hijri' => $this->request->record_date_hijri,
                 'place'           => $this->request->place,
                 'name_ar'         => $file->getClientOriginalName(),
                 'slug'            => $file->getClientOriginalName(),

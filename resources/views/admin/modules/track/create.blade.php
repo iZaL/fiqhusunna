@@ -61,6 +61,11 @@
         </div>
 
         <div class="form-group">
+            {!! Form::label('record date hijri', 'Record Date Hijri', ['class' => 'control-label']) !!}
+            {!! Form::text('record_date_hijri', null,['class'=>'form-control','placeholder'=>'Hijri Date']) !!}
+        </div>
+
+        <div class="form-group">
             <span class="btn btn-primary fileinput-button">
                 <i class="glyphicon glyphicon-plus"></i>
                 <span class="mBottom10">Select Tracks You want to upload...</span>

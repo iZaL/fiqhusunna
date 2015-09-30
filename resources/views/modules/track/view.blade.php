@@ -78,6 +78,11 @@
             {{ trans('word.record_date') }} :
             {{$track->record_date->format('m-d-Y')}}
         @endif
+        <br>
+        @if($track->record_date)
+            {{ trans('word.record_date_hijri') }} :
+            {{$track->record_date_hijri}}
+        @endif
 
     </div>
     @include('modules.track.jplayer',['track'=>$track])
