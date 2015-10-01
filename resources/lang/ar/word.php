@@ -134,7 +134,7 @@ return [
     'save_file'=>'حفظ الملف',
     'size' => 'الحجم',
     'created_at' => ' تاريخ الإضافة',
-    'browse' => 'الفئات',
+    'browse' => 'صوتيات',
     'record_date' => 'تاريخ التسجيل',
     'record_date_hijri' => 'تاريخ التسجيل الهجري'
 ];
