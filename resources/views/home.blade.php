@@ -1,7 +1,7 @@
 @extends('layouts.three_col')
 
 @section('banner')
-    @include('partials.instagram')
+    {{--@include('partials.instagram')--}}
 @endsection
 
 @section('middle')

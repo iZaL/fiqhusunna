@@ -4,7 +4,7 @@
 
     <div class="no-gutter row">
         <div class="col-md-12">
-            @yield('banner')
+            {{--@yield('banner')--}}
         </div>
     </div>
 
@@ -24,7 +24,7 @@
             @yield('middle')
         </div>
 
-        <div class="col-md-5" id="content">
+        <div class="col-md-2" id="content">
             @yield('left')
         </div>
 

@@ -73,10 +73,10 @@
 
                         <!-- START CONTENT ITEM -->
                         <address>
-                            <strong>Hojairat Sounds</strong><br>
+                            <strong>SiteTitle Sounds</strong><br>
                             <br>
                             00966-549054511<br>
-                            hojairatsounds@gmail.com<br>
+                            siteTitlesounds@gmail.com<br>
                         </address>
                         <!-- END CONTENT ITEM -->
 
