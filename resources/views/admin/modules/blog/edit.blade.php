@@ -25,29 +25,33 @@
                 <option value="">choose a category</option>
                 @foreach($categories as $category)
                     <option value="{{$category->id}}"
-                        @if($category->id == Form::getValueAttribute('category_id') )
+                            @if($category->id == Form::getValueAttribute('category_id') )
                             selected="selected"
-                        @endif
-                        >
-                    >{{$category->name}}</option>
-                    @foreach($category->childCategories as $child)
-                        <option value="{{ $child->id }}"
-                                @if($category->id == Form::getValueAttribute('category_id') )
-                                selected="selected"
-                                @endif
-                        >-- {{$child->name}}</option>
-                    @endforeach
+                            @endif
+                        >{{$category->name}}</option>
+                    @if(count($category->childCategories)>1)
+                        @foreach($category->childCategories as $child)
+                            <option value="{{ $child->id }}"
+                                    @if($category->id == Form::getValueAttribute('category_id') )
+                                    selected="selected"
+                                    @endif
+                            >-- {{$child->name}}</option>
+                        @endforeach
+                    @endif
+
                 @endforeach
             </select>
         </div>
 
         <div class="form-group">
-            {!! Form::label('title', 'Article Title in English', ['class' => 'control-label']) !!} <span class="red">*</span>
+            {!! Form::label('title', 'Article Title in English', ['class' => 'control-label']) !!} <span
+                    class="red">*</span>
             {!! Form::text('title_en', null, ['class' => 'form-control','placeholder'=>'Category Name']) !!}
         </div>
 
         <div class="form-group">
-            {!! Form::label('title', 'Article Title in Arabic', ['class' => 'control-label']) !!} <span class="red">*</span>
+            {!! Form::label('title', 'Article Title in Arabic', ['class' => 'control-label']) !!} <span
+                    class="red">*</span>
             {!! Form::text('title_ar', null, ['class' => 'form-control','placeholder'=>'Category Name']) !!}
         </div>
 

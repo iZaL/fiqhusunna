@@ -88,8 +88,7 @@ class BlogController extends Controller
 
     public function edit($id)
     {
-        $categories = ['' => 'Choose Category'] + $this->categoryRepository->model->all()
-                ->lists('name_en', 'id')->toArray();
+        $categories = $this->categoryRepository->model->parentCategories()->with('childCategories')->get();
         $blog = $this->blogRepository->model->with('photos')->find($id);
 
         return view('admin.modules.blog.edit', compact('blog', 'categories'));
