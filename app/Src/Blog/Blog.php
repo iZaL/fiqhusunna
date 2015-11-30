@@ -3,11 +3,13 @@
 use App\Core\BaseModel;
 use App\Core\LocaleTrait;
 use App\Src\Category\Category;
+use App\Src\Meta\CountableTrait;
 
 class Blog extends BaseModel
 {
 
     use LocaleTrait;
+    use CountableTrait;
 
     protected $table = 'blogs';
 
@@ -36,4 +38,10 @@ class Blog extends BaseModel
     {
         return $this->attributes['slug'] = slug($value);
     }
+
+    public function metas()
+    {
+        return $this->morphMany('App\Src\Meta\Meta', 'meta');
+    }
+
 }

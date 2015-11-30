@@ -14,6 +14,7 @@ class Meta extends BaseModel
         'album'    => 'App\Src\Album\Album',
         'category' => 'App\Src\Category\Category',
         'track'    => 'App\Src\Track\Track',
+        'blog'     => 'App\Src\Blog\Blog'
     ];
 
     public function meta()
