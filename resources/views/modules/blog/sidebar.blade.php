@@ -20,7 +20,6 @@
                                 class="fa fa-folder"></i> {{ ucfirst($category->name) }}</a>
                 @if($category->childCategories)
                     <ul class="dropdown-menu">
-                            <li><a href="{{ action('CategoryController@getArticle',$category->id) }}"> {{ ucfirst($category->name) }}</a></li>
                         @foreach($category->childCategories as $child)
                             <li>
                                 <a href="{{ action('CategoryController@getArticle',$child->id) }}">{{ $child->name }}</a>
