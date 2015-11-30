@@ -17,7 +17,7 @@
                     </div>
                 @else
                     <div class="col-md-12">
-                        {!! str_limit($article->description,100) !!}
+                        {!! str_limit(strip_tags($article->description,100)) !!}
                     </div>
                 @endif
 
