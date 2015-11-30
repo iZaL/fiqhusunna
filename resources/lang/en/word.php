@@ -121,5 +121,10 @@ return [
     'articles' => 'Articles',
     'albums'=> 'Albums',
     'save_file'=>'Save',
-    'views' => 'Views'
+    'views' => 'Views',
+    'send' => 'Send',
+    'comment' => 'Comment',
+    'track' => 'Track',
+    'all_categories' => 'All Categories',
+    'all_tracks'=> 'All Tracks'
 ];

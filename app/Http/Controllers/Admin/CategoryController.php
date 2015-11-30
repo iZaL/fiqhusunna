@@ -37,7 +37,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = $this->categoryRepository->model->all();
+        $categories = $this->categoryRepository->model->with('parentCategory')->get();
 
         return view('admin.modules.category.index', compact('categories'));
     }
@@ -50,7 +50,7 @@ class CategoryController extends Controller
     public function create()
     {
         $categories = [''=>'Choose parent category']+$this->categoryRepository->model->parentCategories()
-            ->lists('name_en', 'id');
+            ->lists('name_en', 'id')->toArray();
         return view('admin.modules.category.create',compact('categories'));
     }
 
@@ -88,7 +88,7 @@ class CategoryController extends Controller
     {
 
         $categories = [''=>'Choose parent category']+$this->categoryRepository->model->parentCategories()
-                ->lists('name_en', 'id');
+                ->lists('name_en', 'id')->toArray();
 
         $category = $this->categoryRepository->model->find($id);
 

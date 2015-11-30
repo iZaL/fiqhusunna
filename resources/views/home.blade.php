@@ -5,7 +5,7 @@
 @endsection
 
 @section('middle')
-    @include('modules.blog.latest',['articles'=>$articles])
+    @include('modules.blog._loop',['articles'=>$articles])
 @endsection
 
 @section('right')

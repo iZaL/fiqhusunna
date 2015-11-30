@@ -5,7 +5,7 @@
         <ul class="list-group">
             @foreach($categories as $category)
                 <h5>
-                    <li class="list-group-item"><a href="{{ action('CategoryController@getTrack',$category->id) }}"><i
+                    <li class="list-group-item"><a href="{{ action('CategoryController@getArticle',$category->id) }}"><i
                                     class="fa fa-folder"></i> {{ $category->name }}</a></li>
                 </h5>
             @endforeach

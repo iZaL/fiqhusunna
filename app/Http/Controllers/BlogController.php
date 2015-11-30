@@ -34,7 +34,6 @@ class BlogController extends Controller
      */
     public function index()
     {
-
         $blogCategories = $this->categoryRepository->model->has('blogs')->get();
         $articles = $this->blogRepository->model->latest()->paginate(20);
         return view('modules.blog.index', compact('articles','blogCategories'));

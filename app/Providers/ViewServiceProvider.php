@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Http\Composers\ArticleCategory;
+use App\Http\Composers\TrackCategory;
 use Illuminate\Support\ServiceProvider;
 
 class ViewServiceProvider extends ServiceProvider
@@ -14,9 +16,8 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer(
-            'partials.category-menu', 'App\Http\Composers\CategoryMenu'
-        );
+        view()->composer('partials.track-category-menu', 'App\Http\Composers\TrackCategory');
+        view()->composer('partials.article-category-menu', 'App\Http\Composers\ArticleCategory');
     }
 
     /**

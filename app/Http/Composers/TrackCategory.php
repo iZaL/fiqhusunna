@@ -4,8 +4,8 @@ namespace App\Http\Composers;
 use App\Src\Category\CategoryRepository;
 use Illuminate\Contracts\View\View;
 
-class CategoryMenu {
-    
+class TrackCategory {
+
     protected $categoryRepository;
 
     public function __construct(CategoryRepository $categoryRepository)
@@ -15,8 +15,8 @@ class CategoryMenu {
 
     public function compose(View $view)
     {
-        $categories = $this->categoryRepository->model->with('albums')->get(['id','name_ar']);
-        $view->with('categories', $categories);
+        $categories = $this->categoryRepository->model->has('tracks')->with('albums')->get(['id','name_ar']);
+        $view->with('trackCategories', $categories);
     }
-    
+
 }

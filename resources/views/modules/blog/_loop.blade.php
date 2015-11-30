@@ -1,28 +1,39 @@
-@foreach($posts as $post)
-    <h2><a href="{{ action('BlogController@show',$post->id) }}">{{ $post->title }}</a></h2>
+<div class="panel">
+    <div class="panel-heading middle-col-heading">{{ trans('word.latest_articles') }} </div>
+    <div class="panel-body">
+        @foreach($articles as $article)
+            <h2><a href="{{ action('BlogController@show',$article->id) }}">{{ ucfirst($article->title) }}</a></h2>
 
-    <div class="row">
-        <div class="col-md-3">
-            <a href="{{ action('BlogController@show',$post->id) }}">
-                @if($post->thumbnail)
-                    <img src="/uploads/thumbnail/{{ $post->thumbnail->name}}"
-                         class="img-responsive img-thumbnail">
+            <div class="row">
+                @if($article->thumbnail)
+                    <div class="col-md-3">
+                        <a href="{{ action('BlogController@show',$article->id) }}">
+                            <img src="/uploads/thumbnail/{{ $article->thumbnail->name}}"
+                                 class="img-responsive img-thumbnail">
+                        </a>
+                    </div>
+                    <div class="col-md-9">
+                        {!! str_limit($article->description,100) !!}
+                    </div>
                 @else
-                    <img src="http://placehold.it/150x100/EEEEEE" class="img-responsive img-thumbnail">
+                    <div class="col-md-12">
+                        {!! str_limit($article->description,100) !!}
+                    </div>
                 @endif
-            </a>
-        </div>
-        <div class="col-md-9">
-            {!! str_limit($post->description,100) !!}
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12 ">
-            <button class="btn btn-default mTop10"><a
-                        href="{{ action('BlogController@show',$post->id) }}">More</a></button>
-        </div>
-    </div>
 
-    <hr>
-@endforeach
-    
+            </div>
+            <div class="row">
+                <div class="col-md-12 ">
+                    <button class="btn btn-default mTop10"><a
+                                href="{{ action('BlogController@show',$article->id) }}">{{ trans('word.more') }}</a>
+                    </button>
+                </div>
+            </div>
+
+            <hr>
+        @endforeach
+    </div>
+    <!--/panel-body-->
+</div>
+<!--/panel-->
+

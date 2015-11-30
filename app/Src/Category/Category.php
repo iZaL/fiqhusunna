@@ -31,17 +31,17 @@ class Category extends BaseModel
 
     public function parentCategories()
     {
-        return DB::table($this->table)->where('parent_id','!',0);
-    }
-
-    public function parentCategory()
-    {
-        return $this->belongsTo(Category::class, 'parent_id');
+        return $this->where('parent_id','=',0);
     }
 
     public function childCategories()
     {
-        return $this->hasMany(Category::class, 'parent_id');
+        return $this->hasMany($this,'parent_id');
+    }
+
+    public function parentCategory()
+    {
+        return $this->belongsTo($this,'parent_id');
     }
 
     public function blogs()

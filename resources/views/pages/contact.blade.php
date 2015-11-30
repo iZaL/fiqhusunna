@@ -5,15 +5,6 @@
         <div class="col-xs-12">
 
             <div class="row">
-                <div class="col-xs-12">
-                    <!-- START CONTENT ITEM -->
-                    <h1 style="text-align: center">{{ trans('word.contact_us') }}</h1>
-                    <hr>
-                    <!-- END CONTENT ITEM -->
-                </div>
-            </div>
-
-            <div class="row">
                 <div class="col-xs-12 col-sm-6">
 
                     <!-- START CONTENT ITEM -->
@@ -21,27 +12,25 @@
                     <fieldset>
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-4 control-label"
-                                   for="field_01">{{trans('word.name')}}</label>
+                                   for="field_01">{{ucfirst(trans('word.name'))}}</label>
 
                             <div class="col-xs-12 col-sm-8">
                                 <input type="text" class="form-control" name="name" id="name">
-
                                 <p class="help-block"></p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-4 control-label"
-                                   for="field_03">{{trans('word.email')}}</label>
+                                   for="field_03">{{ucfirst(trans('word.email'))}}</label>
 
                             <div class="col-xs-12 col-sm-8">
                                 <input type="text" class="form-control" name="email" id="email">
-
                                 <p class="help-block"></p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-4 control-label"
-                                   for="field_02">{{trans('word.phone')}}</label>
+                                   for="field_02">{{ucfirst(trans('word.phone'))}}</label>
 
                             <div class="col-xs-12 col-sm-8">
                                 <input type="text" class="form-control" name="phone" id="phone">
@@ -51,7 +40,7 @@
                         </div>
                         <div class="form-group">
                             <label class="col-xs-12 col-sm-4 control-label"
-                                   for="field_05">{{trans('word.comments')}}</label>
+                                   for="field_05">{{ucfirst(trans('word.comment'))}}</label>
 
                             <div class="col-xs-12 col-sm-8">
                                 <textarea class="form-control" rows="5" name="body" id="body"></textarea>
@@ -73,10 +62,25 @@
 
                         <!-- START CONTENT ITEM -->
                         <address>
-                            <strong>Fiqhussunna Sounds</strong><br>
+                            <strong>Fiqhussunna.com</strong><br>
                             <br>
-                            00966-549054511<br>
-                            siteTitlesounds@gmail.com<br>
+                            <i class="fa fa-google"></i>
+                            pnabdurahman@gmail.com
+                            <br>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-4 col-xs-12">
+                                    <div class="col-md-1 col-xs-4 "><a href="https://twitter.com/pnabdurahman"><i
+                                                    class="fa fa-twitter "></i></a></div>
+                                    <div class="col-md-1 col-xs-4 "><a href="https://www.youtube.com/channel/UCwq7He3Ulzukp5LXwzbWGfw"><i
+                                                    class="fa fa-youtube "></i></a></div>
+                                    <div class="col-md-1 col-xs-4 "><a href="http://facebook.com/"><i
+                                                    class="fa fa-facebook "></i></a></div>
+                                </div>
+                                <div class="col-md-8 col-xs-12">
+
+                                </div>
+                            </div>
                         </address>
                         <!-- END CONTENT ITEM -->
 
