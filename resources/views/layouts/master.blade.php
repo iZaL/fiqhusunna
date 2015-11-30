@@ -13,7 +13,7 @@
 <head>
 
     <meta charset="utf-8">
-    <title>@yield(e('title'),'SiteTitle')</title>
+    <title>@yield(e('title'),'Fiqhussunna')</title>
     <meta name="description" content="Page description here">
     <meta name="author" content="BigBase - D. Tiems">
     <meta name="viewport" content="width=device-width">

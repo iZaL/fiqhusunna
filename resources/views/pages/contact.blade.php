@@ -73,7 +73,7 @@
 
                         <!-- START CONTENT ITEM -->
                         <address>
-                            <strong>SiteTitle Sounds</strong><br>
+                            <strong>Fiqhussunna Sounds</strong><br>
                             <br>
                             00966-549054511<br>
                             siteTitlesounds@gmail.com<br>
