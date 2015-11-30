@@ -17,10 +17,10 @@
                        href="{{ action('PageController@getContact') }}">{{ trans('word.contact_us') }}</a></li>
 
             </ul>
-            <div class="pull-right locale">
-                @include('partials.locale')
-                <i class="fa fa-globe localeIcon"></i>
-            </div>
+            {{--<div class="pull-right locale">--}}
+                {{--@include('partials.locale')--}}
+                {{--<i class="fa fa-globe localeIcon"></i>--}}
+            {{--</div>--}}
         </div>
     </div>
 </nav>

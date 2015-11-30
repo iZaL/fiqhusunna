@@ -30,12 +30,12 @@
 
         <div class="form-group">
             {!! Form::label('title', 'Track Title', ['class' => 'control-label']) !!} <span class="red">*</span>
-            {!! Form::text('title_ar', null, ['class' => 'form-control','placeholder'=>'Category Name']) !!}
+            {!! Form::text('title_en', null, ['class' => 'form-control','placeholder'=>'Category Name']) !!}
         </div>
 
         <div class="form-group">
             {!! Form::label('description', 'Description', ['class' => 'control-label']) !!}
-            {!! Form::textarea('description_ar', null, ['class' => 'form-control editor','placeholder'=>'Category Description']) !!}
+            {!! Form::textarea('description_en', null, ['class' => 'form-control editor','placeholder'=>'Category Description']) !!}
         </div>
 
         <div class="form-group">

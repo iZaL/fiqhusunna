@@ -47,12 +47,12 @@ class AuthorController extends Controller
     public function store(Request $request, PhotoRepository $photoRepository)
     {
         $this->validate($request, [
-            'name_ar'     => 'required|unique:authors,name_ar',
+            'name_en'     => 'required|unique:authors,name_en',
             'cover'       => 'image'
         ]);
 
         $author = $this->authorRepository->model->fill(array_merge($request->except(['cover']),
-            ['slug' => $request->get('name_ar')]));
+            ['slug' => $request->get('name_en')]));
 
         $author->save();
         // upload photos
@@ -79,7 +79,7 @@ class AuthorController extends Controller
     public function update(Request $request, PhotoRepository $photoRepository, $id)
     {
         $this->validate($request, [
-            'name_ar' => 'required|unique:authors,name_ar,' . $id,
+            'name_ar' => 'required|unique:authors,name_en,' . $id,
             'cover'   => 'image'
         ]);
 
@@ -87,7 +87,7 @@ class AuthorController extends Controller
 
 //        $oldAuthorSlug = $author->slug;
 
-        $author->fill(array_merge(['slug' => $request->name_ar], $request->except('cover')));
+        $author->fill(array_merge(['slug' => $request->name_en], $request->except('cover')));
 
         if ($request->hasFile('cover')) {
             $photoRepository->replace($request->file('cover'), $author, ['thumbnail' => 1], $id);

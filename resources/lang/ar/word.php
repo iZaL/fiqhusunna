@@ -117,7 +117,7 @@ return [
     'added'                   => 'المضافة',
     'latest_news'             => 'اخر الاخبار',
     'latest_articles'         => 'اخر المقالات',
-    'about_us'                => 'عن الرادود',
+    'about_us'                => 'عن الموقع',
     'contact_us'              => 'اتصل بنا',
     'articles'                => 'المقالات',
     'albums'                  => 'الإصدارات',

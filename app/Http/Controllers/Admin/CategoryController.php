@@ -111,15 +111,11 @@ class CategoryController extends Controller
             ['slug' => $request->name_en]));
 
         if ($category->isDirty('name_en')) {
-
             $this->trackManager->updateCategoryDirectory($oldSlug, $category->slug);
-
         }
 
         if ($request->hasFile('cover')) {
-
             $photoRepository->replace($request->file('cover'), $category, ['thumbnail' => 1], $id);
-
         }
 
         $category->save();

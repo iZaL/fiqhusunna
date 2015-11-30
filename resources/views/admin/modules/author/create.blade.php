@@ -20,12 +20,12 @@
 
         <div class="form-group">
             {!! Form::label('name', 'Author Name', ['class' => 'control-label']) !!} <span class="red">*</span>
-            {!! Form::text('name_ar', null, ['class' => 'form-control','placeholder'=>'Author Name']) !!}
+            {!! Form::text('name_en', null, ['class' => 'form-control','placeholder'=>'Author Name']) !!}
         </div>
 
         <div class="form-group">
             {!! Form::label('description', 'Author Description', ['class' => 'control-label']) !!}
-            {!! Form::textarea('description_ar', null, ['class' => 'form-control editor','placeholder'=>'Author
+            {!! Form::textarea('description_en', null, ['class' => 'form-control editor','placeholder'=>'Author
             Description']) !!}
         </div>
 

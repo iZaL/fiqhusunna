@@ -53,7 +53,7 @@ class BlogController extends Controller
 
     public function create()
     {
-        $categories = ['' => 'Choose Category'] + $this->categoryRepository->model->all()
+        $categories = ['' => 'Choose Category'] + $this->categoryRepository->model
                 ->lists('name_en', 'id')->toArray();
         return view('admin.modules.blog.create', compact('categories'));
     }
@@ -62,9 +62,9 @@ class BlogController extends Controller
     {
 
         $this->validate($request, [
-            'title_ar' => 'required',
+            'title_en' => 'required',
             'category_id' => 'required|numeric',
-            'description_ar' => 'required',
+            'description_en' => 'required',
             'cover' => 'image'
         ]);
 
@@ -75,7 +75,7 @@ class BlogController extends Controller
             'description_ar' => $request->description_ar,
             'description_en' => $request->description_en,
             'user_id' => Auth::user()->id,
-            'slug' => $request->title_en ? $request->title_en : $request->title_ar
+            'slug' => $request->title_en
         ]);
 
         if ($request->hasFile('cover')) {
@@ -90,7 +90,7 @@ class BlogController extends Controller
     public function edit($id)
     {
         $categories = ['' => 'Choose Category'] + $this->categoryRepository->model->all()
-                ->lists('name_en', 'id');
+                ->lists('name_en', 'id')->toArray();
         $blog = $this->blogRepository->model->with('photos')->find($id);
 
         return view('admin.modules.blog.edit', compact('blog', 'categories'));
@@ -105,15 +105,15 @@ class BlogController extends Controller
     public function update(Request $request, PhotoRepository $photoRepository, $id)
     {
         $this->validate($request, [
-            'title_ar' => 'required',
+            'title_en' => 'required',
             'category_id' => 'required|numeric',
-            'description_ar' => 'required',
+            'description_en' => 'required',
             'cover' => 'image'
         ]);
 
         $blog = $this->blogRepository->model->find($id);
 
-        $blog->update(array_merge(['slug' => $request->title_en ? $request->title_en : $request->title_ar],
+        $blog->update(array_merge(['slug' => $request->title_en ],
             $request->except('cover')));
 
         if ($request->hasFile('cover')) {

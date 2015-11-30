@@ -27,8 +27,6 @@ class CategoryController extends Controller
      */
     public function __construct(CategoryRepository $categoryRepository,BlogRepository $blogRepository)
     {
-
-        dd(App::getLocale());
         $this->categoryRepository = $categoryRepository;
         $this->blogRepository = $blogRepository;
     }

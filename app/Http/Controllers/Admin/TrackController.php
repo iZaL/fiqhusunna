@@ -77,7 +77,7 @@ class TrackController extends Controller
     {
         $type = $request->get('type');
 
-        $authors = $this->authorRepository->model->all()->lists('name_ar','id');
+        $authors = $this->authorRepository->model->all()->lists('name_en','id');
 
         $today = old('created_at') ? old('created_at')  : Carbon::now()->format('m/d/Y');
 
@@ -102,7 +102,7 @@ class TrackController extends Controller
                 break;
         }
 
-        $trackeables = $repository->model->all()->lists('name_ar', 'id');
+        $trackeables = $repository->model->all()->lists('name_en', 'id');
 
         return view('admin.modules.track.create', compact('trackeables', 'type','authors','today'));
     }
