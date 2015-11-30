@@ -80,7 +80,6 @@ class BlogController extends Controller
 
         if ($request->hasFile('cover')) {
             $file = $request->file('cover');
-
             $photoRepository->attach($file, $blog, ['thumbnail' => 1]);
         }
 

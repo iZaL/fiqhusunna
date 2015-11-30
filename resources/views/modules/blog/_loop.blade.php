@@ -2,7 +2,9 @@
     <div class="panel-heading middle-col-heading">{{ trans('word.latest_articles') }} </div>
     <div class="panel-body">
         @foreach($articles as $article)
+
             <h2><a href="{{ action('BlogController@show',$article->id) }}">{{ ucfirst($article->title) }}</a></h2>
+            <i class="fa fa-calendar"></i>&nbsp; {{ $article->created_at->format('l, M j,Y ') }}
 
             <div class="row">
                 @if($article->thumbnail)
@@ -17,7 +19,7 @@
                     </div>
                 @else
                     <div class="col-md-12 article">
-                        {!! str_limit(strip_tags($article->description,400)) !!}
+                        {!! str_limit(strip_tags($article->description),400) !!}
                     </div>
                 @endif
 
