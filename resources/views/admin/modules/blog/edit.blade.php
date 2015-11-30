@@ -25,14 +25,14 @@
                 <option value="">choose a category</option>
                 @foreach($categories as $category)
                     <option value="{{$category->id}}"
-                        @if($category->id == Form::getValueAttribute() )
+                        @if($category->id == Form::getValueAttribute('category_id') )
                             selected="selected"
                         @endif
                         >
                     >{{$category->name}}</option>
                     @foreach($category->childCategories as $child)
                         <option value="{{ $child->id }}"
-                                @if($category->id == Form::getValueAttribute() )
+                                @if($category->id == Form::getValueAttribute('category_id') )
                                 selected="selected"
                                 @endif
                         >-- {{$child->name}}</option>
