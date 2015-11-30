@@ -84,7 +84,7 @@ return [
     'delete' => 'delete',
     'enter' => 'enter',
     'register' => 'register',
-    'more' => 'more',
+    'more' => 'continue reading ...',
     'title' => 'title',
     'description' => 'description',
     'forgot_password' => 'forgot_password',
