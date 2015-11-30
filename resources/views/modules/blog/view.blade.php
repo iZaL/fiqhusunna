@@ -27,7 +27,7 @@
         <div class="panel-heading blog-title" ><h3>{{ ucfirst($post->title) }}</h3></div>
         <div class="panel-body">
             <div class="col-md-12">
-                <div class="row">
+                <div class="row article">
                     {!! $post->description !!}
                 </div>
             </div>
