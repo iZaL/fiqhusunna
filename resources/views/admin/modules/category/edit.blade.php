@@ -18,11 +18,24 @@
     <div class="mTop10">
         {!! Form::model($category,['action' => ['Admin\CategoryController@update',$category->id], 'method' => 'patch','files'=>true,'class'=>'form-horizontal']) !!}
 
+
         <div class="form-group">
-            {!! Form::label('name', 'Name', ['class' => 'control-label']) !!} <span class="red">*</span>
-            {!! Form::text('name_ar', null, ['class' => 'form-control','placeholder'=>'Category Name']) !!}
+            {!! Form::label('parent_id', 'Parent Category', ['class' => 'control-label']) !!} <span class="red">*</span>
+            {!! Form::select('parent_id', $categories,null,array('class'=>'form-control')) !!}
         </div>
 
+        <div class="form-group">
+            <div class="">
+                <div class="col-md-6">
+                    {!! Form::label('name', 'Name', ['class' => 'control-label']) !!} <span class="red">*</span>
+                    {!! Form::text('name_en', null, ['class' => 'form-control','placeholder'=>'Category Name']) !!}
+                </div>
+                <div class="col-md-6">
+                    {!! Form::label('name', 'Arabic Name', ['class' => 'control-label']) !!} <span class="red">*</span>
+                    {!! Form::text('name_ar', null, ['class' => 'form-control','placeholder'=>'Arabic Name']) !!}
+                </div>
+            </div>
+        </div>
         <div class="form-group">
             {!! Form::label('description', 'Description', ['class' => 'control-label']) !!}
             {!! Form::textarea('description_ar', null, ['class' => 'form-control editor','placeholder'=>'Category Description']) !!}

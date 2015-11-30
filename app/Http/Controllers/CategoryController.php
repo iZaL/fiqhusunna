@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Src\Blog\BlogRepository;
 use App\Src\Category\CategoryRepository;
 use App\Src\Track\TrackManager;
 use Storage;
@@ -13,10 +14,20 @@ class CategoryController extends Controller
      * @var CategoryRepository
      */
     private $categoryRepository;
+    /**
+     * @var BlogRepository
+     */
+    private $blogRepository;
 
-    public function __construct(CategoryRepository $categoryRepository)
+    /**
+     * CategoryController constructor.
+     * @param CategoryRepository $categoryRepository
+     * @param BlogRepository $blogRepository
+     */
+    public function __construct(CategoryRepository $categoryRepository,BlogRepository $blogRepository)
     {
         $this->categoryRepository = $categoryRepository;
+        $this->blogRepository = $blogRepository;
     }
 
     /**
@@ -29,7 +40,7 @@ class CategoryController extends Controller
         return view('modules.category.index');
     }
 
-    public function show($id, TrackManager $trackManager)
+    public function getTrack($id, TrackManager $trackManager)
     {
         $category = $this->categoryRepository->model->with([
             'albums.thumbnail',
@@ -40,7 +51,17 @@ class CategoryController extends Controller
 
         $category->incrementViewCount();
 
-        return view('modules.category.view', compact('category'));
+        return view('modules.category.track.view', compact('category'));
     }
+
+    public function getArticle($id)
+    {
+        $category = $this->blogRepository->model->with([
+            'albums.thumbnail',
+        ])->find($id);
+
+        return view('modules.category.track.view', compact('category'));
+    }
+
 
 }

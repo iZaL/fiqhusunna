@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateBlogPostRequest;
 use App\Jobs\CreateBlogPost;
 use App\Src\Blog\BlogRepository;
+use App\Src\Category\CategoryRepository;
 use App\Src\Photo\PhotoRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,13 +18,18 @@ class BlogController extends Controller
      * @var CategoryRepository
      */
     private $blogRepository;
+    /**
+     * @var CategoryRepository
+     */
+    private $categoryRepository;
 
     /**
      * @param BlogRepository $blogRepository
      */
-    public function __construct(BlogRepository $blogRepository)
+    public function __construct(BlogRepository $blogRepository, CategoryRepository $categoryRepository)
     {
         $this->blogRepository = $blogRepository;
+        $this->categoryRepository = $categoryRepository;
     }
 
     /**
@@ -47,23 +53,29 @@ class BlogController extends Controller
 
     public function create()
     {
-        return view('admin.modules.blog.create');
+        $categories = ['' => 'Choose Category'] + $this->categoryRepository->model->all()
+                ->lists('name_en', 'id')->toArray();
+        return view('admin.modules.blog.create', compact('categories'));
     }
 
     public function store(Request $request, PhotoRepository $photoRepository)
     {
 
         $this->validate($request, [
-            'title_ar'       => 'required',
+            'title_ar' => 'required',
+            'category_id' => 'required|numeric',
             'description_ar' => 'required',
-            'cover'          => 'image'
+            'cover' => 'image'
         ]);
 
         $blog = $this->blogRepository->model->create([
-            'title_ar'       => $request->title_ar,
+            'category_id' => $request->category_id,
+            'title_en' => $request->title_en,
+            'title_ar' => $request->title_ar,
             'description_ar' => $request->description_ar,
-            'user_id'        => Auth::user()->id,
-            'slug'           => $request->title_ar
+            'description_en' => $request->description_en,
+            'user_id' => Auth::user()->id,
+            'slug' => $request->title_en ? $request->title_en : $request->title_ar
         ]);
 
         if ($request->hasFile('cover')) {
@@ -77,9 +89,11 @@ class BlogController extends Controller
 
     public function edit($id)
     {
+        $categories = ['' => 'Choose Category'] + $this->categoryRepository->model->all()
+                ->lists('name_en', 'id');
         $blog = $this->blogRepository->model->with('photos')->find($id);
 
-        return view('admin.modules.blog.edit', compact('blog'));
+        return view('admin.modules.blog.edit', compact('blog', 'categories'));
     }
 
     /**
@@ -91,14 +105,16 @@ class BlogController extends Controller
     public function update(Request $request, PhotoRepository $photoRepository, $id)
     {
         $this->validate($request, [
-            'title_ar'       => 'required',
+            'title_ar' => 'required',
+            'category_id' => 'required|numeric',
             'description_ar' => 'required',
-            'cover'          => 'image'
+            'cover' => 'image'
         ]);
 
         $blog = $this->blogRepository->model->find($id);
 
-        $blog->update(array_merge(['slug' => $request->title_ar], $request->except('cover')));
+        $blog->update(array_merge(['slug' => $request->title_en ? $request->title_en : $request->title_ar],
+            $request->except('cover')));
 
         if ($request->hasFile('cover')) {
             $file = $request->file('cover');

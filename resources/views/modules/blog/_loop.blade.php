@@ -1,6 +1,3 @@
-
-
-
 @foreach($posts as $post)
     <h2><a href="{{ action('BlogController@show',$post->id) }}">{{ $post->title }}</a></h2>
 

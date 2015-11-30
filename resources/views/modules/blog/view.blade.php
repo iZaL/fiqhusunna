@@ -1,10 +1,10 @@
-@extends('layouts.one_col')
+@extends('layouts.two_col')
 
 @section('title')
     {{ $post->title }}
 @endsection
 
-@section('content')
+@section('right')
 
     <div class="panel">
         <div class="panel-heading blog-title" ><h3>{{ $post->title }}</h3></div>

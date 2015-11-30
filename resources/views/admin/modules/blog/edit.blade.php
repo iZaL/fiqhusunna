@@ -20,13 +20,30 @@
 
 
         <div class="form-group">
-            {!! Form::label('title', 'Blog Title', ['class' => 'control-label']) !!} <span class="red">*</span>
+            {!! Form::label('parent_id', 'Category', ['class' => 'control-label']) !!} <span class="red">*</span>
+            {!! Form::select('category_id', $categories,null,array('class'=>'form-control')) !!}
+        </div>
+
+        <div class="form-group">
+            {!! Form::label('title', 'Article Title in English', ['class' => 'control-label']) !!} <span class="red">*</span>
+            {!! Form::text('title_en', null, ['class' => 'form-control','placeholder'=>'Category Name']) !!}
+        </div>
+
+        <div class="form-group">
+            {!! Form::label('title', 'Article Title in Arabic', ['class' => 'control-label']) !!} <span class="red">*</span>
             {!! Form::text('title_ar', null, ['class' => 'form-control','placeholder'=>'Category Name']) !!}
         </div>
 
         <div class="form-group">
-            {!! Form::label('description', 'Description', ['class' => 'control-label']) !!}
-            {!! Form::textarea('description_ar', null, ['class' => 'form-control editor','placeholder'=>'Category Description']) !!}
+            {!! Form::label('description', 'English Article', ['class' => 'control-label']) !!}
+            {!! Form::textarea('description_en', null, ['class' => 'form-control editor','placeholder'=>'Category
+            Description']) !!}
+        </div>
+
+        <div class="form-group">
+            {!! Form::label('description', 'Arabic Article', ['class' => 'control-label']) !!}
+            {!! Form::textarea('description_ar', null, ['class' => 'form-control editor','placeholder'=>'Category
+            Description']) !!}
         </div>
 
         <div class="form-group">

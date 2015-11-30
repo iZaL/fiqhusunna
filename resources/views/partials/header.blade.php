@@ -15,5 +15,4 @@
 {{--</div>--}}
 {{--</div>--}}
 {{--</header>--}}
-<img src="/img/siteTitle-header.jpg" style="width: 100%;height: 300px;" class="hidden-xs" >
-<img src="/img/siteTitle-header.jpg" style="width: 100%;height: 150px;" class="visible-xs" >
+

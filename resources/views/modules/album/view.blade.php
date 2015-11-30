@@ -8,7 +8,7 @@
     <div id="bc1" class="btn-group btn-breadcrumb pBottom20">
         <a href="{{url('home')}}" class="btn btn-default"><i class="fa fa-home"></i>&nbsp; </a>
         @if($album->category)
-            <a href="{{action('CategoryController@show',$album->category->id)}}" class="btn btn-default "><i
+            <a href="{{action('CategoryController@getTrack',$album->category->id)}}" class="btn btn-default "><i
                         class="fa fa-folder"></i> {{ $album->category->name }}</a>
             <a href="{{action('AlbumController@show',$album->id)}}" class="btn btn-default "><i
                         class="fa fa-music"></i> {{ $album->name }}</a>
@@ -31,7 +31,7 @@
 @endsection
 
 @section('right')
-    @include('modules.category.sidebar')
+    @include('modules.category.track.sidebar')
 @endsection
 
 @section('left')

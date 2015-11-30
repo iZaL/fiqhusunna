@@ -32,8 +32,21 @@
         {!! Form::open(['action' => 'Admin\CategoryController@store', 'method' => 'post', 'files'=> true, 'class'=>'form-horizontal']) !!}
 
         <div class="form-group">
-            {!! Form::label('name', 'Name', ['class' => 'control-label']) !!} <span class="red">*</span>
-            {!! Form::text('name_ar', null, ['class' => 'form-control','placeholder'=>'Category Name']) !!}
+            {!! Form::label('parent_id', 'Parent Category', ['class' => 'control-label']) !!} <span class="red">*</span>
+            {!! Form::select('parent_id', $categories,null,array('class'=>'form-control')) !!}
+        </div>
+
+        <div class="form-group">
+            <div class="">
+                <div class="col-md-6">
+                    {!! Form::label('name', 'Name', ['class' => 'control-label']) !!} <span class="red">*</span>
+                    {!! Form::text('name_en', null, ['class' => 'form-control','placeholder'=>'Category Name']) !!}
+                </div>
+                <div class="col-md-6">
+                    {!! Form::label('name', 'Arabic Name', ['class' => 'control-label']) !!} <span class="red">*</span>
+                    {!! Form::text('name_ar', null, ['class' => 'form-control','placeholder'=>'Arabic Name']) !!}
+                </div>
+            </div>
         </div>
 
         <div class="form-group">

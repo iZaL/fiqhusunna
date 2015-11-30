@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Src\Blog\BlogRepository;
+use App\Src\Category\CategoryRepository;
 
 class BlogController extends Controller
 {
@@ -11,13 +12,19 @@ class BlogController extends Controller
      * @var CategoryRepository
      */
     private $blogRepository;
+    /**
+     * @var CategoryRepository
+     */
+    private $categoryRepository;
 
     /**
      * @param BlogRepository $blogRepository
+     * @param CategoryRepository $categoryRepository
      */
-    public function __construct(BlogRepository $blogRepository)
+    public function __construct(BlogRepository $blogRepository,CategoryRepository $categoryRepository)
     {
         $this->blogRepository = $blogRepository;
+        $this->categoryRepository = $categoryRepository;
     }
 
     /**
@@ -27,9 +34,10 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = $this->blogRepository->model->paginate(20);
 
-        return view('modules.blog.index', compact('blogs'));
+        $blogCategories = $this->categoryRepository->model->has('blogs')->get();
+        $articles = $this->blogRepository->model->latest()->paginate(20);
+        return view('modules.blog.index', compact('articles','blogCategories'));
     }
 
     public function show($id)

@@ -25,7 +25,7 @@
                         <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Description</th>
+                            <th>Parent</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
@@ -34,7 +34,7 @@
                         @foreach($categories as $category)
                             <tr class="gradeU">
                                 <td> {{ $category->name }}</td>
-                                <td> {!! $category->description !!}</td>
+                                <td> {!! $category->parentCategory ? $category->parentCategory->name : 'No' !!}</td>
                                 <td class="center">
                                     <p data-placement="top" data-toggle="tooltip" title="Edit">
                                         <a href={{action('Admin\CategoryController@edit',$category->id)}}>

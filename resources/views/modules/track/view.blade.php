@@ -19,11 +19,11 @@
         <div id="bc1" class="btn-group btn-breadcrumb pBottom20">
             <a href="{{url('home')}}" class="btn btn-default"><i class="fa fa-home"></i>&nbsp; </a>
             @if(is_a($track->trackeable, 'Category'))
-                <a href="{{action('CategoryController@show',$track->trackeable->id)}}" class="btn btn-default "><i
+                <a href="{{action('CategoryController@getTrack',$track->trackeable->id)}}" class="btn btn-default "><i
                             class="fa fa-folder"></i> {{ $track->trackeable->name }}</a>
             @else
                 @if($track->trackeable->category)
-                    <a href="{{action('CategoryController@show',$track->trackeable->category->id)}}"
+                    <a href="{{action('CategoryController@getTrack',$track->trackeable->category->id)}}"
                        class="btn btn-default "><i
                                 class="fa fa-folder"></i> {{ $track->trackeable->category->name }}</a>
 
@@ -46,10 +46,10 @@
         </a>
         {{$track->created_at->format('d-m-Y')}}
         &nbsp;&nbsp;&nbsp;
-        {{ trans('word.save_file') }}
         <a href="{{ action('TrackController@downloadTrack',$track->id) }}">
             <i class="fa fa-download"></i>
         </a>
+        {{ trans('word.save_file') }}
         {{ $track->downloads ? $track->downloads->count() : '0' }}
         &nbsp;&nbsp;&nbsp;
         <a href="#">

@@ -62,7 +62,7 @@ class AlbumController extends Controller
     public function create()
     {
         $categories = $this->categoryRepository->model->all()
-            ->lists('name_ar', 'id');
+            ->lists('name_en', 'id');
 
         return view('admin.modules.album.create', compact('categories'));
     }
@@ -75,13 +75,13 @@ class AlbumController extends Controller
     public function store(Request $request, PhotoRepository $photoRepository)
     {
         $this->validate($request, [
-            'name_ar'     => 'required|unique:albums,name_ar',
+            'name_en'     => 'required|unique:albums,name_en',
             'category_id' => 'required:numeric|not_in:0',
             'cover'       => 'image'
         ]);
 
         $album = $this->albumRepository->model->fill(array_merge($request->all(),
-            ['slug' => $request->get('name_ar')]));
+            ['slug' => $request->get('name_en')]));
 
         $category = $this->categoryRepository->model->find($album->category_id);
 
@@ -100,7 +100,7 @@ class AlbumController extends Controller
     public function edit($id)
     {
         $album = $this->albumRepository->model->find($id);
-        $categories = $this->categoryRepository->model->all()->lists('name_ar', 'id');
+        $categories = $this->categoryRepository->model->all()->lists('name_en', 'id');
 
         return view('admin.modules.album.edit', compact('album', 'categories'));
     }
@@ -114,7 +114,7 @@ class AlbumController extends Controller
     public function update(Request $request, PhotoRepository $photoRepository, $id)
     {
         $this->validate($request, [
-            'name_ar'     => 'required|unique:albums,name_ar,' . $id,
+            'name_en'     => 'required|unique:albums,name_en,' . $id,
             'cover'       => 'image'
         ]);
 
@@ -122,13 +122,13 @@ class AlbumController extends Controller
 
         $oldAlbumSlug = $album->slug;
 
-        $album->fill(array_merge(['slug' => $request->name_ar], $request->except('cover')));
+        $album->fill(array_merge(['slug' => $request->name_en], $request->except('cover')));
 
         if ($request->hasFile('cover')) {
             $photoRepository->replace($request->file('cover'), $album, ['thumbnail' => 1], $id);
         }
 
-        if ($album->isDirty('name_ar')) {
+        if ($album->isDirty('name_en')) {
             $this->trackManager->updateAlbumDirectory($album->category->slug, $oldAlbumSlug,
                 $album->slug);
         }

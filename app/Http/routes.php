@@ -9,6 +9,9 @@ Route::resource('track', 'TrackController');
 
 Route::resource('category', 'CategoryController');
 
+Route::get('category/{category}/track','CategoryController@getTrack');
+Route::get('category/{category}/article','CategoryController@getArticle');
+
 Route::resource('album', 'AlbumController');
 
 Route::resource('blog', 'BlogController');

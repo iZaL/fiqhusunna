@@ -2,7 +2,9 @@
 
 use App\Core\BaseModel;
 use App\Core\LocaleTrait;
+use App\Src\Blog\Blog;
 use App\Src\Meta\CountableTrait;
+use Illuminate\Support\Facades\DB;
 
 class Category extends BaseModel
 {
@@ -25,6 +27,26 @@ class Category extends BaseModel
     public function albums()
     {
         return $this->hasMany('App\Src\Album\Album');
+    }
+
+    public function parentCategories()
+    {
+        return DB::table($this->table)->where('parent_id','!',0);
+    }
+
+    public function parentCategory()
+    {
+        return $this->belongsTo(Category::class, 'parent_id');
+    }
+
+    public function childCategories()
+    {
+        return $this->hasMany(Category::class, 'parent_id');
+    }
+
+    public function blogs()
+    {
+        return $this->hasMany(Blog::class);
     }
 
     public function tracks()

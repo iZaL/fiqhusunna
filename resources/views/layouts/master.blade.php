@@ -19,20 +19,12 @@
     <meta name="viewport" content="width=device-width">
 
     @section('style')
-        <link rel="stylesheet" href="{{ elixir('css/all.css') }}">
-        {{--<link rel="stylesheet" href="/css/style.css">--}}
-        {{--<link rel="stylesheet" href="/css/dropdown-menu.css">--}}
-        <style>
-            @import url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
-
-            html, body {
-                font-family: 'Droid Arabic Kufi' !important;
-            }
-
-            h1, h2, h3, h4, span, p, div, table {
-                font-family: 'Droid Arabic Kufi' !important;
-            }
-        </style>
+        {{--<link rel="stylesheet" href="{{ elixir('css/all.css') }}">--}}
+        <link rel="stylesheet" href='/bower_components/bootstrap/dist/css/bootstrap.min.css',>
+        <link rel="stylesheet" href='/bower_components/fontawesome/css/font-awesome.min.css'>
+        <link rel="stylesheet" href='/css/jplayer.css'>
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/dropdown-menu.css">
     @show
 
 </head>

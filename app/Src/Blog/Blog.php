@@ -2,6 +2,7 @@
 
 use App\Core\BaseModel;
 use App\Core\LocaleTrait;
+use App\Src\Category\Category;
 
 class Blog extends BaseModel
 {
@@ -15,6 +16,11 @@ class Blog extends BaseModel
     protected $guarded = ['id'];
 
     protected $localeStrings = ['title', 'description'];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 
     public function photos()
     {

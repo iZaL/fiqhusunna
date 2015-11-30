@@ -49,7 +49,9 @@ class CategoryController extends Controller
 
     public function create()
     {
-        return view('admin.modules.category.create');
+        $categories = [''=>'Choose parent category']+$this->categoryRepository->model->parentCategories()
+            ->lists('name_en', 'id');
+        return view('admin.modules.category.create',compact('categories'));
     }
 
     /**
@@ -60,12 +62,13 @@ class CategoryController extends Controller
     public function store(Request $request, PhotoRepository $photoRepository)
     {
         $this->validate($request, [
-            'name_ar' => 'required|unique:categories,name_ar',
-            'cover'   => 'image'
+            'name_en' => 'required|unique:categories,name_en',
+            'cover'   => 'image',
+            'parent_id' => 'numeric'
         ]);
 
         $category = $this->categoryRepository->model->fill(array_merge($request->all(),
-            ['slug' => $request->name_ar]));
+            ['slug' => $request->name_en]));
 
         //create a folder
         $this->trackManager->createCategoryDirectory($category->slug);
@@ -78,22 +81,25 @@ class CategoryController extends Controller
             $photoRepository->attach($request->file('cover'), $category, ['thumbnail' => 1]);
         }
 
-
         return redirect('/admin/category')->with('message', 'success');
     }
 
     public function edit($id)
     {
+
+        $categories = [''=>'Choose parent category']+$this->categoryRepository->model->parentCategories()
+                ->lists('name_en', 'id');
+
         $category = $this->categoryRepository->model->find($id);
 
 
-        return view('admin.modules.category.edit', compact('category'));
+        return view('admin.modules.category.edit', compact('category','categories'));
     }
 
     public function update(Request $request, PhotoRepository $photoRepository, $id)
     {
         $this->validate($request, [
-            'name_ar' => 'required|unique:categories,name_ar,' . $id,
+            'name_en' => 'required|unique:categories,name_en,' . $id,
             'cover'   => 'image'
         ]);
 
@@ -102,9 +108,9 @@ class CategoryController extends Controller
         $oldSlug = $category->slug;
 
         $category->fill(array_merge($request->all(),
-            ['slug' => $request->name_ar]));
+            ['slug' => $request->name_en]));
 
-        if ($category->isDirty('name_ar')) {
+        if ($category->isDirty('name_en')) {
 
             $this->trackManager->updateCategoryDirectory($oldSlug, $category->slug);
 
