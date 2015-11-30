@@ -37,7 +37,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = $this->categoryRepository->model->with('parentCategory')->get();
+        $categories = $this->categoryRepository->model->with('parentCategory')->latest()->get();
 
         return view('admin.modules.category.index', compact('categories'));
     }

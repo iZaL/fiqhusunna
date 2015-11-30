@@ -8,8 +8,6 @@
         {{--<li class="list-group-item"><a href="{{ action('CategoryController@getArticle',$category->id) }}"><i--}}
         {{--class="fa fa-folder"></i> {{ ucfirst($category->name) }}</a></li>--}}
         {{--</h5>--}}
-
-
         {{--@endforeach--}}
         {{--</ul>--}}
         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu"

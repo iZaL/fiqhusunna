@@ -20,7 +20,15 @@
 
         <div class="form-group">
             {!! Form::label('parent_id', 'Category', ['class' => 'control-label']) !!} <span class="red">*</span>
-            {!! Form::select('category_id', $categories,null,array('class'=>'form-control')) !!}
+            <select name="category_id" class="form-control">
+                <option value="">choose a category</option>
+                @foreach($categories as $category)
+                    <option value="{{$category->id}}">{{$category->name}}</option>
+                    @foreach($category->childCategories as $child)
+                    <option value="{{ $child->id }}">-- {{$child->name}}</option>
+                    @endforeach
+                @endforeach
+            </select>
         </div>
 
         <div class="form-group">

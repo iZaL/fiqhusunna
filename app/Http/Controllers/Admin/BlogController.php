@@ -53,10 +53,8 @@ class BlogController extends Controller
 
     public function create()
     {
-        $categories = ['' => 'Choose Category'] + $this->categoryRepository->model
-                ->lists('name_en', 'id')->toArray();
+        $categories = $this->categoryRepository->model->parentCategories()->with('childCategories')->get();
 
-        dd($categories);
         return view('admin.modules.blog.create', compact('categories'));
     }
 
