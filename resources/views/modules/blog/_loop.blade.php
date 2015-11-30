@@ -6,7 +6,7 @@
             <h2><a href="{{ action('BlogController@show',$article->id) }}">{{ ucfirst($article->title) }}</a></h2>
             <i class="fa fa-calendar"></i>&nbsp; {{ $article->created_at->format('l, M j,Y ') }}
 
-            <div class="row">
+            <div class="row mTop10">
                 @if($article->thumbnail)
                     <div class="col-md-3">
                         <a href="{{ action('BlogController@show',$article->id) }}">
