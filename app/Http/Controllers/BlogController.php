@@ -43,6 +43,7 @@ class BlogController extends Controller
     {
         $category = $this->categoryRepository->model->with('childCategories')->find($id);
         $post = $this->blogRepository->model->with('photos')->find($id);
+        $post->incrementViewCount();
 
         return view('modules.blog.view', compact('post','category'));
     }
