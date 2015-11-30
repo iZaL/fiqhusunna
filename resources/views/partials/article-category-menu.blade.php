@@ -1,10 +1,10 @@
     <ul class="nav navbar-nav">
         <li class="dropdown dropdown-large">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{trans('word.browse')}} <b
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{trans('word.articles')}} <b
                         class="caret"></b></a>
             <ul class="col-md-11 dropdown-menu dropdown-menu-large row">
                 <li class="dropdown-header"><a
-                            href="{{ action('BlogController@index') }}">{{ trans('word.all_categories') }}</a></li>
+                            href="{{ action('BlogController@index') }}">{{ trans('word.all_articles') }}</a></li>
                 @foreach($articleCategories as $category)
                     <li class="col-sm-3">
                         <ul>

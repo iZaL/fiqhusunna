@@ -34,16 +34,17 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogCategories = $this->categoryRepository->model->has('blogs')->get();
+        $parentCategories = $this->categoryRepository->model->parentCategories()->has('blogs')->get();
         $articles = $this->blogRepository->model->latest()->paginate(20);
-        return view('modules.blog.index', compact('articles','blogCategories'));
+        return view('modules.blog.index', compact('articles','parentCategories'));
     }
 
     public function show($id)
     {
+        $category = $this->categoryRepository->model->with('childCategories')->find($id);
         $post = $this->blogRepository->model->with('photos')->find($id);
 
-        return view('modules.blog.view', compact('post'));
+        return view('modules.blog.view', compact('post','category'));
     }
 
 }

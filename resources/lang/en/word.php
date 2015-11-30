@@ -126,5 +126,6 @@ return [
     'comment' => 'Comment',
     'track' => 'Track',
     'all_categories' => 'All Categories',
-    'all_tracks'=> 'All Tracks'
+    'all_tracks'=> 'All Tracks',
+    'all_articles'=>'All Articles'
 ];
