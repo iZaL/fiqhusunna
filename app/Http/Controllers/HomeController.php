@@ -19,7 +19,7 @@ class HomeController extends Controller
     public function index(TrackRepository $trackRepository,CategoryRepository $categoryRepository,BlogRepository $blogRepository)
     {
         // Get all Tracks
-        $blogCategories = $categoryRepository->model->parentCategories()->has('blogs')->get();
+        $blogCategories = $categoryRepository->model->parentCategories()->get();
         $latestTracks = $trackRepository->model->with('metas')->orderBy('created_at', 'desc')->paginate(10);
         $articles = $blogRepository->model->latest()->paginate(5);
         return view('home', compact('latestTracks','blogCategories','articles'));

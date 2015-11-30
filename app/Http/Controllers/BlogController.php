@@ -34,7 +34,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $parentCategories = $this->categoryRepository->model->parentCategories()->has('blogs')->get();
+        $parentCategories = $this->categoryRepository->model->parentCategories()->has('tracks','<',1)->get();
         $articles = $this->blogRepository->model->latest()->paginate(20);
         return view('modules.blog.index', compact('articles','parentCategories'));
     }
