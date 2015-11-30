@@ -5,6 +5,14 @@ Route::controllers([
     'password' => 'PasswordController'
 ]);
 
+//locale
+Route::get('language/{locale}',
+    array(
+        'as' => 'language.select',
+        'uses' => 'LocaleController@changeLocale'
+    )
+);
+
 Route::resource('track', 'TrackController');
 
 Route::resource('category', 'CategoryController');

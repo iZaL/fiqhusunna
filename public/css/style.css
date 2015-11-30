@@ -463,3 +463,16 @@ ul.album-list li .album-list-icon {
     background-image: url('/img/siteTitle-header.jpg');
     max-height:300px;
 }
+
+.locale {
+    padding-top:10px;
+    font-size:12px;
+    color:#aaaaaa;
+}
+.locale a {
+    font-size:12px;
+    color:#ffffff;
+}
+.localeIcon {
+   color:#ffffff;
+}

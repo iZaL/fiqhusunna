@@ -48,7 +48,7 @@ return [
     | to any of the locales which will be supported by the application.
     |
     */
-
+    'locales' => ['en' => 'English', 'ar' => 'Arabic'],
     'locale'          => 'en',
     /*
     |--------------------------------------------------------------------------

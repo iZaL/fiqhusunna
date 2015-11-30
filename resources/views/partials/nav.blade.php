@@ -17,7 +17,12 @@
                        href="{{ action('PageController@getAbout') }}">{{ trans('word.about_us') }}</a></li>
                 <li><a class="{{ (Request::segment('1') == 'contact' ? 'active' :  false ) }}"
                        href="{{ action('PageController@getContact') }}">{{ trans('word.contact_us') }}</a></li>
+
             </ul>
+            <div class="pull-right locale">
+                @include('partials.locale')
+                <i class="fa fa-globe localeIcon"></i>
+            </div>
         </div>
     </div>
 </nav>

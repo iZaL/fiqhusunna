@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Src\Blog\BlogRepository;
 use App\Src\Category\CategoryRepository;
 use App\Src\Track\TrackManager;
+use Illuminate\Support\Facades\App;
 use Storage;
 
 class CategoryController extends Controller
@@ -26,6 +27,8 @@ class CategoryController extends Controller
      */
     public function __construct(CategoryRepository $categoryRepository,BlogRepository $blogRepository)
     {
+
+        dd(App::getLocale());
         $this->categoryRepository = $categoryRepository;
         $this->blogRepository = $blogRepository;
     }
