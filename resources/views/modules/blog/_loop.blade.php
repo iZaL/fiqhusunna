@@ -3,7 +3,7 @@
     <div class="panel-body">
         @foreach($articles as $article)
 
-            <h2><a href="{{ action('BlogController@show',$article->id) }}">{{ ucfirst($article->title) }}</a></h2>
+            <div class="blogTitle"><a href="{{ action('BlogController@show',$article->id) }}">{{ ucfirst($article->title) }}</a></div>
             <i class="fa fa-calendar"></i>&nbsp; {{ $article->created_at->format('l, M j,Y ') }}
 
             <div class="row mTop10">

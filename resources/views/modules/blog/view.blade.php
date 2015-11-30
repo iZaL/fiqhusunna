@@ -24,11 +24,17 @@
 @section('right')
 
     <div class="panel">
-        <div class="panel-heading blog-title" ><h3>{{ ucfirst($post->title) }}</h3></div>
+        <div class="panel-heading blog-title" >{{ ucfirst($post->title) }}</div>
         <div class="panel-body">
             <div class="col-md-12">
                 <div class="row article">
+                    <i class="fa fa-calendar"></i>&nbsp; {{ $post->created_at->format('l, M j,Y ') }}
+                    <hr>
                     {!! $post->description !!}
+                    <hr>
+                    <div class="authorInfo">
+                        author : {{ ucfirst($post->user->name) }}
+                    </div>
                 </div>
             </div>
         </div>

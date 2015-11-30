@@ -4,6 +4,7 @@ use App\Core\BaseModel;
 use App\Core\LocaleTrait;
 use App\Src\Category\Category;
 use App\Src\Meta\CountableTrait;
+use App\Src\User\User;
 
 class Blog extends BaseModel
 {
@@ -44,4 +45,8 @@ class Blog extends BaseModel
         return $this->morphMany('App\Src\Meta\Meta', 'meta');
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
