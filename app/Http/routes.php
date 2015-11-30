@@ -64,14 +64,20 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['adm
 
 Route::get('test', function () {
 
-    $date = '09/14/2014';
-    dd(Carbon\Carbon::parse($date));
-    dd(ini_get('upload_max_filesize'));
-    echo phpinfo();
+//    $date = '09/14/2014';
+//    dd(Carbon\Carbon::parse($date));
+//    dd(ini_get('upload_max_filesize'));
+//    echo phpinfo();
 //    $trackUploader = App::make('\App\Src\Track\TrackCrawler');
 //
 //    $trackUploader->syncTracks();
 //
 //    dd('done');
-
+    $user = new App\Src\User\User();
+    $user->email = 'pnabdurahman@gmail.com';
+    $user->password = bcrypt('bismillah123');
+    $user->isAdmin = 1;
+    $user->name = 'AbduRahman';
+    $user->active = 1;
+    $user->save();
 });
