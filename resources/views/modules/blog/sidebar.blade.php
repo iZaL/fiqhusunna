@@ -12,27 +12,25 @@
 
         {{--@endforeach--}}
         {{--</ul>--}}
-
         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu"
             style="display: block; position: static; margin-bottom: 5px; *width: 180px;">
 
             @foreach($categories as $category)
-
                 <li class="dropdown-submenu"><a href="{{ action('CategoryController@getArticle',$category->id) }}"><i
                                 class="fa fa-folder"></i> {{ ucfirst($category->name) }}</a>
                 @if($category->childCategories)
                     <ul class="dropdown-menu">
+                            <li><a href="{{ action('CategoryController@getArticle',$category->id) }}"><i
+                                            class="fa fa-folder"></i> {{ ucfirst($category->name) }}</a></li>
                         @foreach($category->childCategories as $child)
                             <li>
-                                <a href="{{ action('CategoryController@getArticle',$category->id) }}">{{ $child->name }}</a>
+                                <a href="{{ action('CategoryController@getArticle',$child->id) }}">{{ $child->name }}</a>
                             </li>
                         @endforeach
                     </ul>
                 @endif
                 </li>
             @endforeach
-
-
         </ul>
     </div>
 </div>
