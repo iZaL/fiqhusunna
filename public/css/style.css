@@ -455,6 +455,7 @@ ul.album-list li .album-list-icon {
 .blog-title {
     background-color: #246679;
     color: #fff;
+    font-size:20px;
 }
 
 .ad-banner {
@@ -478,5 +479,5 @@ ul.album-list li .album-list-icon {
 }
 
 .article {
-    font-size:15px;
+    /*font-size:15px;*/
 }
