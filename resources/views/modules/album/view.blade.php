@@ -27,13 +27,13 @@
 @endsection
 
 @section('middle')
-    @include('modules.album.sidebar',['record'=>$category])
+    @include('modules.track.sidebar',['record'=>$album])
 @endsection
 
 @section('right')
-    @include('modules.category.track.sidebar')
+    @include('modules.album.sidebar',['record'=>$category])
 @endsection
 
 @section('left')
-    @include('modules.track.sidebar',['record'=>$album])
+    @include('modules.category.track.sidebar')
 @endsection

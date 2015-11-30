@@ -26,7 +26,8 @@
         <link rel="stylesheet" href="/css/style.css">
         <link rel="stylesheet" href="/css/dropdown-menu.css">
     @show
-
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,900,300,700" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic" rel="stylesheet">
 </head>
 
 <body>

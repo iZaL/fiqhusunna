@@ -14,7 +14,7 @@ Route::get('category/{category}/article','CategoryController@getArticle');
 
 Route::resource('album', 'AlbumController');
 
-Route::resource('blog', 'BlogController');
+Route::resource('article', 'BlogController');
 
 Route::get('profile', 'UserController@profile');
 

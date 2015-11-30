@@ -1,5 +1,5 @@
 <div class="panel">
-    <div class="panel-heading left-col-heading">{{ trans('word.latest_articles') }} </div>
+    <div class="panel-heading middle-col-heading">{{ trans('word.latest_articles') }} </div>
     <div class="panel-body">
         @foreach($articles as $article)
             <h2><a href="{{ action('BlogController@show',$article->id) }}">{{ $article->title }}</a></h2>

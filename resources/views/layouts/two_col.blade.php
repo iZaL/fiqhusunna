@@ -10,11 +10,11 @@
 
     <div class="no-gutter row">
 
-        <div class="col-md-6" id="content">
+        <div class="col-md-3" id="content">
             @yield('left')
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-9">
             @yield('right')
         </div>
 
