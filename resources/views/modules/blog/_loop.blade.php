@@ -26,8 +26,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12 ">
-                    <a class="btn btn-default mTop10"><a
-                                href="{{ action('BlogController@show',$article->id) }}">{{ trans('word.more') }}</a>
+                        <a class="btn btn-default mTop10" href="{{ action('BlogController@show',$article->id) }}">{{ trans('word.more') }}</a>
                     </a>
                 </div>
             </div>
