@@ -10,12 +10,14 @@
                     class="fa fa-folder"></i> {{ ucfirst($category->name) }}</div>
         <div class="panel-body">
             <ul class="list-group">
-                @foreach($category->childCategories as $child)
-                    <h5>
-                        <li class="list-group-item"><a href="{{ action('CategoryController@getArticle',$child->id) }}"><i
-                                        class="fa fa-folder"></i> {{ ucfirst($child->name) }}</a></li>
-                    </h5>
-                @endforeach
+                @if(count($category->childCategories))
+                    @foreach($category->childCategories as $child)
+                        <h5>
+                            <li class="list-group-item"><a href="{{ action('CategoryController@getArticle',$child->id) }}"><i
+                                            class="fa fa-folder"></i> {{ ucfirst($child->name) }}</a></li>
+                        </h5>
+                    @endforeach
+                @endif
             </ul>
         </div>
     </div>

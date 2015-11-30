@@ -41,10 +41,9 @@ class BlogController extends Controller
 
     public function show($id)
     {
-        $category = $this->categoryRepository->model->with('childCategories')->find($id);
+        $category = $this->categoryRepository->model->with('childCategories')->findOrFail($id);
         $post = $this->blogRepository->model->with('photos')->find($id);
         $post->incrementViewCount();
-
         return view('modules.blog.view', compact('post','category'));
     }
 
