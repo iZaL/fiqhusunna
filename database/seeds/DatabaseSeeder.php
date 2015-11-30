@@ -35,22 +35,22 @@ class DatabaseSeeder extends Seeder
 
             factory('App\Src\User\User', 1)->create();
 
-            $categories = factory('App\Src\Category\Category', 1)->create();
-
-            $albums = factory('App\Src\Album\Album', 1)->create()
-                ->each(function ($alb) {
-                    $alb->category()->associate(factory('App\Src\Category\Category')->create());
-                });
-
-            // to assosiate with track
-            $trackeables = [$categories->random(), $albums->random()];
-            $randomTrackeable = array_rand($trackeables);
-            $trackeable = $trackeables[$randomTrackeable];
-
+//            $categories = factory('App\Src\Category\Category', 1)->create();
+//
+//            $albums = factory('App\Src\Album\Album', 1)->create()
+//                ->each(function ($alb) {
+//                    $alb->category()->associate(factory('App\Src\Category\Category')->create());
+//                });
+//
+//            // to assosiate with track
+//            $trackeables = [$categories->random(), $albums->random()];
+//            $randomTrackeable = array_rand($trackeables);
+//            $trackeable = $trackeables[$randomTrackeable];
+//
 //            factory('App\Src\Track\Track', 50)->create();
-
-            factory('App\Src\Blog\Blog', 1)->create();
-            factory('App\Src\Meta\Meta', 1)->create();
+//
+//            factory('App\Src\Blog\Blog', 1)->create();
+//            factory('App\Src\Meta\Meta', 1)->create();
 
     }
 
