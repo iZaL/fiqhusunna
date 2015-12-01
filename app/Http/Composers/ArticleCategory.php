@@ -15,7 +15,7 @@ class ArticleCategory {
 
     public function compose(View $view)
     {
-        $categories = $this->categoryRepository->model->parentCategories()->with('childCategories')->has('blogs')->get(['id','name_ar']);
+        $categories = $this->categoryRepository->model->parentCategories()->with('childCategories')->has('tracks','<',1)->get(['id','name_ar']);
         $view->with('articleCategories', $categories);
     }
     
