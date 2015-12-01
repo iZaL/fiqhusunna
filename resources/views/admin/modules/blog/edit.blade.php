@@ -32,7 +32,7 @@
                     @if(count($category->childCategories))
                         @foreach($category->childCategories as $child)
                             <option value="{{ $child->id }}"
-                                    @if($category->id == Form::getValueAttribute('category_id') || $category->id == $blog->category->id )
+                                    @if($child->id == Form::getValueAttribute('category_id') || $child->id == $blog->category->id )
                                     selected="selected"
                                     @endif
                             >-- {{$child->name}}</option>
