@@ -14,13 +14,13 @@
         <div class="panel-body">
             <div class="col-md-12">
                 <div class="row article">
-                    <div class="meta">
+                    <div class="meta pBottom10">
                         <div class="col-md-6">
                             <i class="fa fa-calendar"></i>&nbsp; {{ $article->created_at->format('l, M j,Y ') }}
                         </div>
                         <div class="col-md-6 ">
                             <span class="pull-right">
-                                <i class="fa fa-eye"></i>&nbsp; {{ $article->metas->count() }} views
+                                <i class="fa fa-eye"></i>&nbsp; {{ $article->metas ? $article->metas->count() : '0' }} views
                             </span>
                         </div>
                     </div>
