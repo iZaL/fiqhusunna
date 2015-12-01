@@ -60,7 +60,12 @@ class CategoryController extends Controller
         // get all parent categories for aricles
         $parentCategories = $this->categoryRepository->model->parentCategories()->with('childCategories')->has('tracks','<',1)->get(['id','name_en']);
         $selectedCategory = $this->categoryRepository->model->with(['blogs.thumbnail'])->findOrFail($id);
-        $articles= $selectedCategory->blogs;
+        if($selectedCategory->isParent()) {
+            $childCategories = $selectedCategory->childCategories->modelKeys();
+            $articles = $this->blogRepository->model->whereIn('category_id',$childCategories)->get();
+        } else {
+            $articles= $selectedCategory->blogs;
+        }
         return view('modules.blog.index', compact('articles','parentCategories','selectedCategory'));
     }
 
