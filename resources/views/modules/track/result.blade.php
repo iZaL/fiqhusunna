@@ -1,6 +1,5 @@
-
 <div class="panel" >
-    <div class="panel-heading right-col-heading">{{ isset($title) ? $title : trans('word.latest_tracks') }}</div>
+    <div class="panel-heading right-col-heading"><i class="fa fa-headphones"></i>&nbsp;{{ isset($title) ? $title : trans('word.latest_tracks') }}</div>
     <div class="panel-body">
         <ul class="list-group">
             @foreach($record as $track)

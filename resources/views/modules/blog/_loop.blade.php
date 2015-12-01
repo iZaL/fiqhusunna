@@ -1,7 +1,7 @@
 <div class="panel">
     <div class="panel-heading middle-col-heading">
         <i class="fa fa-file-text"></i>
-        {{ trans('word.articles') }} &nbsp;
+        {{ trans('word.articles') }}
         @if(isset($selectedCategory) && !is_null($selectedCategory))
             for {{ ucfirst($selectedCategory->name) }}
         @endif

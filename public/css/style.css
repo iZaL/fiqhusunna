@@ -266,12 +266,13 @@ footer {
 }
 
 .right-col-heading {
-    background-color: #555;
+    background-color: #2D827A;
     color: #eee;
 }
 
 .left-col-heading {
-    background-color: #eeb467;
+    /*background-color: #eeb467;*/
+    background-color: #4EA59D;
     color: #eee;
     background-color: #19314C;
 }
