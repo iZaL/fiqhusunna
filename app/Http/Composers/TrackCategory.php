@@ -15,7 +15,7 @@ class TrackCategory {
 
     public function compose(View $view)
     {
-        $categories = $this->categoryRepository->model->has('tracks')->with('albums')->get(['id','name_ar']);
+        $categories = $this->categoryRepository->model->has('tracks')->with('albums')->get(['id','name_en']);
         $view->with('trackCategories', $categories);
     }
 
