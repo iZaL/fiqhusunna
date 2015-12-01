@@ -7,18 +7,37 @@
 @section('left')
     <div class="panel">
         <div class="panel-heading left-col-heading"><i
-                    class="fa fa-folder"></i> {{ ucfirst($category->name) }}</div>
+                    class="fa fa-folder"></i> {{ $selectedCategory->name }}</div>
         <div class="panel-body">
             <ul class="list-group">
-                @if(count($category->childCategories))
-                    @foreach($category->childCategories as $child)
-                        <h5>
-                            <li class="list-group-item"><a href="{{ action('CategoryController@getArticle',$child->id) }}"><i
-                                            class="fa fa-folder"></i> {{ ucfirst($child->name) }}</a></li>
-                        </h5>
-                    @endforeach
-                @endif
+                @foreach($parentCategories as $category)
+                    <h5>
+                        <li class="list-group-item
+                        @if(!is_null($selectedCategory) && $category->id == $selectedCategory->id)
+                                active
+                            @endif
+                                "><a
+                                    href="{{ action('CategoryController@getArticle',$category->id) }}"><i
+                                        class="fa fa-folder"></i> {{ ucfirst($category->name) }}</a>
+
+                            <ul class="list-group pTop10">
+
+                                @foreach($category->childCategories as $child)
+                                    <li class="list-group-item
+                                        @if(!is_null($selectedCategory) && $child->id == $selectedCategory->id)
+                                            active
+                                        @endif
+                                            "><a
+                                                href="{{ action('CategoryController@getArticle',$child->id) }}">
+                                            {{ ucfirst($child->name) }}</a></li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    </h5>
+
+                @endforeach
             </ul>
+
         </div>
     </div>
 @endsection

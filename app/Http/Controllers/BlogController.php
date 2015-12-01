@@ -42,10 +42,11 @@ class BlogController extends Controller
 
     public function show($id)
     {
-        $category = $this->categoryRepository->model->with('childCategories')->findOrFail($id);
+        $selectedCategory = $this->categoryRepository->model->with('childCategories')->findOrFail($id);
+        $parentCategories = $this->categoryRepository->model->parentCategories()->with('childCategories')->has('tracks','<',1)->get(['id','name_en']);
         $article = $this->blogRepository->model->with('photos')->find($id);
         $article->incrementViewCount();
-        return view('modules.blog.view', compact('article','category'));
+        return view('modules.blog.view', compact('article','selectedCategory','parentCategories'));
     }
 
 }
