@@ -25,74 +25,32 @@
                         <thead>
                         <tr>
                             <th>Title</th>
-                            <th>Description</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($blogs as $blog)
                             <tr class="gradeU">
                                 <td> {{ $blog->title }}</td>
-                                <td> {!! str_limit($blog->description,100) !!}</td>
-                                <td class="center">
-                                    <p data-placement="top" data-toggle="tooltip" title="Edit">
-                                        <a href={{action('Admin\BlogController@edit',$blog->id)}}>
-                                            <button class="btn btn-primary btn-xs"><span
-                                                        class="glyphicon glyphicon-pencil"></span></button>
-                                        </a>
-                                    </p>
+
+                                <td>
+                                    <a href="{{ action('Admin\BlogController@edit',$blog->id)  }}"
+                                       class="btn btn-sm btn-primary" role="button">Edit</a>
+                                    <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteModalBox"
+                                            data-link="{{action('Admin\BlogController@destroy',$blog->id)}}">Delete
+                                    </button>
                                 </td>
-                                <td class="center">
-                                    <p data-placement="top" data-toggle="tooltip" title="Delete">
-                                        {!! Form::open(['action' => ['Admin\BlogController@destroy', $blog->id], 'method' => 'DELETE'], ['class'=>'form-horizontal']) !!}
-                                        {!! Form::submit('delete', ['class' => 'btn btn-danger btn-xs']) !!}
-                                        {!! Form::close() !!}
-                                    </p>
-                                </td>
+
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
                 </div>
                 <!-- /.table-responsive -->
+                @include('admin.partials.delete-modal',['info' => 'Delete Article '.$blog->title. ' ?'])
 
             </div>
             <!-- /.panel-body -->
-
-            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span
-                                        class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                            <h4 class="modal-title custom_align" id="Heading">Delete this entry</h4>
-                        </div>
-                        <div class="modal-body">
-
-                            <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Are
-                                you sure you want to delete this Record?
-                            </div>
-
-                        </div>
-                        <div class="modal-footer">
-                            {!! Form::open(['action' => ['Admin\BlogController@destroy', 1], 'method' => 'delete'],
-                            ['class'=>'form-horizontal']) !!}
-
-                            <button type="submit" class="btn btn-success"><span
-                                        class="glyphicon glyphicon-ok-sign"></span> Yes
-                            </button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><span
-                                        class="glyphicon glyphicon-remove"></span> No
-                            </button>
-
-                            {!! Form::close() !!}
-                        </div>
-                    </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
 
         </div>
         <!-- /.panel -->
