@@ -2,14 +2,6 @@
     <div class="panel-heading left-col-heading"><i
                 class="fa fa-folder"></i> {{ isset($title) ? $title : trans('word.categories') }}</div>
     <div class="panel-body">
-        {{--<ul class="list-group">--}}
-        {{--@foreach($categories as $category)--}}
-        {{--<h5>--}}
-        {{--<li class="list-group-item"><a href="{{ action('CategoryController@getArticle',$category->id) }}"><i--}}
-        {{--class="fa fa-folder"></i> {{ ucfirst($category->name) }}</a></li>--}}
-        {{--</h5>--}}
-        {{--@endforeach--}}
-        {{--</ul>--}}
         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu"
             style="display: block; position: static; margin-bottom: 5px; *width: 180px;">
 

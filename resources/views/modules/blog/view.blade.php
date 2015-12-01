@@ -5,51 +5,25 @@
 @endsection
 
 @section('left')
-    <div class="panel">
-        <div class="panel-heading left-col-heading"><i
-                    class="fa fa-folder"></i> {{ $selectedCategory->name }}</div>
-        <div class="panel-body">
-            <ul class="list-group">
-                @foreach($parentCategories as $category)
-                    <h5>
-                        <li class="list-group-item
-                        @if(!is_null($selectedCategory) && $category->id == $selectedCategory->id)
-                                active
-                            @endif
-                                "><a
-                                    href="{{ action('CategoryController@getArticle',$category->id) }}"><i
-                                        class="fa fa-folder"></i> {{ ucfirst($category->name) }}</a>
-
-                            <ul class="list-group pTop10">
-
-                                @foreach($category->childCategories as $child)
-                                    <li class="list-group-item
-                                        @if(!is_null($selectedCategory) && $child->id == $selectedCategory->id)
-                                            active
-                                        @endif
-                                            "><a
-                                                href="{{ action('CategoryController@getArticle',$child->id) }}">
-                                            {{ ucfirst($child->name) }}</a></li>
-                                @endforeach
-                            </ul>
-                        </li>
-                    </h5>
-
-                @endforeach
-            </ul>
-
-        </div>
-    </div>
+    @include('modules.blog.siderbar-detail',['parentCategories'=>$parentCategories,'selectedCategory'=>$selectedCategory])
 @endsection
 
 @section('right')
-
     <div class="panel">
         <div class="panel-heading blog-title" >{{ ucfirst($article->title) }}</div>
         <div class="panel-body">
             <div class="col-md-12">
                 <div class="row article">
-                    <i class="fa fa-calendar"></i>&nbsp; {{ $article->created_at->format('l, M j,Y ') }}
+                    <div class="meta">
+                        <div class="col-md-6">
+                            <i class="fa fa-calendar"></i>&nbsp; {{ $article->created_at->format('l, M j,Y ') }}
+                        </div>
+                        <div class="col-md-6 ">
+                            <span class="pull-right">
+                                <i class="fa fa-eye"></i>&nbsp; {{ $article->metas->count() }} views
+                            </span>
+                        </div>
+                    </div>
                     <hr>
                     {!! $article->description !!}
                     <hr>
@@ -62,5 +36,4 @@
 
     </div>
     <div class="clear:both"></div>
-
 @endsection
