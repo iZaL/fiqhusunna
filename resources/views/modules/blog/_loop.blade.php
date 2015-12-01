@@ -1,5 +1,10 @@
 <div class="panel">
-    <div class="panel-heading middle-col-heading">{{ trans('word.latest_articles') }} </div>
+    <div class="panel-heading middle-col-heading">
+        {{ trans('word.articles') }}
+        @if(isset($selectedCategory) && !is_null($selectedCategory))
+            for {{ ucfirst($selectedCategory->name) }}
+        @endif
+    </div>
     <div class="panel-body">
         @foreach($articles as $article)
 

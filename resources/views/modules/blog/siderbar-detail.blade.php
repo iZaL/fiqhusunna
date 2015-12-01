@@ -1,6 +1,12 @@
 <div class="panel">
     <div class="panel-heading left-col-heading"><i
-                class="fa fa-folder"></i> {{ isset($title) ? $title : trans('word.categories') }}</div>
+                class="fa fa-folder"></i>
+        @if(isset($selectedCategory) && !is_null($selectedCategory))
+            {{ ucfirst($selectedCategory->name) }}
+        @else
+            {{ trans('word.categories') }}
+        @endif
+    </div>
     <div class="panel-body">
         <ul class="list-group">
             @foreach($parentCategories as $category)
