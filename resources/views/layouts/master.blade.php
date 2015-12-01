@@ -19,12 +19,12 @@
     <meta name="viewport" content="width=device-width">
 
     @section('style')
-        {{--<link rel="stylesheet" href="{{ elixir('css/all.css') }}">--}}
-        <link rel="stylesheet" href='/bower_components/bootstrap/dist/css/bootstrap.min.css',>
-        <link rel="stylesheet" href='/bower_components/fontawesome/css/font-awesome.min.css'>
-        <link rel="stylesheet" href='/css/jplayer.css'>
-        <link rel="stylesheet" href="/css/style.css">
-        <link rel="stylesheet" href="/css/dropdown-menu.css">
+        <link rel="stylesheet" href="{{ elixir('css/all.css') }}">
+        {{--<link rel="stylesheet" href='/bower_components/bootstrap/dist/css/bootstrap.min.css',>--}}
+        {{--<link rel="stylesheet" href='/bower_components/fontawesome/css/font-awesome.min.css'>--}}
+        {{--<link rel="stylesheet" href='/css/jplayer.css'>--}}
+        {{--<link rel="stylesheet" href="/css/style.css">--}}
+        {{--<link rel="stylesheet" href="/css/dropdown-menu.css">--}}
     @show
     <link href="http://fonts.googleapis.com/css?family=Lato:400,900,300,700" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic" rel="stylesheet">
