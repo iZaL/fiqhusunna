@@ -61,7 +61,7 @@ class CategoryController extends Controller
         $parentCategories = $this->categoryRepository->model->parentCategories()->with('childCategories')->has('tracks','<',1)->get(['id','name_en']);
         $selectedCategory = $this->categoryRepository->model->with(['blogs.thumbnail'])->findOrFail($id);
         if($selectedCategory->isParent()) {
-            $childCategories = $selectedCategory->childCategories->modelKeys();
+            $childCategories = array_merge([$selectedCategory->id], $selectedCategory->childCategories->modelKeys());
             $articles = $this->blogRepository->model->whereIn('category_id',$childCategories)->get();
         } else {
             $articles= $selectedCategory->blogs;
