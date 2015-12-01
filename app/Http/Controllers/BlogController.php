@@ -34,17 +34,18 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $parentCategories = $this->categoryRepository->model->parentCategories()->has('tracks','<',1)->get();
+        $parentCategories = $this->categoryRepository->model->parentCategories()->with('childCategories')->has('tracks','<',1)->get(['id','name_en']);
         $articles = $this->blogRepository->model->latest()->paginate(20);
-        return view('modules.blog.index', compact('articles','parentCategories'));
+        $selectedCategory = null;
+        return view('modules.blog.index', compact('articles','parentCategories','selectedCategory'));
     }
 
     public function show($id)
     {
         $category = $this->categoryRepository->model->with('childCategories')->findOrFail($id);
-        $post = $this->blogRepository->model->with('photos')->find($id);
-        $post->incrementViewCount();
-        return view('modules.blog.view', compact('post','category'));
+        $article = $this->blogRepository->model->with('photos')->find($id);
+        $article->incrementViewCount();
+        return view('modules.blog.view', compact('article','category'));
     }
 
 }

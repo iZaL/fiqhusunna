@@ -57,10 +57,11 @@ class CategoryController extends Controller
 
     public function getArticle($id)
     {
-        $blogCategories = $this->categoryRepository->model->has('blogs')->get();
-        $category = $this->categoryRepository->model->with(['blogs.thumbnail'])->find($id);
-        $articles= $category->blogs;
-        return view('modules.category.article.view', compact('articles','blogCategories','category'));
+        // get all parent categories for aricles
+        $parentCategories = $this->categoryRepository->model->parentCategories()->with('childCategories')->has('tracks','<',1)->get(['id','name_en']);
+        $selectedCategory = $this->categoryRepository->model->with(['blogs.thumbnail'])->findOrFail($id);
+        $articles= $selectedCategory->blogs;
+        return view('modules.blog.index', compact('articles','parentCategories','selectedCategory'));
     }
 
 

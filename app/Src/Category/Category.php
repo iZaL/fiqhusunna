@@ -44,6 +44,11 @@ class Category extends BaseModel
         return $this->belongsTo($this,'parent_id');
     }
 
+    public function isParent()
+    {
+        return $this->parent_id == 0 ? true : false;
+    }
+
     public function blogs()
     {
         return $this->hasMany(Blog::class);
