@@ -11,7 +11,7 @@
             @foreach($articles as $article)
 
                 <div class="blogTitle"><a href="{{ action('BlogController@show',$article->id) }}">{{ ucfirst($article->title) }}</a></div>
-                <i class="fa fa-calendar"></i>&nbsp; {{ $article->created_at->format('l, M j,Y ') }}
+                <i class="fa fa-calendar"></i>&nbsp; {{ $article->created_at->format('l, M j, Y ') }}
 
                 <div class="row mTop10">
                     @if($article->thumbnail)

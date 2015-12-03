@@ -51,7 +51,8 @@ class CategoryController extends Controller
     {
         $categories = [''=>'Choose parent category']+$this->categoryRepository->model->parentCategories()
             ->lists('name_en', 'id')->toArray();
-        return view('admin.modules.category.create',compact('categories'));
+        $categoryTypes= ['blog'=>'Blog','track'=>'Track'];
+        return view('admin.modules.category.create',compact('categories','categoryTypes'));
     }
 
     /**
@@ -64,7 +65,7 @@ class CategoryController extends Controller
         $this->validate($request, [
             'name_en' => 'required|unique:categories,name_en',
             'cover'   => 'image',
-            'parent_id' => 'numeric'
+            'parent_id' => 'numeric',
         ]);
 
         $category = $this->categoryRepository->model->fill(array_merge($request->all(),
@@ -86,6 +87,7 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
+        $categoryTypes= ['blog'=>'Blog','track'=>'Track'];
 
         $categories = [''=>'Choose parent category']+$this->categoryRepository->model->parentCategories()
                 ->lists('name_en', 'id')->toArray();
@@ -93,7 +95,7 @@ class CategoryController extends Controller
         $category = $this->categoryRepository->model->find($id);
 
 
-        return view('admin.modules.category.edit', compact('category','categories'));
+        return view('admin.modules.category.edit', compact('category','categories','categoryTypes'));
     }
 
     public function update(Request $request, PhotoRepository $photoRepository, $id)

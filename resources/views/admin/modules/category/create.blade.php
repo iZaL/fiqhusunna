@@ -33,7 +33,12 @@
 
         <div class="form-group">
             {!! Form::label('parent_id', 'Parent Category', ['class' => 'control-label']) !!} <span class="red">*</span>
-            {!! Form::select('parent_id', $categories,null,array('class'=>'form-control')) !!}
+            {!! Form::select('parent_id', $categories,null,['class'=>'form-control']) !!}
+        </div>
+
+        <div class="form-group">
+            {!! Form::label('type', 'Category Type', ['class' => 'control-label']) !!} <span class="red">*</span>
+            {!! Form::select('type', $categoryTypes,['blog'],['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">

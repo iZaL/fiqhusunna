@@ -26,6 +26,7 @@
                         <tr>
                             <th>Name</th>
                             <th>Parent</th>
+                            <th>Type</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
@@ -35,6 +36,7 @@
                             <tr class="gradeU">
                                 <td> {{ $category->name }}</td>
                                 <td> {!! $category->parentCategory ? $category->parentCategory->name : 'No' !!}</td>
+                                <td> {!! ucfirst($category->type) !!}</td>
                                 <td class="center">
                                     <p data-placement="top" data-toggle="tooltip" title="Edit">
                                         <a href={{action('Admin\CategoryController@edit',$category->id)}}>

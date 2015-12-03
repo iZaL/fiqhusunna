@@ -18,10 +18,14 @@
     <div class="mTop10">
         {!! Form::model($category,['action' => ['Admin\CategoryController@update',$category->id], 'method' => 'patch','files'=>true,'class'=>'form-horizontal']) !!}
 
-
         <div class="form-group">
             {!! Form::label('parent_id', 'Parent Category', ['class' => 'control-label']) !!} <span class="red">*</span>
             {!! Form::select('parent_id', $categories,null,array('class'=>'form-control')) !!}
+        </div>
+
+        <div class="form-group">
+            {!! Form::label('type', 'Category Type', ['class' => 'control-label']) !!} <span class="red">*</span>
+            {!! Form::select('type', $categoryTypes,['blog'],['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">

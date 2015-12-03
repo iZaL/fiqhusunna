@@ -79,7 +79,7 @@ class AuthorController extends Controller
     public function update(Request $request, PhotoRepository $photoRepository, $id)
     {
         $this->validate($request, [
-            'name_ar' => 'required|unique:authors,name_en,' . $id,
+            'name_en' => 'required|unique:authors,name_en,' . $id,
             'cover'   => 'image'
         ]);
 

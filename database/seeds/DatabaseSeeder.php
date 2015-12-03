@@ -31,9 +31,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
             Model::unguard();
-            $this->cleanDatabase();
+//            $this->cleanDatabase();
 
-            factory('App\Src\User\User', 1)->create();
+//            factory('App\Src\User\User', 1)->create();
 
 //            $categories = factory('App\Src\Category\Category', 1)->create();
 //
