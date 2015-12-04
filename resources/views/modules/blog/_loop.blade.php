@@ -51,6 +51,7 @@
         @endif
     </div>
     <!--/panel-body-->
+    {{  $articles->appends(Request::except('page'))->render()  }}
 </div>
 <!--/panel-->
 
