@@ -26,7 +26,6 @@
                         <tr>
                             <th>Title</th>
                             <th>Category</th>
-                            <th>Description</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
@@ -36,7 +35,6 @@
                             <tr class="gradeU">
                                 <td> {{ $album->name }}</td>
                                 <td> {{ $album->category ? $album->category->name : '-' }}</td>
-                                <td> {!! $album->description !!}</td>
                                 <td class="center">
                                     <p data-placement="top" data-toggle="tooltip" title="Edit">
                                         <a href={{action('Admin\AlbumController@edit',$album->id)}}>

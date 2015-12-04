@@ -54,15 +54,15 @@
             </div>
         </div>
 
-        <div class="form-group">
-            {!! Form::label('description', 'Description', ['class' => 'control-label']) !!}
-            {!! Form::textarea('description_en', null, ['class' => 'form-control editor','placeholder'=>'Category Description']) !!}
-        </div>
+        {{--<div class="form-group">--}}
+            {{--{!! Form::label('description', 'Description', ['class' => 'control-label']) !!}--}}
+            {{--{!! Form::textarea('description_en', null, ['class' => 'form-control editor','placeholder'=>'Category Description']) !!}--}}
+        {{--</div>--}}
 
-        <div class="form-group">
-            {!! Form::label('description', 'Description', ['class' => 'control-label']) !!}
-            {!! Form::textarea('description_ar', null, ['class' => 'form-control editor','placeholder'=>'Category Description Arabic']) !!}
-        </div>
+        {{--<div class="form-group">--}}
+            {{--{!! Form::label('description', 'Description', ['class' => 'control-label']) !!}--}}
+            {{--{!! Form::textarea('description_ar', null, ['class' => 'form-control editor','placeholder'=>'Category Description Arabic']) !!}--}}
+        {{--</div>--}}
         <div class="form-group">
             <span class="btn btn-default fileinput-button">
                 <i class="glyphicon glyphicon-plus"></i>

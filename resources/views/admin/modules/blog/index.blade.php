@@ -47,8 +47,9 @@
                     </table>
                 </div>
                 <!-- /.table-responsive -->
-                @include('admin.partials.delete-modal',['info' => 'Delete Article '.$blog->title. ' ?'])
-
+                @if(count($blogs))
+                    @include('admin.partials.delete-modal',['info' => 'Delete Article '.$blog->title. ' ?'])
+                @endif
             </div>
             <!-- /.panel-body -->
 

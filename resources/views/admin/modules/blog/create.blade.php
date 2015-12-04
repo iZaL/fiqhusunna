@@ -36,10 +36,10 @@
             {!! Form::text('title_en', null, ['class' => 'form-control','placeholder'=>'Category Name']) !!}
         </div>
 
-        <div class="form-group">
-            {!! Form::label('title', 'Article Title in Arabic', ['class' => 'control-label']) !!} <span class="red">*</span>
-            {!! Form::text('title_ar', null, ['class' => 'form-control','placeholder'=>'Category Name']) !!}
-        </div>
+        {{--<div class="form-group">--}}
+            {{--{!! Form::label('title', 'Article Title in Arabic', ['class' => 'control-label']) !!} <span class="red">*</span>--}}
+            {{--{!! Form::text('title_ar', null, ['class' => 'form-control','placeholder'=>'Category Name']) !!}--}}
+        {{--</div>--}}
 
         <div class="form-group">
             {!! Form::label('description', 'English Article', ['class' => 'control-label']) !!}
@@ -47,11 +47,11 @@
             Description']) !!}
         </div>
 
-        <div class="form-group">
-            {!! Form::label('description', 'Arabic Article', ['class' => 'control-label']) !!}
-            {!! Form::textarea('description_ar', null, ['class' => 'form-control editor','placeholder'=>'Category
-            Description']) !!}
-        </div>
+        {{--<div class="form-group">--}}
+            {{--{!! Form::label('description', 'Arabic Article', ['class' => 'control-label']) !!}--}}
+            {{--{!! Form::textarea('description_ar', null, ['class' => 'form-control editor','placeholder'=>'Category--}}
+            {{--Description']) !!}--}}
+        {{--</div>--}}
 
         <div class="form-group">
             <span class="btn btn-default fileinput-button">
