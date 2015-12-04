@@ -33,9 +33,9 @@ class DatabaseSeeder extends Seeder
             Model::unguard();
 //            $this->cleanDatabase();
 
-//            factory('App\Src\User\User', 1)->create();
+            factory('App\Src\User\User', 1)->create();
 
-//            $categories = factory('App\Src\Category\Category', 1)->create();
+            $categories = factory('App\Src\Category\Category', 3)->create();
 //
 //            $albums = factory('App\Src\Album\Album', 1)->create()
 //                ->each(function ($alb) {
@@ -49,7 +49,7 @@ class DatabaseSeeder extends Seeder
 //
 //            factory('App\Src\Track\Track', 50)->create();
 //
-//            factory('App\Src\Blog\Blog', 1)->create();
+            factory('App\Src\Blog\Blog', 100)->create();
 //            factory('App\Src\Meta\Meta', 1)->create();
 
     }
