@@ -42,7 +42,11 @@
             @endforeach
         @else
             <div class="warning">
-                <h4 class="info">No articles found for {{ $selectedCategory->name }}</h4>
+                <h4 class="info">No articles found
+                    @if(isset($selectedCategory) && !is_null($selectedCategory))
+                        for {{ ucfirst($selectedCategory->name) }}
+                    @endif
+                </h4>
             </div>
         @endif
     </div>
