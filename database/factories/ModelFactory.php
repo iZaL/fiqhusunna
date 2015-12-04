@@ -15,7 +15,7 @@ $factory->define('App\Src\User\User', function ($faker) {
     return [
         'name'           => 'zal',
         'email'          => 'admin@test.com',
-        'password'       => bcrypt('admin'),
+        'password'       => bcrypt(''),
         'remember_token' => str_random(10),
         'active'         => 1,
         'isAdmin'        => 1

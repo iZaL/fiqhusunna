@@ -6,6 +6,12 @@
     {{--<script type="text/javascript">var switchTo5x=true;</script>--}}
     {{--<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>--}}
     {{--<script type="text/javascript">stLight.options({publisher: "4dac03e5-453d-4e1f-b7d4-7a907abe45f2", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>--}}
+
+    <script type="text/javascript">
+        var addthis_config = {
+            ui_language: "en"
+        }
+    </script>
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5660c85eb4c369ce" async="async"></script>
 
 @endsection

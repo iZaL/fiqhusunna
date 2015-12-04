@@ -72,11 +72,4 @@ Route::get('test', function () {
 //    $trackUploader->syncTracks();
 //
 //    dd('done');
-    $user = new App\Src\User\User();
-    $user->email = 'pnabdurahman@gmail.com';
-    $user->password = bcrypt('bismillah123');
-    $user->isAdmin = 1;
-    $user->name = 'AbduRahman';
-    $user->active = 1;
-    $user->save();
 });

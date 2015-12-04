@@ -10,7 +10,8 @@
         "laravelcollective/html": "~5.0",
         "vinkla/instagram": "~2.0",
         "intervention/image": "dev-master",
-        "pda/pheanstalk": "~3.0@dev"
+        "pda/pheanstalk": "~3.0@dev",
+        "graham-campbell/htmlmin": "^4.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
