@@ -505,3 +505,11 @@ ul.album-list li .album-list-icon {
 .list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
     background:none;
 }
+.pagination>li>a, .pagination>li>span { border-radius: 50% !important;margin: 0 5px;}
+.pagination>.active>span {
+    background-color: #4EA59D;
+    border-color: #4EA59D;
+}
+.pagination>li>a, .pagination>li>span {
+    color: #4EA59D;
+}
