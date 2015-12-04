@@ -66,9 +66,9 @@ class CategoryController extends Controller
 
         if($selectedCategory->isParent()) {
             $childCategories = array_merge([$selectedCategory->id], $selectedCategory->childCategories->modelKeys());
-            $articles = $this->blogRepository->model->whereIn('category_id',$childCategories)->get();
+            $articles = $this->blogRepository->model->whereIn('category_id',$childCategories)->paginate(10);
         } else {
-            $articles= $selectedCategory->blogs;
+            $articles= $selectedCategory->blogs()->paginate(10);
         }
         return view('modules.blog.index', compact('articles','parentCategories','selectedCategory'));
     }
