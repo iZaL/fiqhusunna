@@ -8,7 +8,7 @@
                 @foreach($articleCategories as $category)
                     <li class="col-sm-3">
                         <ul>
-                            <li class="dropdown-header"><a
+                            <li class="dropdown-header" style="float: left"><a
                                         href="{{action('CategoryController@getArticle',$category->id)}}"> {{ ucfirst($category->name) }}</a>
                             </li>
                             @foreach($category->childCategories as $child)
