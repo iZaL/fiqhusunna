@@ -48,7 +48,7 @@ class CategoryController extends Controller
             'tracks' => function ($q) {
                 $q->latest()->limit(100);
             }
-        ])->find($id);
+        ])->where('type','track')->find($id);
 
         $category->incrementViewCount();
 
@@ -58,8 +58,12 @@ class CategoryController extends Controller
     public function getArticle($id)
     {
         // get all parent categories for aricles
-        $parentCategories = $this->categoryRepository->model->parentCategories()->with('childCategories')->has('tracks','<',1)->get(['id','name_en']);
+        $parentCategories =  $this->categoryRepository->model->parentCategories()->with(['childCategories'=>function($q) {
+            $q->where('type','blog');
+        }])->where('type','blog')->get(['id','name_en']);
+
         $selectedCategory = $this->categoryRepository->model->with(['blogs.thumbnail'])->findOrFail($id);
+
         if($selectedCategory->isParent()) {
             $childCategories = array_merge([$selectedCategory->id], $selectedCategory->childCategories->modelKeys());
             $articles = $this->blogRepository->model->whereIn('category_id',$childCategories)->get();

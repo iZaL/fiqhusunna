@@ -53,14 +53,15 @@ class BlogController extends Controller
 
     public function create()
     {
-        $categories = $this->categoryRepository->model->parentCategories()->with('childCategories')->get();
+        $categories = $this->categoryRepository->model->parentCategories()->with(['childCategories'=>function($q) {
+            $q->where('type','blog');
+        }])->where('type','blog')->get(['id','name_en']);
 
         return view('admin.modules.blog.create', compact('categories'));
     }
 
     public function store(Request $request, PhotoRepository $photoRepository)
     {
-
         $this->validate($request, [
             'title_en' => 'required',
             'category_id' => 'required|numeric',
@@ -88,7 +89,10 @@ class BlogController extends Controller
 
     public function edit($id)
     {
-        $categories = $this->categoryRepository->model->parentCategories()->with('childCategories')->get();
+        $categories =  $this->categoryRepository->model->parentCategories()->with(['childCategories'=>function($q) {
+            $q->where('type','blog');
+        }])->where('type','blog')->get(['id','name_en']);
+
         $blog = $this->blogRepository->model->with('photos')->find($id);
 
         return view('admin.modules.blog.edit', compact('blog', 'categories'));
