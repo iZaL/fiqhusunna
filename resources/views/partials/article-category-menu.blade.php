@@ -16,7 +16,6 @@
                                                            href="{{action('CategoryController@getArticle',$child->id)}}">{{ ucfirst($child->name) }}</a>
                                 </li>
                             @endforeach
-                            <li class="divider"></li>
                         </ul>
                     </li>
                 @endforeach
