@@ -16,8 +16,7 @@
 @section('content')
 
     <div class="mTop10">
-        {!! Form::model($blog,['action' => ['Admin\BlogController@update',$blog->id], 'method' => 'patch'], ['class'=>'form-horizontal']) !!}
-
+        {!! Form::model($blog,['action' => ['Admin\BlogController@update',$blog->id], 'method' => 'patch','files'=>true], ['class'=>'form-horizontal']) !!}
 
         <div class="form-group">
             {!! Form::label('parent_id', 'Category', ['class' => 'control-label']) !!} <span class="red">*</span>
@@ -28,7 +27,7 @@
                             @if($category->id == Form::getValueAttribute('category_id') || $category->id == $blog->category->id )
                             selected="selected"
                             @endif
-                        >{{$category->name}}</option>
+                    >{{$category->name}}</option>
                     @if(count($category->childCategories))
                         @foreach($category->childCategories as $child)
                             <option value="{{ $child->id }}"
@@ -50,9 +49,9 @@
         </div>
 
         {{--<div class="form-group">--}}
-            {{--{!! Form::label('title', 'Article Title in Arabic', ['class' => 'control-label']) !!} <span--}}
-                    {{--class="red">*</span>--}}
-            {{--{!! Form::text('title_ar', null, ['class' => 'form-control','placeholder'=>'Category Name']) !!}--}}
+        {{--{!! Form::label('title', 'Article Title in Arabic', ['class' => 'control-label']) !!} <span--}}
+        {{--class="red">*</span>--}}
+        {{--{!! Form::text('title_ar', null, ['class' => 'form-control','placeholder'=>'Category Name']) !!}--}}
         {{--</div>--}}
 
         <div class="form-group">
@@ -62,9 +61,9 @@
         </div>
 
         {{--<div class="form-group">--}}
-            {{--{!! Form::label('description', 'Arabic Article', ['class' => 'control-label']) !!}--}}
-            {{--{!! Form::textarea('description_ar', null, ['class' => 'form-control editor','placeholder'=>'Category--}}
-            {{--Description']) !!}--}}
+        {{--{!! Form::label('description', 'Arabic Article', ['class' => 'control-label']) !!}--}}
+        {{--{!! Form::textarea('description_ar', null, ['class' => 'form-control editor','placeholder'=>'Category--}}
+        {{--Description']) !!}--}}
         {{--</div>--}}
 
         <div class="form-group">

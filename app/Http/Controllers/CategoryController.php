@@ -57,6 +57,7 @@ class CategoryController extends Controller
 
     public function getArticle($id)
     {
+        $isParent = false;
         // get all parent categories for aricles
         $parentCategories =  $this->categoryRepository->model->parentCategories()->with(['childCategories'=>function($q) {
             $q->where('type','blog');
